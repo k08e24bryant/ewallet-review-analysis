@@ -86,6 +86,12 @@ Examples in this section are illustrative unless marked otherwise.
 8. **Sarcasm:** label the intended meaning ("mantap, saldo hilang lagi" →
    `negative`) and add tag `sarcasm`.
 9. **Do not look up** the original review, rating, or app. Label the text as shown.
+10. **Rating talk** ("bintang 3 dulu ya", "coba dulu, nanti tambah bintang")
+    without praise or complaint → `neutral`. If it includes praise or a
+    complaint, label that sentiment instead. Rating talk alone is never `invalid`.
+11. **Typos with a clear meaning** ("mantaeb") are labeled by their meaning.
+12. **Short complaints** ("ribet", "lemot") are labeled normally; length alone
+    is never a reason for `invalid`.
 
 ## Notes tags
 
