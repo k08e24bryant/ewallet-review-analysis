@@ -20,6 +20,7 @@ model_text:
   fallback_language: en         # for any emoji without an Indonesian name
   delimiters: [" ", " "]
   underscores_to_spaces: true   # "jempol_ke_atas" -> "jempol ke atas"
+  strip_skin_tones: true        # drop U+1F3FB..U+1F3FF before naming ("... warna kulit sedang")
 
 flags:
   min_words: 3                                # is_short: fewer words than this

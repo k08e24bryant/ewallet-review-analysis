@@ -35,6 +35,8 @@ URL_RE = re.compile(r"https?://\S+|www\.\S+", re.IGNORECASE)
 WHITESPACE_RE = re.compile(r"\s+")
 # Mathematical alphanumerics and fullwidth forms: "stylized letter" text that NFKC fixes.
 STYLIZED_RE = re.compile(r"[\U0001D400-\U0001D7FF\uFF01-\uFF5E]")
+# Fitzpatrick skin-tone modifiers U+1F3FB..U+1F3FF (stripped from model_text only).
+SKIN_TONE_RE = re.compile("[\U0001F3FB-\U0001F3FF]")
 # Common emoji / pictograph blocks; used for stats only, emoji are never removed.
 EMOJI_RE = re.compile(
     "[\U0001f000-\U0001faff☀-➿⬀-⯿⌀-⏿️‍]"
@@ -95,18 +97,21 @@ def make_cleaner(max_char_repeat: int, unicode_form: str | None = "NFKC"):
     return clean
 
 
-def make_demojizer(cfg_model_text: dict[str, Any]):
+def make_demojizer(cfg_model_text: dict[str, Any], max_repeat: int):
     """Return a function replacing each emoji with its name, plus a stats dict it updates.
 
-    Names come from ``language`` (falling back to ``fallback_language`` for emoji
-    without a translation), wrapped in the configured delimiters, with underscores
-    inside the name turned into spaces. Underscores in the review text are untouched.
+    Skin-tone modifiers are stripped first (optional), then adjacent identical emoji
+    are re-capped at ``max_repeat`` since stripping can create new runs. Names come
+    from ``language`` (falling back to ``fallback_language`` for emoji without a
+    translation), wrapped in the configured delimiters, with underscores inside the
+    name turned into spaces. Underscores in the review text are untouched.
     """
     import emoji
 
     lang, fallback = cfg_model_text["language"], cfg_model_text["fallback_language"]
     left, right = cfg_model_text["delimiters"]
     underscores = cfg_model_text["underscores_to_spaces"]
+    strip_skin_tones = cfg_model_text["strip_skin_tones"]
     if lang != "en":
         emoji.config.load_language(lang)
     stats = {"emoji_replaced": 0, "fallback_used": 0}
@@ -123,6 +128,8 @@ def make_demojizer(cfg_model_text: dict[str, Any]):
         return f"{left}{name}{right}"
 
     def demojize(text: str) -> str:
+        if strip_skin_tones:
+            text = cap_emoji_runs(SKIN_TONE_RE.sub("", text), max_repeat)
         return WHITESPACE_RE.sub(" ", emoji.replace_emoji(text, replace=name_of)).strip()
 
     return demojize, stats
@@ -131,7 +138,7 @@ def make_demojizer(cfg_model_text: dict[str, Any]):
 def add_features(df: pd.DataFrame, cfg: dict[str, Any]) -> tuple[pd.DataFrame, dict[str, int]]:
     """Add text columns and flags; returns a new frame sorted by app, time, plus demojize stats."""
     clean = make_cleaner(cfg["cleaning"]["max_char_repeat"], cfg["cleaning"]["unicode_normalization"])
-    demojize, demoji_stats = make_demojizer(cfg["model_text"])
+    demojize, demoji_stats = make_demojizer(cfg["model_text"], cfg["cleaning"]["max_char_repeat"])
     out = df.sort_values(["app", "at", "reviewId"], kind="stable").reset_index(drop=True)
 
     out["text_clean"] = pd.Series([clean(t) for t in out["content"]], index=out.index, dtype="string")
