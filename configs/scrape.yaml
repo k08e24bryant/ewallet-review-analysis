@@ -1,0 +1,38 @@
+# Phase 1: Google Play review scraping
+seed: 42
+
+apps:
+  gopay: com.gojek.gopay
+  ovo: ovo.id
+  dana: id.dana
+  shopeepay: com.shopeepay.id
+
+lang: id
+country: id
+sort: newest
+
+# Stop conditions per app (whichever comes first)
+since: "2026-07-01"        # UTC; stop once reviews are older than this
+max_per_app: 120000        # hard cap on rows per app
+
+# Pagination / politeness
+batch_size: 200            # reviews requested per page
+sleep_seconds: 2.0         # pause between pages
+max_retries: 6             # per page, before giving up (checkpoint is kept)
+backoff_base_seconds: 5    # wait = min(base * 2**attempt, max)
+backoff_max_seconds: 120
+
+# Columns kept from each review; userName and userImage are never extracted
+keep_columns:
+  - reviewId
+  - content
+  - score
+  - thumbsUpCount
+  - reviewCreatedVersion
+  - at
+
+# Version strings treated as missing and stored as null
+null_version_values: ["", "0"]
+
+raw_dir: data/raw
+checkpoint_subdir: _checkpoints

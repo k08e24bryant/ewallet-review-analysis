@@ -11,12 +11,34 @@ models/
 wandb/
 *.safetensors
 *.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+checkpoint-*/
+runs/
+
+# Gradio demo (flagged/ can contain user inputs)
+flagged/
+.gradio/
 
 # Secrets
 .env
+.env.*
+!.env.example
+
+# Logs
+*.log
 
 # Python / uv
 .venv/
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+
+# Local tooling / OS
+.claude/settings.local.json
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
