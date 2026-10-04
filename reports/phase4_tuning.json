@@ -1,0 +1,134 @@
+{
+  "seed": 42,
+  "selection": "val macro-F1",
+  "results": [
+    {
+      "min_df": 2,
+      "C": 0.25,
+      "val_macro_f1": 0.6531201164524285,
+      "n_features": 122270,
+      "fit_seconds": 6.0,
+      "n_iter": 61
+    },
+    {
+      "min_df": 2,
+      "C": 0.5,
+      "val_macro_f1": 0.649293765068343,
+      "n_features": 122270,
+      "fit_seconds": 7.7,
+      "n_iter": 82
+    },
+    {
+      "min_df": 2,
+      "C": 1.0,
+      "val_macro_f1": 0.6442214990168211,
+      "n_features": 122270,
+      "fit_seconds": 9.8,
+      "n_iter": 113
+    },
+    {
+      "min_df": 2,
+      "C": 2.0,
+      "val_macro_f1": 0.6498506834103907,
+      "n_features": 122270,
+      "fit_seconds": 9.9,
+      "n_iter": 108
+    },
+    {
+      "min_df": 2,
+      "C": 4.0,
+      "val_macro_f1": 0.64009890372355,
+      "n_features": 122270,
+      "fit_seconds": 14.1,
+      "n_iter": 179
+    },
+    {
+      "min_df": 3,
+      "C": 0.25,
+      "val_macro_f1": 0.6481632965870049,
+      "n_features": 82131,
+      "fit_seconds": 5.3,
+      "n_iter": 73
+    },
+    {
+      "min_df": 3,
+      "C": 0.5,
+      "val_macro_f1": 0.6471705413668004,
+      "n_features": 82131,
+      "fit_seconds": 7.3,
+      "n_iter": 111
+    },
+    {
+      "min_df": 3,
+      "C": 1.0,
+      "val_macro_f1": 0.6421649364488106,
+      "n_features": 82131,
+      "fit_seconds": 6.6,
+      "n_iter": 95
+    },
+    {
+      "min_df": 3,
+      "C": 2.0,
+      "val_macro_f1": 0.6464175530487489,
+      "n_features": 82131,
+      "fit_seconds": 7.6,
+      "n_iter": 111
+    },
+    {
+      "min_df": 3,
+      "C": 4.0,
+      "val_macro_f1": 0.6422003532056636,
+      "n_features": 82131,
+      "fit_seconds": 9.0,
+      "n_iter": 137
+    },
+    {
+      "min_df": 5,
+      "C": 0.25,
+      "val_macro_f1": 0.6509070923047632,
+      "n_features": 54031,
+      "fit_seconds": 4.5,
+      "n_iter": 73
+    },
+    {
+      "min_df": 5,
+      "C": 0.5,
+      "val_macro_f1": 0.646262116903813,
+      "n_features": 54031,
+      "fit_seconds": 5.9,
+      "n_iter": 101
+    },
+    {
+      "min_df": 5,
+      "C": 1.0,
+      "val_macro_f1": 0.6416864803594828,
+      "n_features": 54031,
+      "fit_seconds": 7.3,
+      "n_iter": 128
+    },
+    {
+      "min_df": 5,
+      "C": 2.0,
+      "val_macro_f1": 0.6412937884420238,
+      "n_features": 54031,
+      "fit_seconds": 7.5,
+      "n_iter": 131
+    },
+    {
+      "min_df": 5,
+      "C": 4.0,
+      "val_macro_f1": 0.6412721693153539,
+      "n_features": 54031,
+      "fit_seconds": 7.7,
+      "n_iter": 135
+    }
+  ],
+  "best": {
+    "min_df": 2,
+    "C": 0.25,
+    "val_macro_f1": 0.6531201164524285,
+    "n_features": 122270,
+    "fit_seconds": 6.0,
+    "n_iter": 61
+  }
+}

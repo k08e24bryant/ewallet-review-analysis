@@ -1,0 +1,14 @@
+# Gold-set evaluation shared by Phase 4 (baseline) and Phase 5 (IndoBERT)
+seed: 42
+
+gold_path: data/gold/gold_labels.parquet
+pool_path: data/processed/model_pool.parquet   # gold text + stratum sizes for reweighting
+labels: [negative, neutral, positive]
+binary_positive: negative                      # binary task: negative vs non-negative
+
+# Stratified bootstrap within app x weak_label strata (same method as Phase 3b)
+bootstrap:
+  n: 2000
+  ci: 0.95
+
+figures_dir: reports/figures
