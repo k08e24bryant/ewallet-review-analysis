@@ -5,8 +5,8 @@ apps by **text only**. Star ratings, app names, and dates are hidden on purpose:
 label what the text says, not what you guess the rating was.
 
 Pick one value in the `label` column for every row:
-`negative`, `neutral`, `positive`, or `invalid`. Use `notes` for anything unusual
-(e.g. "sarcasm?", "mostly English", "unsure between neutral/negative").
+`negative`, `neutral`, `positive`, or `invalid`. Use `notes` only with the
+standard tags listed at the end of this file.
 
 ## Labels
 
@@ -35,7 +35,6 @@ Also **mixed reviews where neither side dominates**.
 |---|---|
 | bagaimana cara mengaktifkan fitur Dana Cicil? | Plain how-to question, no emotion |
 | tambahin fitur login pakai email 🙏 | Feature request without a complaint |
-| bagus si tapi iklannya diturunkan ya | Mild praise + mild request; neither side dominates |
 
 ### positive
 Praise, satisfaction, gratitude, or recommendation.
@@ -47,31 +46,56 @@ Praise, satisfaction, gratitude, or recommendation.
 | Dana sangat membantu kelancaran usaha saya,trimksih | Satisfaction |
 
 ### invalid
-Gibberish, unreadable text, or text unrelated to the app (e.g. a review meant
-for a different product, random characters). Invalid rows are replaced from the
-`reserve` sheet, so use this label sparingly.
+Gibberish, unreadable text, or text with **no connection to any app or
+service** (e.g. a comment about TV dramas, random characters, a greeting only).
+Invalid rows are replaced from the `reserve` sheet, so use this label sparingly.
+
+- A review about a **related service** (e.g. Gojek drivers or food orders in
+  the GoPay app) is **not** invalid — see hard case 7.
 
 | Review | Why |
 |---|---|
 | jhguj | Gibberish |
-| saya suka melihat Drama Korea atau Drama Indonesia, cerita sungguh menarik perhatian para pecinta film atau Drama. Semoga tambah sukses. | Unrelated to the app (about TV dramas) |
+| saya suka melihat Drama Korea atau Drama Indonesia, cerita sungguh menarik perhatian para pecinta film atau Drama. Semoga tambah sukses. | Unrelated to any app (about TV dramas) |
 | assalamualaikum wr wb | Greeting only, says nothing about the app |
 
 ## Rules for hard cases
 
-Examples in this section are illustrative, not taken from the data.
+Examples in this section are illustrative unless marked otherwise.
 
 1. **Mixed reviews:** label the **dominant** sentiment. Use `neutral` only when
    praise and complaint are truly balanced.
    - "aplikasi bagus tapi sering error pas transfer, tolong diperbaiki" → the
      complaint dominates → `negative`.
-2. **Polite tone does not change the label.** A courteous complaint is still `negative`.
-3. **English or mixed language:** label normally.
-4. **Emoji only or very short text:** label it if the meaning is clear
+   - "bagus si tapi iklannya diturunkan ya" (from the data) → mild praise and
+     mild complaint are balanced → `neutral`.
+2. **Praise + feature request:**
+   - Strong praise + a feature wish without frustration → `positive`, tag
+     `feature-request` ("sangat cocok dan bagus, tapi belum ada fitur investasi saham").
+   - Feature request + frustration or a competitor comparison → `negative`
+     ("kok belum ada juga, aplikasi lain udah dari dulu").
+3. **Flat or lukewarm reviews** without praise or complaint ("biasa aja",
+   "lumayan") → `neutral`.
+4. **Polite tone does not change the label.** A courteous complaint is still `negative`.
+5. **English or mixed language:** label normally.
+6. **Emoji only or very short text:** label it if the meaning is clear
    ("mantap 👍" → `positive`); use `invalid` only if it is unreadable.
-5. **Sarcasm:** label the intended meaning ("mantap, saldo hilang lagi" → `negative`)
-   and add `sarcasm` in `notes`.
-6. **Do not look up** the original review, rating, or app. Label the text as shown.
+7. **Related services (off-product):** reviews in the GoPay app about Gojek
+   services (drivers, food orders, rides), or similar cases in other apps, are
+   labeled **normally by sentiment**, with tag `off-product`.
+8. **Sarcasm:** label the intended meaning ("mantap, saldo hilang lagi" →
+   `negative`) and add tag `sarcasm`.
+9. **Do not look up** the original review, rating, or app. Label the text as shown.
+
+## Notes tags
+
+Use only these tags in `notes`, separated by commas if more than one:
+
+- `unsure` — you picked a label but could argue for another
+- `off-product` — about a related service, not the e-wallet itself
+- `feature-request` — asks for a new feature
+- `sarcasm` — intended meaning differs from literal words
+- `english` — mostly English text
 
 ## Workflow
 
@@ -80,4 +104,6 @@ Examples in this section are illustrative, not taken from the data.
   by a reserve row from the same hidden stratum, so the import step (3b) will
   list exactly which `reserve` rows (R....) to label. You may also label the
   whole `reserve` sheet up front; unused reserve labels are ignored.
+- If you add a new rule while labeling, write it here and re-check earlier
+  rows that it affects.
 - Save the file as `.xlsx` with the same name.
