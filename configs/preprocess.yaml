@@ -7,9 +7,19 @@ output_path: data/processed/reviews_clean.parquet
 report_path: reports/phase2_eda.json
 
 cleaning:
+  # Applied first: folds stylized/fullwidth letters ("𝐬𝐚𝐧𝐠𝐚𝐭" -> "sangat"). null disables.
+  unicode_normalization: NFKC
   # Runs of the same non-digit character (letters, punctuation, emoji) are cut
   # to this length. Digits are never collapsed: "50.000" / "1000000" are amounts.
   max_char_repeat: 2
+
+# model_text = text_clean with emoji replaced by names (IndoBERT maps emoji to [UNK]).
+# text_clean keeps the emoji for display and BERTopic.
+model_text:
+  language: id                  # emoji library supports Indonesian names
+  fallback_language: en         # for any emoji without an Indonesian name
+  delimiters: [" ", " "]
+  underscores_to_spaces: true   # "jempol_ke_atas" -> "jempol ke atas"
 
 flags:
   min_words: 3                                # is_short: fewer words than this
@@ -17,6 +27,7 @@ flags:
 
 eda:
   top_n_dup_texts: 10
+  stylized_examples: 5
   tokenizer: indobenchmark/indobert-base-p1
   token_percentiles: [50, 90, 95, 99]
   length_thresholds: [64, 128]  # share of reviews above each is reported

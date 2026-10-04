@@ -11,18 +11,127 @@
     "at",
     "app",
     "text_clean",
+    "model_text",
     "n_words",
     "is_short",
     "is_dup_text",
+    "is_dup_text_global",
+    "in_model_pool",
     "week_start",
     "is_partial_week",
     "version_major_minor"
   ],
-  "text_clean_changed_share": 0.08323095214505102,
+  "text_clean_changed_share": 0.09138511839889032,
+  "model_text_differs_from_text_clean": 11471,
+  "demojize": {
+    "emoji_replaced": 18601,
+    "fallback_used": 0
+  },
+  "nfkc": {
+    "rows_with_stylized_letters": 127,
+    "rows_changed_by_nfkc": 1755,
+    "examples": [
+      {
+        "before": "𝒂𝒑𝒍𝒊𝒌𝒂𝒔𝒊 𝒈𝒂𝒌 𝒈𝒖𝒏𝒂 𝒔𝒖𝒏𝒈𝒈𝒖𝒉 𝒎𝒆𝒎𝒂𝒍𝒖𝒌𝒂𝒏 𝒌𝒂𝒕𝒂 𝒏𝒚𝒂 𝒃𝒊𝒔𝒂 𝒋𝒂𝒎𝒊𝒏𝒂𝒏 𝒖𝒂𝒏𝒈 𝒌𝒆𝒎𝒃𝒂𝒍𝒊 , 𝒏𝒚𝒂𝒕𝒂𝒏𝒚𝒂 𝒌𝒂𝒈𝒂𝒌",
+        "after": "aplikasi gak guna sungguh memalukan kata nya bisa jaminan uang kembali , nyatanya kagak"
+      },
+      {
+        "before": "𝘢𝘥𝘢 𝘚𝘩𝘰𝘱𝘦𝘦𝘱𝘢𝘺 𝘣𝘦𝘭𝘢𝘯𝘫𝘢 𝘫𝘥𝘪 𝘢𝘮𝘢𝘯 🥰😘",
+        "after": "ada Shopeepay belanja jdi aman 🥰😘"
+      },
+      {
+        "before": "𝙢𝙚𝙢𝙥𝙚𝙧𝙢𝙪𝙙𝙖𝙝 𝙥𝙖𝙮𝙢𝙚𝙣𝙩",
+        "after": "mempermudah payment"
+      },
+      {
+        "before": "𝙨𝙖𝙣𝙜𝙖𝙩 𝙢𝙚𝙢𝙪𝙖𝙨𝙠𝙖𝙣",
+        "after": "sangat memuaskan"
+      },
+      {
+        "before": "𝑠𝑎𝑛𝑔𝑎𝑡 𝑚𝑒𝑚𝑢𝑎𝑠𝑘𝑎𝑛 😊",
+        "after": "sangat memuaskan 😊"
+      }
+    ]
+  },
   "flag_totals": {
     "is_short": 85338,
-    "is_dup_text": 76030,
+    "is_dup_text": 76103,
+    "is_dup_text_global": 80841,
+    "in_model_pool": 121019,
     "is_partial_week": 29677
+  },
+  "model_pool": {
+    "pool_rows": 121019,
+    "pool_short": 11805,
+    "pool_by_star": {
+      "1": 45040,
+      "2": 6710,
+      "3": 6530,
+      "4": 6287,
+      "5": 56452
+    },
+    "per_app": {
+      "dana": {
+        "rows": 103777,
+        "pool": 66385,
+        "pool_share": 0.639688948418243,
+        "pool_short": 5344,
+        "pool_short_share": 0.08050011297732922,
+        "by_star": {
+          "1": 28272,
+          "2": 4553,
+          "3": 4184,
+          "4": 3400,
+          "5": 25976
+        },
+        "global_dup_not_per_app_dup": 1482
+      },
+      "gopay": {
+        "rows": 56108,
+        "pool": 32166,
+        "pool_share": 0.5732872317673059,
+        "pool_short": 3666,
+        "pool_short_share": 0.11397127401604178,
+        "by_star": {
+          "1": 9541,
+          "2": 1382,
+          "3": 1514,
+          "4": 1818,
+          "5": 17911
+        },
+        "global_dup_not_per_app_dup": 1565
+      },
+      "ovo": {
+        "rows": 6394,
+        "pool": 5594,
+        "pool_share": 0.8748827025336253,
+        "pool_short": 235,
+        "pool_short_share": 0.04200929567393636,
+        "by_star": {
+          "1": 4096,
+          "2": 328,
+          "3": 238,
+          "4": 128,
+          "5": 804
+        },
+        "global_dup_not_per_app_dup": 269
+      },
+      "shopeepay": {
+        "rows": 35581,
+        "pool": 16874,
+        "pool_share": 0.474241870661308,
+        "pool_short": 2560,
+        "pool_short_share": 0.15171269408557544,
+        "by_star": {
+          "1": 3131,
+          "2": 447,
+          "3": 594,
+          "4": 941,
+          "5": 11761
+        },
+        "global_dup_not_per_app_dup": 1422
+      }
+    }
   },
   "short_by_app_score": [
     {
@@ -169,17 +278,17 @@
   "duplicates": {
     "dana": {
       "rows": 103777,
-      "dup_rows": 35873,
-      "dup_share": 0.3456738969135743,
-      "dup_share_non_short": 0.04834322453016815,
+      "dup_rows": 35910,
+      "dup_share": 0.3460304306349191,
+      "dup_share_non_short": 0.04843595450049456,
       "top_texts": [
         {
           "text": "bagus",
-          "count": 4735
+          "count": 4737
         },
         {
           "text": "mantap",
-          "count": 3923
+          "count": 3929
         },
         {
           "text": "ok",
@@ -187,11 +296,11 @@
         },
         {
           "text": "sangat membantu",
-          "count": 1774
+          "count": 1775
         },
         {
           "text": "baik",
-          "count": 1720
+          "count": 1721
         },
         {
           "text": "sangat bagus",
@@ -199,7 +308,7 @@
         },
         {
           "text": "good",
-          "count": 1139
+          "count": 1140
         },
         {
           "text": "sangat baik",
@@ -207,27 +316,27 @@
         },
         {
           "text": "oke",
-          "count": 608
+          "count": 609
         },
         {
           "text": "sangat puas",
-          "count": 525
+          "count": 526
         }
       ]
     },
     "gopay": {
       "rows": 56108,
-      "dup_rows": 22357,
-      "dup_share": 0.398463677193983,
-      "dup_share_non_short": 0.05284619148589137,
+      "dup_rows": 22377,
+      "dup_share": 0.3988201326014116,
+      "dup_share_non_short": 0.05291143369760235,
       "top_texts": [
         {
           "text": "mantap",
-          "count": 2994
+          "count": 2997
         },
         {
           "text": "bagus",
-          "count": 2893
+          "count": 2896
         },
         {
           "text": "ok",
@@ -239,11 +348,11 @@
         },
         {
           "text": "sangat bagus",
-          "count": 798
+          "count": 799
         },
         {
           "text": "sangat membantu",
-          "count": 790
+          "count": 791
         },
         {
           "text": "baik",
@@ -313,8 +422,8 @@
     },
     "shopeepay": {
       "rows": 35581,
-      "dup_rows": 17269,
-      "dup_share": 0.4853433012000787,
+      "dup_rows": 17285,
+      "dup_share": 0.48579297939911753,
       "dup_share_non_short": 0.05892448512585812,
       "top_texts": [
         {
@@ -331,15 +440,15 @@
         },
         {
           "text": "baik",
-          "count": 1265
+          "count": 1266
         },
         {
           "text": "good",
-          "count": 1009
+          "count": 1010
         },
         {
           "text": "sangat membantu",
-          "count": 883
+          "count": 884
         },
         {
           "text": "sangat baik",
@@ -347,7 +456,7 @@
         },
         {
           "text": "sangat bagus",
-          "count": 500
+          "count": 501
         },
         {
           "text": "oke",
@@ -360,21 +469,22 @@
       ]
     }
   },
-  "tokens": {
+  "tokens_text_clean": {
     "tokenizer": "indobenchmark/indobert-base-p1",
+    "column": "text_clean",
     "all": {
       "rows": 201860,
       "percentiles": {
         "p50": 6.0,
         "p90": 27.0,
         "p95": 39.0,
-        "p99": 73.0
+        "p99": 74.0
       },
       "max": 173,
       "above": {
         "64": {
-          "count": 2951,
-          "share": 0.014619042901020509
+          "count": 2958,
+          "share": 0.01465372040027742
         },
         "128": {
           "count": 11,
@@ -386,15 +496,15 @@
       "rows": 116522,
       "percentiles": {
         "p50": 12.0,
-        "p90": 36.0,
-        "p95": 49.0,
+        "p90": 37.0,
+        "p95": 50.0,
         "p99": 86.0
       },
       "max": 173,
       "above": {
         "64": {
-          "count": 2951,
-          "share": 0.02532568956935171
+          "count": 2958,
+          "share": 0.02538576406172225
         },
         "128": {
           "count": 11,
@@ -414,8 +524,8 @@
         "max": 173,
         "above": {
           "64": {
-            "count": 1579,
-            "share": 0.015215317459552695
+            "count": 1585,
+            "share": 0.01527313373868969
           },
           "128": {
             "count": 3,
@@ -434,8 +544,8 @@
         "max": 131,
         "above": {
           "64": {
-            "count": 744,
-            "share": 0.013260141156341342
+            "count": 745,
+            "share": 0.013277963926712768
           },
           "128": {
             "count": 2,
@@ -449,7 +559,7 @@
           "p50": 17.0,
           "p90": 46.0,
           "p95": 59.0,
-          "p99": 95.06999999999971
+          "p99": 96.0
         },
         "max": 141,
         "above": {
@@ -485,10 +595,142 @@
       }
     },
     "unk": {
-      "share_with_any_unk": 0.06536708609927673,
-      "share_all_unk": 0.013742197562667195,
+      "share_with_any_unk": 0.05756464876647181,
+      "share_all_unk": 0.013266620430000991,
       "share_with_emoji": 0.056935499851382146,
-      "share_emoji_rows_with_unk": 1.0
+      "share_emoji_rows_with_unk": 0.999651962063865
+    }
+  },
+  "tokens_model_text": {
+    "tokenizer": "indobenchmark/indobert-base-p1",
+    "column": "model_text",
+    "all": {
+      "rows": 201860,
+      "percentiles": {
+        "p50": 6.0,
+        "p90": 27.0,
+        "p95": 40.0,
+        "p99": 75.0
+      },
+      "max": 297,
+      "above": {
+        "64": {
+          "count": 3060,
+          "share": 0.015159021103735262
+        },
+        "128": {
+          "count": 17,
+          "share": 8.421678390964035e-05
+        }
+      }
+    },
+    "non_short": {
+      "rows": 116522,
+      "percentiles": {
+        "p50": 12.0,
+        "p90": 37.0,
+        "p95": 50.0,
+        "p99": 87.0
+      },
+      "max": 173,
+      "above": {
+        "64": {
+          "count": 3058,
+          "share": 0.0262439710955871
+        },
+        "128": {
+          "count": 15,
+          "share": 0.00012873105507972744
+        }
+      }
+    },
+    "per_app": {
+      "dana": {
+        "rows": 103777,
+        "percentiles": {
+          "p50": 7.0,
+          "p90": 29.0,
+          "p95": 41.0,
+          "p99": 75.0
+        },
+        "max": 173,
+        "above": {
+          "64": {
+            "count": 1632,
+            "share": 0.015726027925262825
+          },
+          "128": {
+            "count": 4,
+            "share": 3.854418609133045e-05
+          }
+        }
+      },
+      "gopay": {
+        "rows": 56108,
+        "percentiles": {
+          "p50": 6.0,
+          "p90": 25.0,
+          "p95": 37.0,
+          "p99": 72.0
+        },
+        "max": 134,
+        "above": {
+          "64": {
+            "count": 777,
+            "share": 0.013848292578598417
+          },
+          "128": {
+            "count": 4,
+            "share": 7.129108148570614e-05
+          }
+        }
+      },
+      "ovo": {
+        "rows": 6394,
+        "percentiles": {
+          "p50": 17.0,
+          "p90": 47.0,
+          "p95": 59.349999999999454,
+          "p99": 97.0
+        },
+        "max": 144,
+        "above": {
+          "64": {
+            "count": 262,
+            "share": 0.04097591492023772
+          },
+          "128": {
+            "count": 3,
+            "share": 0.00046918986549890525
+          }
+        }
+      },
+      "shopeepay": {
+        "rows": 35581,
+        "percentiles": {
+          "p50": 5.0,
+          "p90": 19.0,
+          "p95": 30.0,
+          "p99": 67.0
+        },
+        "max": 297,
+        "above": {
+          "64": {
+            "count": 389,
+            "share": 0.010932801214131137
+          },
+          "128": {
+            "count": 6,
+            "share": 0.00016862932463955482
+          }
+        }
+      }
+    },
+    "unk": {
+      "share_with_any_unk": 0.0008520756960269494,
+      "share_all_unk": 0.00016347963935400774,
+      "share_with_emoji": 0.056935499851382146,
+      "share_emoji_rows_with_unk": 0.0035673888453841467
     }
   },
   "language": {
@@ -497,13 +739,12 @@
     "overall": {
       "rows": 2000,
       "counts": {
-        "indonesian": 1261,
+        "indonesian": 1262,
         "too_short": 726,
-        "english": 12,
-        "undetermined": 1
+        "english": 12
       },
       "too_short_share": 0.363,
-      "non_indonesian_share_of_classified": 0.01020408163265306
+      "non_indonesian_share_of_classified": 0.009419152276295133
     },
     "per_app": {
       "dana": {
@@ -540,12 +781,11 @@
         "rows": 500,
         "counts": {
           "too_short": 276,
-          "indonesian": 219,
-          "english": 4,
-          "undetermined": 1
+          "indonesian": 220,
+          "english": 4
         },
         "too_short_share": 0.552,
-        "non_indonesian_share_of_classified": 0.022321428571428572
+        "non_indonesian_share_of_classified": 0.017857142857142856
       }
     }
   },
@@ -563,7 +803,7 @@
     {
       "app": "dana",
       "lang": "english",
-      "text": "just simple 👍🏽👍🏽👍🏽"
+      "text": "just simple 👍🏽👍🏽"
     },
     {
       "app": "dana",
@@ -594,11 +834,6 @@
       "app": "shopeepay",
       "lang": "english",
       "text": "The best ever after"
-    },
-    {
-      "app": "shopeepay",
-      "lang": "undetermined",
-      "text": "𝒔𝒖𝒔𝒂𝒉 𝒃𝒖𝒌𝒂 𝒏𝒚𝒂"
     },
     {
       "app": "shopeepay",
