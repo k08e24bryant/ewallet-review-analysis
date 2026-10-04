@@ -1,0 +1,43 @@
+# Phase 3a: weak labels, gold sample export, training splits
+seed: 42
+
+input_path: data/processed/reviews_clean.parquet
+pool_output_path: data/processed/model_pool.parquet   # in_model_pool rows + weak_label
+
+apps: [gopay, ovo, dana, shopeepay]
+weak_label_map: {1: negative, 2: negative, 3: neutral, 4: positive, 5: positive}
+classes: [negative, neutral, positive]
+
+gold:
+  per_stratum: 50             # 4 apps x 3 weak classes x 50 = 600
+  reserve_per_stratum: 5      # 60 replacements for reviews labeled invalid
+  xlsx_path: data/gold/gold_to_label.xlsx
+  key_path: data/gold/gold_key.parquet
+  label_options: [negative, neutral, positive, invalid]
+  column_widths: {gold_id: 10, text_clean: 100, label: 14, notes: 40}
+
+guidelines:
+  path: data/gold/GUIDELINES.md
+  # Hand-picked from the pool (never from gold or reserve; enforced in code).
+  # Each entry: reviewId, label, and a short note on why.
+  examples:
+    - {reviewId: 6b2504fb-9d44-4da6-a729-16cb59fbd205, label: negative, note: "Polite and phrased as a question, but reports a failure"}
+    - {reviewId: 8622b0ff-74ee-4d48-af58-360ace214429, label: negative, note: "Request framed as a complaint (limit removed)"}
+    - {reviewId: 597b5eaf-6978-464f-9169-9a18d1273909, label: negative, note: "Accusation (penipu)"}
+    - {reviewId: 5bbd7bf9-c96d-4278-9b47-2eb6afdc5ff8, label: neutral, note: "Plain how-to question, no emotion"}
+    - {reviewId: 83b78c68-9354-40f6-955b-012c51e4e336, label: neutral, note: "Feature request without a complaint"}
+    - {reviewId: dde796c8-e38f-4006-86d7-cb6329c504f0, label: neutral, note: "Mild praise + mild request; neither side dominates"}
+    - {reviewId: f464fc2b-0ce8-4161-8092-241c0e741ae9, label: positive, note: "Praise + gratitude"}
+    - {reviewId: 9d36d8cb-9822-4e1e-8435-cf1f682118aa, label: positive, note: "Recommendation"}
+    - {reviewId: d674488e-6dad-4cc9-afb1-94bbcaeaf011, label: positive, note: "Satisfaction"}
+    - {reviewId: 70ed1ae9-ca69-4b72-94eb-4adbbf64f16a, label: invalid, note: "Gibberish"}
+    - {reviewId: 6776643f-303d-4699-b300-d3503ff05795, label: invalid, note: "Unrelated to the app (about TV dramas)"}
+    - {reviewId: c4a36795-f0b9-41cc-82cd-e3c87fdb276c, label: invalid, note: "Greeting only, says nothing about the app"}
+
+splits:
+  dir: data/processed/splits
+  per_app: 15000              # down-sample target per app
+  use_all_rows: [ovo]         # apps kept whole (fewer than per_app rows)
+  stratify_by: week_start
+  week_allocation: proportional   # proportional | equal (equal caps busy weeks)
+  val_frac: 0.10              # stratified by app x weak_label
