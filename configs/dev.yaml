@@ -1,0 +1,16 @@
+# Phase 5a: dev set for model and label-scheme selection (never gold)
+seed: 42
+
+label_config: configs/label.yaml        # sheet format (dropdown, widths)
+gold_config: configs/gold.yaml          # where the labeled reserve rows live
+pool_path: data/processed/model_pool.parquet
+splits_dir: data/processed/splits
+
+per_stratum: 20                         # 4 apps x 3 weak classes x 20 = 240
+labels: [negative, neutral, positive]
+
+xlsx_path: data/dev/dev_to_label.xlsx   # only NEW rows; reused rows are already labeled
+sheet: dev
+key_path: data/dev/dev_key.parquet
+id_prefix: D
+id_width: 3
