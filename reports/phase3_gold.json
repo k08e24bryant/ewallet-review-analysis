@@ -1,0 +1,473 @@
+{
+  "seed": 42,
+  "checks": {
+    "rows": 600,
+    "per_stratum": 50,
+    "overlap": {
+      "train": 0,
+      "val": 0
+    }
+  },
+  "weighting": "raw = the 600 gold rows as sampled (50 per app x weak_label); reweighted = each row weighted by in_model_pool stratum size / 50, estimating the pool of unique review texts. Quote reweighted numbers for population statements; raw describes the gold set itself.",
+  "gold_label_distribution": {
+    "all": {
+      "counts": {
+        "negative": 411,
+        "neutral": 50,
+        "positive": 139
+      },
+      "raw_share": {
+        "negative": 0.685,
+        "neutral": 0.08333333333333333,
+        "positive": 0.23166666666666666
+      },
+      "reweighted_share": {
+        "negative": 0.588647898263909,
+        "neutral": 0.06548855964765862,
+        "positive": 0.3458635420884324
+      }
+    },
+    "dana": {
+      "counts": {
+        "negative": 110,
+        "neutral": 14,
+        "positive": 26
+      },
+      "raw_share": {
+        "negative": 0.7333333333333333,
+        "neutral": 0.09333333333333334,
+        "positive": 0.17333333333333334
+      },
+      "reweighted_share": {
+        "negative": 0.7056705581080064,
+        "neutral": 0.07181411463433005,
+        "positive": 0.22251532725766363
+      }
+    },
+    "gopay": {
+      "counts": {
+        "negative": 91,
+        "neutral": 11,
+        "positive": 48
+      },
+      "raw_share": {
+        "negative": 0.6066666666666667,
+        "neutral": 0.07333333333333333,
+        "positive": 0.32
+      },
+      "reweighted_share": {
+        "negative": 0.42895604053970027,
+        "neutral": 0.03885655661257228,
+        "positive": 0.5321874028477274
+      }
+    },
+    "ovo": {
+      "counts": {
+        "negative": 118,
+        "neutral": 13,
+        "positive": 19
+      },
+      "raw_share": {
+        "negative": 0.7866666666666666,
+        "neutral": 0.08666666666666667,
+        "positive": 0.12666666666666668
+      },
+      "reweighted_share": {
+        "negative": 0.883289238469789,
+        "neutral": 0.05588130139435109,
+        "positive": 0.06082946013585985
+      }
+    },
+    "shopeepay": {
+      "counts": {
+        "negative": 92,
+        "neutral": 12,
+        "positive": 46
+      },
+      "raw_share": {
+        "negative": 0.6133333333333333,
+        "neutral": 0.08,
+        "positive": 0.30666666666666664
+      },
+      "reweighted_share": {
+        "negative": 0.3349958516060212,
+        "neutral": 0.09455493658883489,
+        "positive": 0.5704492118051441
+      }
+    }
+  },
+  "kappa": {
+    "all": {
+      "raw": 0.35750000000000004,
+      "reweighted": 0.5886139974432917,
+      "reweighted_ci95": [
+        0.5201117868242692,
+        0.6570756925587765
+      ]
+    },
+    "dana": {
+      "raw": 0.31000000000000005,
+      "reweighted": 0.4793702604820035,
+      "reweighted_ci95": [
+        0.3630019550695854,
+        0.5896152142352424
+      ]
+    },
+    "gopay": {
+      "raw": 0.5,
+      "reweighted": 0.7487152802437771,
+      "reweighted_ci95": [
+        0.6365632665559955,
+        0.8483522598619251
+      ]
+    },
+    "ovo": {
+      "raw": 0.20999999999999996,
+      "reweighted": 0.3889635305227066,
+      "reweighted_ci95": [
+        0.2583355465671121,
+        0.5222055797664664
+      ]
+    },
+    "shopeepay": {
+      "raw": 0.41000000000000003,
+      "reweighted": 0.5260739194029226,
+      "reweighted_ci95": [
+        0.40080535963079955,
+        0.6623943422298554
+      ]
+    }
+  },
+  "confusion_matrix": {
+    "rows": "weak_label",
+    "cols": "gold_label",
+    "labels": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "raw_counts": [
+      [
+        194,
+        4,
+        2
+      ],
+      [
+        160,
+        26,
+        14
+      ],
+      [
+        57,
+        20,
+        123
+      ]
+    ],
+    "reweighted_share_of_pool": [
+      [
+        0.4177,
+        0.0087,
+        0.0012
+      ],
+      [
+        0.0437,
+        0.0076,
+        0.0027
+      ],
+      [
+        0.1272,
+        0.0492,
+        0.342
+      ]
+    ],
+    "reweighted_row_share": [
+      [
+        0.9769,
+        0.0203,
+        0.0028
+      ],
+      [
+        0.8092,
+        0.1414,
+        0.0495
+      ],
+      [
+        0.2454,
+        0.0948,
+        0.6597
+      ]
+    ]
+  },
+  "weak_label_quality_vs_gold": {
+    "note": "weak_label treated as a prediction of gold_label",
+    "raw": {
+      "negative": {
+        "precision": 0.97,
+        "recall": 0.4720194647201946,
+        "f1": 0.6350245499181669
+      },
+      "neutral": {
+        "precision": 0.13,
+        "recall": 0.52,
+        "f1": 0.208
+      },
+      "positive": {
+        "precision": 0.615,
+        "recall": 0.8848920863309353,
+        "f1": 0.7256637168141593
+      }
+    },
+    "reweighted": {
+      "negative": {
+        "precision": 0.9769074396135264,
+        "recall": 0.7096670044097512,
+        "f1": 0.822114883470347
+      },
+      "neutral": {
+        "precision": 0.1413598774885142,
+        "recall": 0.11647168078169315,
+        "f1": 0.1277145640094745
+      },
+      "positive": {
+        "precision": 0.6597162849264419,
+        "recall": 0.9888637392052669,
+        "f1": 0.7914320236538901
+      }
+    }
+  },
+  "rating_text_mismatch": {
+    "all": {
+      "pos_stars_labeled_negative": {
+        "n": 200,
+        "raw": 0.285,
+        "reweighted": 0.2454406350117152,
+        "reweighted_ci95": [
+          0.17607476210969256,
+          0.31504619136422324
+        ]
+      },
+      "neg_stars_labeled_positive": {
+        "n": 200,
+        "raw": 0.01,
+        "reweighted": 0.0027656038647342995,
+        "reweighted_ci95": [
+          0.0,
+          0.006914009661835749
+        ]
+      }
+    },
+    "dana": {
+      "pos_stars_labeled_negative": {
+        "n": 50,
+        "raw": 0.38,
+        "reweighted": 0.38000000000000006,
+        "reweighted_ci95": [
+          0.25999999999999995,
+          0.5199999999999999
+        ]
+      },
+      "neg_stars_labeled_positive": {
+        "n": 50,
+        "raw": 0.0,
+        "reweighted": 0.0,
+        "reweighted_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "gopay": {
+      "pos_stars_labeled_negative": {
+        "n": 50,
+        "raw": 0.1,
+        "reweighted": 0.09999999999999998,
+        "reweighted_ci95": [
+          0.019999999999999997,
+          0.19999999999999998
+        ]
+      },
+      "neg_stars_labeled_positive": {
+        "n": 50,
+        "raw": 0.0,
+        "reweighted": 0.0,
+        "reweighted_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "ovo": {
+      "pos_stars_labeled_negative": {
+        "n": 50,
+        "raw": 0.52,
+        "reweighted": 0.52,
+        "reweighted_ci95": [
+          0.37999999999999995,
+          0.66
+        ]
+      },
+      "neg_stars_labeled_positive": {
+        "n": 50,
+        "raw": 0.0,
+        "reweighted": 0.0,
+        "reweighted_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "shopeepay": {
+      "pos_stars_labeled_negative": {
+        "n": 50,
+        "raw": 0.14,
+        "reweighted": 0.13999999999999999,
+        "reweighted_ci95": [
+          0.05999999999999999,
+          0.23999999999999996
+        ]
+      },
+      "neg_stars_labeled_positive": {
+        "n": 50,
+        "raw": 0.04,
+        "reweighted": 0.04,
+        "reweighted_ci95": [
+          0.0,
+          0.1
+        ]
+      }
+    }
+  },
+  "gold_label_by_star_reweighted": {
+    "1": {
+      "n": 169,
+      "reweighted_negative": 0.9979324909698363,
+      "reweighted_neutral": 0.0020675090301634797,
+      "reweighted_positive": 0.0
+    },
+    "2": {
+      "n": 31,
+      "reweighted_negative": 0.8764246962993077,
+      "reweighted_neutral": 0.10759234980244661,
+      "reweighted_positive": 0.015982953898246034
+    },
+    "3": {
+      "n": 200,
+      "reweighted_negative": 0.8091761102603369,
+      "reweighted_neutral": 0.14135987748851458,
+      "reweighted_positive": 0.049464012251148555
+    },
+    "4": {
+      "n": 19,
+      "reweighted_negative": 0.5927414392153522,
+      "reweighted_neutral": 0.18479176725647797,
+      "reweighted_positive": 0.22246679352816986
+    },
+    "5": {
+      "n": 181,
+      "reweighted_negative": 0.22036329133307084,
+      "reweighted_neutral": 0.08834820842630266,
+      "reweighted_positive": 0.6912885002406265
+    }
+  },
+  "notes_tags": {
+    "unsure": 4,
+    "off-product": 0,
+    "feature-request": 4,
+    "sarcasm": 2,
+    "english": 0
+  },
+  "notes_tags_by_gold_label": {
+    "unsure": {
+      "positive": 2,
+      "neutral": 1,
+      "negative": 1
+    },
+    "off-product": {},
+    "feature-request": {
+      "neutral": 3,
+      "positive": 1
+    },
+    "sarcasm": {
+      "negative": 2
+    },
+    "english": {}
+  },
+  "replaced_invalid_per_stratum": {
+    "dana|negative": {
+      "replaced": 1,
+      "by_set": {
+        "reserve": 1
+      }
+    },
+    "dana|neutral": {
+      "replaced": 0,
+      "by_set": {}
+    },
+    "dana|positive": {
+      "replaced": 3,
+      "by_set": {
+        "reserve": 3
+      }
+    },
+    "gopay|negative": {
+      "replaced": 0,
+      "by_set": {}
+    },
+    "gopay|neutral": {
+      "replaced": 2,
+      "by_set": {
+        "reserve": 2
+      }
+    },
+    "gopay|positive": {
+      "replaced": 1,
+      "by_set": {
+        "reserve": 1
+      }
+    },
+    "ovo|negative": {
+      "replaced": 0,
+      "by_set": {}
+    },
+    "ovo|neutral": {
+      "replaced": 0,
+      "by_set": {}
+    },
+    "ovo|positive": {
+      "replaced": 2,
+      "by_set": {
+        "reserve": 2
+      }
+    },
+    "shopeepay|negative": {
+      "replaced": 0,
+      "by_set": {}
+    },
+    "shopeepay|neutral": {
+      "replaced": 2,
+      "by_set": {
+        "reserve": 2
+      }
+    },
+    "shopeepay|positive": {
+      "replaced": 3,
+      "by_set": {
+        "reserve": 3
+      }
+    }
+  },
+  "pool_stratum_sizes": {
+    "dana|negative": 32825,
+    "dana|neutral": 4184,
+    "dana|positive": 29376,
+    "gopay|negative": 10923,
+    "gopay|neutral": 1514,
+    "gopay|positive": 19729,
+    "ovo|negative": 4424,
+    "ovo|neutral": 238,
+    "ovo|positive": 932,
+    "shopeepay|negative": 3578,
+    "shopeepay|neutral": 594,
+    "shopeepay|positive": 12702
+  }
+}

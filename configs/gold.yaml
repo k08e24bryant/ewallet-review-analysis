@@ -1,0 +1,40 @@
+# Phase 3b: gold import, invalid replacement, weak-vs-gold agreement
+seed: 42
+
+label_config: configs/label.yaml   # sheet format (dropdown, widths) shared with Phase 3a
+workbook: data/gold/gold_to_label.xlsx
+key_path: data/gold/gold_key.parquet
+pool_path: data/processed/model_pool.parquet
+splits_dir: data/processed/splits
+
+labels: [negative, neutral, positive]
+invalid_label: invalid
+note_tags: [unsure, off-product, feature-request, sarcasm, english]
+per_stratum: 50
+
+# Drawn only for strata whose reserve runs out; never touches gold_to_label.xlsx
+reserve_extra:
+  per_stratum: 10
+  id_prefix: X
+  id_width: 3
+  xlsx_path: data/gold/reserve_extra.xlsx
+  sheet: reserve_extra
+
+output_path: data/gold/gold_labels.parquet
+report_path: reports/phase3_gold.json
+figures_dir: reports/figures
+figures:
+  confusion: phase3_confusion_weak_vs_gold.png
+  mismatch: phase3_rating_text_mismatch.png
+
+# 95% CIs: bootstrap resampling within each app x weak_label stratum
+bootstrap:
+  n: 2000
+  ci: 0.95
+
+relabel:
+  n: 50
+  id_prefix: B
+  id_width: 3
+  xlsx_path: data/gold/relabel_blind.xlsx
+  key_path: data/gold/relabel_key.parquet
