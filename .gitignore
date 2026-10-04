@@ -1,0 +1,22 @@
+CLAUDE.md
+
+# Data (keep folder placeholders)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Models and experiment tracking
+models/
+wandb/
+*.safetensors
+*.bin
+
+# Secrets
+.env
+
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
