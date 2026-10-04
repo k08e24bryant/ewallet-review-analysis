@@ -1,0 +1,745 @@
+{
+  "seed": 42,
+  "config": "configs\\preprocess.yaml",
+  "rows": 201860,
+  "columns": [
+    "reviewId",
+    "content",
+    "score",
+    "thumbsUpCount",
+    "reviewCreatedVersion",
+    "at",
+    "app",
+    "text_clean",
+    "n_words",
+    "is_short",
+    "is_dup_text",
+    "week_start",
+    "is_partial_week",
+    "version_major_minor"
+  ],
+  "text_clean_changed_share": 0.08323095214505102,
+  "flag_totals": {
+    "is_short": 85338,
+    "is_dup_text": 76030,
+    "is_partial_week": 29677
+  },
+  "short_by_app_score": [
+    {
+      "app": "dana",
+      "score": 1,
+      "total": 30576,
+      "short": 2918,
+      "share": 0.09543432757718472
+    },
+    {
+      "app": "dana",
+      "score": 2,
+      "total": 4928,
+      "short": 419,
+      "share": 0.08502435064935066
+    },
+    {
+      "app": "dana",
+      "score": 3,
+      "total": 4940,
+      "short": 840,
+      "share": 0.1700404858299595
+    },
+    {
+      "app": "dana",
+      "score": 4,
+      "total": 5669,
+      "short": 2362,
+      "share": 0.4166519668371847
+    },
+    {
+      "app": "dana",
+      "score": 5,
+      "total": 57664,
+      "short": 32534,
+      "share": 0.564199500554939
+    },
+    {
+      "app": "gopay",
+      "score": 1,
+      "total": 10260,
+      "short": 986,
+      "share": 0.09610136452241716
+    },
+    {
+      "app": "gopay",
+      "score": 2,
+      "total": 1572,
+      "short": 215,
+      "share": 0.13676844783715011
+    },
+    {
+      "app": "gopay",
+      "score": 3,
+      "total": 1973,
+      "short": 536,
+      "share": 0.27166751140395334
+    },
+    {
+      "app": "gopay",
+      "score": 4,
+      "total": 3429,
+      "short": 1775,
+      "share": 0.5176436278798483
+    },
+    {
+      "app": "gopay",
+      "score": 5,
+      "total": 38874,
+      "short": 21941,
+      "share": 0.5644132324947265
+    },
+    {
+      "app": "ovo",
+      "score": 1,
+      "total": 4215,
+      "short": 217,
+      "share": 0.05148279952550415
+    },
+    {
+      "app": "ovo",
+      "score": 2,
+      "total": 341,
+      "short": 22,
+      "share": 0.06451612903225806
+    },
+    {
+      "app": "ovo",
+      "score": 3,
+      "total": 254,
+      "short": 20,
+      "share": 0.07874015748031496
+    },
+    {
+      "app": "ovo",
+      "score": 4,
+      "total": 170,
+      "short": 46,
+      "share": 0.27058823529411763
+    },
+    {
+      "app": "ovo",
+      "score": 5,
+      "total": 1414,
+      "short": 658,
+      "share": 0.46534653465346537
+    },
+    {
+      "app": "shopeepay",
+      "score": 1,
+      "total": 3395,
+      "short": 406,
+      "share": 0.11958762886597939
+    },
+    {
+      "app": "shopeepay",
+      "score": 2,
+      "total": 512,
+      "short": 89,
+      "share": 0.173828125
+    },
+    {
+      "app": "shopeepay",
+      "score": 3,
+      "total": 837,
+      "short": 274,
+      "share": 0.32735961768219835
+    },
+    {
+      "app": "shopeepay",
+      "score": 4,
+      "total": 1992,
+      "short": 1123,
+      "share": 0.5637550200803213
+    },
+    {
+      "app": "shopeepay",
+      "score": 5,
+      "total": 28845,
+      "short": 17957,
+      "share": 0.6225342347027214
+    }
+  ],
+  "duplicates": {
+    "dana": {
+      "rows": 103777,
+      "dup_rows": 35873,
+      "dup_share": 0.3456738969135743,
+      "dup_share_non_short": 0.04834322453016815,
+      "top_texts": [
+        {
+          "text": "bagus",
+          "count": 4735
+        },
+        {
+          "text": "mantap",
+          "count": 3923
+        },
+        {
+          "text": "ok",
+          "count": 2377
+        },
+        {
+          "text": "sangat membantu",
+          "count": 1774
+        },
+        {
+          "text": "baik",
+          "count": 1720
+        },
+        {
+          "text": "sangat bagus",
+          "count": 1433
+        },
+        {
+          "text": "good",
+          "count": 1139
+        },
+        {
+          "text": "sangat baik",
+          "count": 1012
+        },
+        {
+          "text": "oke",
+          "count": 608
+        },
+        {
+          "text": "sangat puas",
+          "count": 525
+        }
+      ]
+    },
+    "gopay": {
+      "rows": 56108,
+      "dup_rows": 22357,
+      "dup_share": 0.398463677193983,
+      "dup_share_non_short": 0.05284619148589137,
+      "top_texts": [
+        {
+          "text": "mantap",
+          "count": 2994
+        },
+        {
+          "text": "bagus",
+          "count": 2893
+        },
+        {
+          "text": "ok",
+          "count": 1436
+        },
+        {
+          "text": "good",
+          "count": 922
+        },
+        {
+          "text": "sangat bagus",
+          "count": 798
+        },
+        {
+          "text": "sangat membantu",
+          "count": 790
+        },
+        {
+          "text": "baik",
+          "count": 783
+        },
+        {
+          "text": "keren",
+          "count": 452
+        },
+        {
+          "text": "oke",
+          "count": 435
+        },
+        {
+          "text": "sangat baik",
+          "count": 412
+        }
+      ]
+    },
+    "ovo": {
+      "rows": 6394,
+      "dup_rows": 531,
+      "dup_share": 0.08304660619330623,
+      "dup_share_non_short": 0.0014730252255569876,
+      "top_texts": [
+        {
+          "text": "ok",
+          "count": 95
+        },
+        {
+          "text": "bagus",
+          "count": 76
+        },
+        {
+          "text": "mantap",
+          "count": 67
+        },
+        {
+          "text": "good",
+          "count": 39
+        },
+        {
+          "text": "sangat membantu",
+          "count": 36
+        },
+        {
+          "text": "oke",
+          "count": 22
+        },
+        {
+          "text": "baik",
+          "count": 22
+        },
+        {
+          "text": "sangat bagus",
+          "count": 18
+        },
+        {
+          "text": "sangat baik",
+          "count": 12
+        },
+        {
+          "text": "aplikasi sampah",
+          "count": 8
+        }
+      ]
+    },
+    "shopeepay": {
+      "rows": 35581,
+      "dup_rows": 17269,
+      "dup_share": 0.4853433012000787,
+      "dup_share_non_short": 0.05892448512585812,
+      "top_texts": [
+        {
+          "text": "mantap",
+          "count": 2088
+        },
+        {
+          "text": "bagus",
+          "count": 2029
+        },
+        {
+          "text": "ok",
+          "count": 1399
+        },
+        {
+          "text": "baik",
+          "count": 1265
+        },
+        {
+          "text": "good",
+          "count": 1009
+        },
+        {
+          "text": "sangat membantu",
+          "count": 883
+        },
+        {
+          "text": "sangat baik",
+          "count": 541
+        },
+        {
+          "text": "sangat bagus",
+          "count": 500
+        },
+        {
+          "text": "oke",
+          "count": 359
+        },
+        {
+          "text": "keren",
+          "count": 270
+        }
+      ]
+    }
+  },
+  "tokens": {
+    "tokenizer": "indobenchmark/indobert-base-p1",
+    "all": {
+      "rows": 201860,
+      "percentiles": {
+        "p50": 6.0,
+        "p90": 27.0,
+        "p95": 39.0,
+        "p99": 73.0
+      },
+      "max": 173,
+      "above": {
+        "64": {
+          "count": 2951,
+          "share": 0.014619042901020509
+        },
+        "128": {
+          "count": 11,
+          "share": 5.4493213118002576e-05
+        }
+      }
+    },
+    "non_short": {
+      "rows": 116522,
+      "percentiles": {
+        "p50": 12.0,
+        "p90": 36.0,
+        "p95": 49.0,
+        "p99": 86.0
+      },
+      "max": 173,
+      "above": {
+        "64": {
+          "count": 2951,
+          "share": 0.02532568956935171
+        },
+        "128": {
+          "count": 11,
+          "share": 9.440277372513345e-05
+        }
+      }
+    },
+    "per_app": {
+      "dana": {
+        "rows": 103777,
+        "percentiles": {
+          "p50": 7.0,
+          "p90": 29.0,
+          "p95": 41.0,
+          "p99": 74.0
+        },
+        "max": 173,
+        "above": {
+          "64": {
+            "count": 1579,
+            "share": 0.015215317459552695
+          },
+          "128": {
+            "count": 3,
+            "share": 2.8908139568497837e-05
+          }
+        }
+      },
+      "gopay": {
+        "rows": 56108,
+        "percentiles": {
+          "p50": 6.0,
+          "p90": 24.0,
+          "p95": 36.0,
+          "p99": 72.0
+        },
+        "max": 131,
+        "above": {
+          "64": {
+            "count": 744,
+            "share": 0.013260141156341342
+          },
+          "128": {
+            "count": 2,
+            "share": 3.564554074285307e-05
+          }
+        }
+      },
+      "ovo": {
+        "rows": 6394,
+        "percentiles": {
+          "p50": 17.0,
+          "p90": 46.0,
+          "p95": 59.0,
+          "p99": 95.06999999999971
+        },
+        "max": 141,
+        "above": {
+          "64": {
+            "count": 256,
+            "share": 0.040037535189239915
+          },
+          "128": {
+            "count": 3,
+            "share": 0.00046918986549890525
+          }
+        }
+      },
+      "shopeepay": {
+        "rows": 35581,
+        "percentiles": {
+          "p50": 5.0,
+          "p90": 18.0,
+          "p95": 29.0,
+          "p99": 66.0
+        },
+        "max": 166,
+        "above": {
+          "64": {
+            "count": 372,
+            "share": 0.010455018127652399
+          },
+          "128": {
+            "count": 3,
+            "share": 8.431466231977741e-05
+          }
+        }
+      }
+    },
+    "unk": {
+      "share_with_any_unk": 0.06536708609927673,
+      "share_all_unk": 0.013742197562667195,
+      "share_with_emoji": 0.056935499851382146,
+      "share_emoji_rows_with_unk": 1.0
+    }
+  },
+  "language": {
+    "method": "lingua restricted to ['INDONESIAN', 'MALAY', 'ENGLISH'] (merged into indonesian: ['MALAY']); texts under 3 words not classified; non-Latin script and Javanese/Sundanese marker-word heuristic override lingua",
+    "sample": "500 per app, random_state=42",
+    "overall": {
+      "rows": 2000,
+      "counts": {
+        "indonesian": 1261,
+        "too_short": 726,
+        "english": 12,
+        "undetermined": 1
+      },
+      "too_short_share": 0.363,
+      "non_indonesian_share_of_classified": 0.01020408163265306
+    },
+    "per_app": {
+      "dana": {
+        "rows": 500,
+        "counts": {
+          "indonesian": 332,
+          "too_short": 164,
+          "english": 4
+        },
+        "too_short_share": 0.328,
+        "non_indonesian_share_of_classified": 0.011904761904761904
+      },
+      "gopay": {
+        "rows": 500,
+        "counts": {
+          "indonesian": 280,
+          "too_short": 217,
+          "english": 3
+        },
+        "too_short_share": 0.434,
+        "non_indonesian_share_of_classified": 0.01060070671378092
+      },
+      "ovo": {
+        "rows": 500,
+        "counts": {
+          "indonesian": 430,
+          "too_short": 69,
+          "english": 1
+        },
+        "too_short_share": 0.138,
+        "non_indonesian_share_of_classified": 0.002320185614849188
+      },
+      "shopeepay": {
+        "rows": 500,
+        "counts": {
+          "too_short": 276,
+          "indonesian": 219,
+          "english": 4,
+          "undetermined": 1
+        },
+        "too_short_share": 0.552,
+        "non_indonesian_share_of_classified": 0.022321428571428572
+      }
+    }
+  },
+  "language_examples": [
+    {
+      "app": "dana",
+      "lang": "english",
+      "text": "dompet safing wallet bill."
+    },
+    {
+      "app": "dana",
+      "lang": "english",
+      "text": "Good Aplication in Indonesian"
+    },
+    {
+      "app": "dana",
+      "lang": "english",
+      "text": "just simple 👍🏽👍🏽👍🏽"
+    },
+    {
+      "app": "dana",
+      "lang": "english",
+      "text": "i really like it"
+    },
+    {
+      "app": "gopay",
+      "lang": "english",
+      "text": "bad experience !"
+    },
+    {
+      "app": "gopay",
+      "lang": "english",
+      "text": "The best 🌟🌟"
+    },
+    {
+      "app": "gopay",
+      "lang": "english",
+      "text": "thank's gopay the best"
+    },
+    {
+      "app": "ovo",
+      "lang": "english",
+      "text": "jeleekk loading teruss !!"
+    },
+    {
+      "app": "shopeepay",
+      "lang": "english",
+      "text": "The best ever after"
+    },
+    {
+      "app": "shopeepay",
+      "lang": "undetermined",
+      "text": "𝒔𝒖𝒔𝒂𝒉 𝒃𝒖𝒌𝒂 𝒏𝒚𝒂"
+    },
+    {
+      "app": "shopeepay",
+      "lang": "english",
+      "text": "transfer gratis isi saldo gratis ggoodd"
+    },
+    {
+      "app": "shopeepay",
+      "lang": "english",
+      "text": "wsr d. dffq*./&$&*#52f ,la b"
+    },
+    {
+      "app": "shopeepay",
+      "lang": "english",
+      "text": "good lh bro"
+    }
+  ],
+  "versions": {
+    "dana": {
+      "null_share": 0.16739740019464813,
+      "distinct_major_minor": 167,
+      "top": [
+        {
+          "version": "2.145",
+          "rows": 12420,
+          "share": 0.11967969781358104
+        },
+        {
+          "version": "2.139",
+          "rows": 9295,
+          "share": 0.08956705242972914
+        },
+        {
+          "version": "2.134",
+          "rows": 8429,
+          "share": 0.08122223614095608
+        },
+        {
+          "version": "2.135",
+          "rows": 6776,
+          "share": 0.06529385123871378
+        },
+        {
+          "version": "2.146",
+          "rows": 6125,
+          "share": 0.05902078495234975
+        }
+      ]
+    },
+    "gopay": {
+      "null_share": 0.182683396307122,
+      "distinct_major_minor": 74,
+      "top": [
+        {
+          "version": "2.15",
+          "rows": 8004,
+          "share": 0.14265345405289798
+        },
+        {
+          "version": "2.17",
+          "rows": 7865,
+          "share": 0.1401760889712697
+        },
+        {
+          "version": "2.18",
+          "rows": 6737,
+          "share": 0.12007200399230056
+        },
+        {
+          "version": "2.12",
+          "rows": 6152,
+          "share": 0.10964568332501604
+        },
+        {
+          "version": "2.14",
+          "rows": 6133,
+          "share": 0.10930705068795894
+        }
+      ]
+    },
+    "ovo": {
+      "null_share": 0.27791679699718486,
+      "distinct_major_minor": 103,
+      "top": [
+        {
+          "version": "3.166",
+          "rows": 852,
+          "share": 0.1332499218016891
+        },
+        {
+          "version": "3.165",
+          "rows": 668,
+          "share": 0.1044729433844229
+        },
+        {
+          "version": "3.168",
+          "rows": 579,
+          "share": 0.09055364404128871
+        },
+        {
+          "version": "3.169",
+          "rows": 566,
+          "share": 0.08852048795746012
+        },
+        {
+          "version": "3.167",
+          "rows": 553,
+          "share": 0.08648733187363153
+        }
+      ]
+    },
+    "shopeepay": {
+      "null_share": 0.19662179252972092,
+      "distinct_major_minor": 60,
+      "top": [
+        {
+          "version": "1.60",
+          "rows": 5401,
+          "share": 0.15179449706303927
+        },
+        {
+          "version": "1.62",
+          "rows": 4913,
+          "share": 0.13807931199235546
+        },
+        {
+          "version": "1.59",
+          "rows": 4389,
+          "share": 0.12335235097383435
+        },
+        {
+          "version": "1.61",
+          "rows": 4175,
+          "share": 0.11733790506169023
+        },
+        {
+          "version": "1.58",
+          "rows": 3544,
+          "share": 0.09960372108709704
+        }
+      ]
+    }
+  }
+}

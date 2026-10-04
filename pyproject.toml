@@ -7,6 +7,7 @@ requires-python = ">=3.11,<3.12"
 dependencies = [
     "datasets>=5.0.1",
     "google-play-scraper>=1.2.7",
+    "lingua-language-detector>=2.1.1",
     "pandas>=3.0.6",
     "pyarrow>=25.0.1",
     "pyyaml>=6.0.3",

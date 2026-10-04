@@ -1,0 +1,37 @@
+# Phase 2: preprocessing + EDA stats
+seed: 42
+
+apps: [gopay, ovo, dana, shopeepay]
+raw_dir: data/raw
+output_path: data/processed/reviews_clean.parquet
+report_path: reports/phase2_eda.json
+
+cleaning:
+  # Runs of the same non-digit character (letters, punctuation, emoji) are cut
+  # to this length. Digits are never collapsed: "50.000" / "1000000" are amounts.
+  max_char_repeat: 2
+
+flags:
+  min_words: 3                                # is_short: fewer words than this
+  partial_weeks: ["2026-06-29", "2026-09-28"] # week_start values marked is_partial_week
+
+eda:
+  top_n_dup_texts: 10
+  tokenizer: indobenchmark/indobert-base-p1
+  token_percentiles: [50, 90, 95, 99]
+  length_thresholds: [64, 128]  # share of reviews above each is reported
+
+language:
+  sample_per_app: 500           # 4 apps x 500 = 2,000-row language sample
+  # Restricted candidate set: with all 75 languages, lingua labels short informal
+  # Indonesian as Irish/Zulu/Somali etc. Malay is near-identical in writing and
+  # the scrape is country=id, so Malay is counted as Indonesian.
+  candidates: [INDONESIAN, MALAY, ENGLISH]
+  merge_into_indonesian: [MALAY]
+  min_words: 3                  # shorter texts are reported as "too_short", not classified
+  # lingua has no Javanese/Sundanese model: rough marker-word heuristic,
+  # a row is flagged when it contains >= min_markers distinct markers.
+  min_markers: 2
+  regional_markers:
+    javanese: [ora, opo, piye, wis, wes, iso, isa, ning, karo, kudu, durung, mboten, sampun, nggih, ngopo, kowe, sampeyan, dadi, ojo, tenan, apik, elek, suwe]
+    sundanese: [teu, naon, abdi, kumaha, atuh, pisan, sae, hese, lieur, tos, acan, wae, keneh, nu, jeung, ieu, eta, sanes]
