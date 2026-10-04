@@ -92,6 +92,10 @@ Examples in this section are illustrative unless marked otherwise.
 11. **Typos with a clear meaning** ("mantaeb") are labeled by their meaning.
 12. **Short complaints** ("ribet", "lemot") are labeled normally; length alone
     is never a reason for `invalid`.
+13. **Service or promo requests** without emotion ("kasih dana kaget dong",
+    "cairin dana cicil bg", "upgrade tanpa KTP") → `neutral`. With frustration
+    about a problem ("kenapa limit saya hilang") → `negative`.
+14. **"Just started" reviews** ("baru coba", "baru pemula") → `neutral`.
 
 ## Notes tags
 
