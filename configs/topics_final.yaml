@@ -1,0 +1,51 @@
+# Phase 6b: apply topic names + merges, refresh keywords, final topic table, fit-check export
+seed: 42
+
+topics_config: configs/topics.yaml           # 6a settings (input, text column, vectorizer, apps)
+workbook: data/topics/topics_to_name.xlsx    # named + merged by hand (source of truth)
+sheet: topics
+model_in: models/bertopic/bertopic.pkl       # 6a model (left unchanged)
+model_out: models/bertopic/bertopic_final.pkl
+assignments_path: data/processed/topic_assignments.parquet   # updated in place; 6a ids kept as topic_6a
+outlier_label: Outliers
+
+# Keyword refresh only (assignments unchanged): 6a stopwords + these
+extra_stopwords: [gw, gua, gue, lu, lo, udh, mulu, pake, klo, kalo, tp, jd, bgt]
+keep_words: [danacicil]                      # product name; must never be a stopword
+
+# Shares: "unique_texts" = in_model_pool complaint rows (quote these); "all_rows" adds duplicates (Phase 7)
+overrepresented:
+  basis: unique_texts
+  primary: leave_one_out                     # app share / share in the other three apps combined
+  also_report: [pooled]                      # app share / share across all apps (dominated by DANA)
+  top_n: 3
+  min_rows_in_app: 30                        # ignore topics with fewer rows in that app (noisy ratios)
+
+share_figure:
+  top_n: 10                                  # top topics by unique-text size; the rest + outliers = "Other"
+
+fit_check:
+  xlsx_path: data/topics/topic_fit_check.xlsx   # refuses to overwrite
+  key_path: data/topics/topic_fit_key.parquet   # hidden key (reviewId, topic, flags)
+  per_app: 15                                # 4 apps x 15 = 60 rows
+  id_prefix: C
+  id_width: 2
+  options: ["yes", "partly", "no"]     # quoted: bare yes/no are YAML booleans
+  # Drawn from all complaint rows with a named topic (outliers excluded), one row per distinct text
+  # --fit-rate: results added to report_path under "fit_check_results"
+  broad_topics: ["Frequent errors and outages", "General app complaints"]
+  not_complaint_tag: "not complaint"         # exact phrase in notes = sentiment model error
+  possible_not_complaint: ["no complaint", "praise"]   # listed separately, not counted under the tag
+  ci: 0.95
+  bootstrap_n: 2000                          # stratified by app, for the reweighted overall rate
+
+report_path: reports/phase6_final_topics.json
+figures_dir: reports/figures
+figures:
+  share_per_app: phase6_topic_share_per_app.png
+  overview: phase6_topic_overview_final.png
+  overrepresented: phase6_topic_overrepresented.png
+
+wandb:
+  name: phase6b-topics-final
+  job_type: topics

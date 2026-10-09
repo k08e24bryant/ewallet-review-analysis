@@ -1,0 +1,2764 @@
+{
+  "seed": 42,
+  "labels_used": "none (manual topic names; PRIMARY predictions; no gold or dev)",
+  "workbook": "data/topics/topics_to_name.xlsx",
+  "validation": {
+    "errors": [],
+    "merged": {
+      "5": [
+        0,
+        2,
+        6,
+        14,
+        18,
+        26
+      ],
+      "3": [
+        4,
+        19,
+        28,
+        31,
+        37
+      ],
+      "16": [
+        25
+      ],
+      "10": [
+        30,
+        44
+      ],
+      "23": [
+        33,
+        41
+      ],
+      "1": [
+        42
+      ],
+      "9": [
+        43
+      ]
+    },
+    "n_topics_6a": 45,
+    "n_topics_final": 27
+  },
+  "id_mapping_6a_to_final": {
+    "11": 9,
+    "27": 18,
+    "1": 2,
+    "29": 21,
+    "20": 11,
+    "8": 8,
+    "4": 1,
+    "9": 3,
+    "30": 6,
+    "0": 0,
+    "10": 6,
+    "-1": -1,
+    "42": 2,
+    "28": 1,
+    "43": 3,
+    "7": 7,
+    "3": 1,
+    "13": 12,
+    "2": 0,
+    "19": 1,
+    "44": 6,
+    "31": 1,
+    "34": 20,
+    "6": 0,
+    "16": 5,
+    "24": 19,
+    "25": 5,
+    "17": 15,
+    "33": 4,
+    "21": 14,
+    "22": 17,
+    "5": 0,
+    "23": 4,
+    "26": 0,
+    "39": 16,
+    "18": 0,
+    "15": 13,
+    "41": 4,
+    "12": 10,
+    "40": 25,
+    "37": 1,
+    "36": 26,
+    "35": 24,
+    "38": 23,
+    "32": 22,
+    "14": 0
+  },
+  "assignment_check": {
+    "rows_before": 66722,
+    "rows_after": 66722,
+    "model_topics_match_fit_rows": true,
+    "partition_equals_requested_merges": true,
+    "outlier_rows_unchanged": true,
+    "rows_moved_by_merges": 26704,
+    "rows_in_kept_topics": 33643
+  },
+  "keyword_refresh": {
+    "extra_stopwords": [
+      "gw",
+      "gua",
+      "gue",
+      "lu",
+      "lo",
+      "udh",
+      "mulu",
+      "pake",
+      "klo",
+      "kalo",
+      "tp",
+      "jd",
+      "bgt"
+    ],
+    "n_stopwords": 789,
+    "keep_words": [
+      "danacicil"
+    ],
+    "topics_with_danacicil_in_keywords": [],
+    "assignments_unchanged": true
+  },
+  "keywords_6a": {
+    "0": [
+      "uang",
+      "eror",
+      "gangguan",
+      "cicil",
+      "duit",
+      "bayar",
+      "pake",
+      "transaksi",
+      "kirim",
+      "orang"
+    ],
+    "1": [
+      "uang",
+      "saldo",
+      "hilang",
+      "masuk",
+      "transaksi",
+      "tolong",
+      "pembayaran",
+      "kecewa",
+      "berhasil",
+      "uang hilang"
+    ],
+    "2": [
+      "gabisa",
+      "mulu",
+      "udh",
+      "eror",
+      "gua",
+      "saldo",
+      "pake",
+      "gw",
+      "tf",
+      "gangguan"
+    ],
+    "3": [
+      "uang",
+      "transaksi",
+      "saldo",
+      "masuk",
+      "hilang",
+      "bayar",
+      "pake",
+      "aplikasinya",
+      "pembayaran",
+      "pengguna"
+    ],
+    "4": [
+      "eror",
+      "mulu",
+      "ganguan",
+      "tf",
+      "tolol",
+      "pake",
+      "jelek",
+      "eror mulu",
+      "gabisa",
+      "gw"
+    ],
+    "5": [
+      "gangguan",
+      "gangguan mulu",
+      "eror",
+      "gangguan gangguan",
+      "mulu",
+      "eror gangguan",
+      "kebanyakan",
+      "buruk",
+      "kesini",
+      "kebanyakan gangguan"
+    ],
+    "6": [
+      "gangguan",
+      "eror",
+      "aplikasinya",
+      "jelek",
+      "sampah",
+      "buruk",
+      "tolol",
+      "mulu",
+      "lemot",
+      "bug"
+    ],
+    "7": [
+      "update",
+      "upgrade",
+      "update update",
+      "habis update",
+      "premium",
+      "bug",
+      "upgrade premium",
+      "perbaiki",
+      "ktp",
+      "tolong"
+    ],
+    "8": [
+      "cicil",
+      "limit",
+      "fitur cicil",
+      "limit cicil",
+      "tersedia",
+      "fitur",
+      "cicil limit",
+      "pakai",
+      "cicil pakai",
+      "cicil cicil"
+    ],
+    "9": [
+      "transaksi",
+      "gangguan",
+      "transaksi gangguan",
+      "transaksi transaksi",
+      "susah",
+      "gangguan transaksi",
+      "susah transaksi",
+      "transaksi gagal",
+      "eror",
+      "gagal"
+    ],
+    "10": [
+      "jaringan",
+      "jaringan bagus",
+      "bagus",
+      "jaringan bermasalah",
+      "bermasalah",
+      "internet",
+      "koneksi",
+      "stabil",
+      "lancar",
+      "login"
+    ],
+    "11": [
+      "cs",
+      "chat",
+      "chat cs",
+      "bot",
+      "respon",
+      "hubungi",
+      "robot",
+      "solusi",
+      "hubungi cs",
+      "masuk"
+    ],
+    "12": [
+      "qris",
+      "qr",
+      "scan",
+      "pembayaran qris",
+      "pembayaran",
+      "scan qris",
+      "bayar",
+      "qris gagal",
+      "gagal",
+      "pakai qris"
+    ],
+    "13": [
+      "event",
+      "hadiah",
+      "point",
+      "voucher",
+      "vip",
+      "poin",
+      "scam",
+      "tukar",
+      "bikin event",
+      "bola"
+    ],
+    "14": [
+      "teknis",
+      "gangguan teknis",
+      "gangguan",
+      "maintenance",
+      "teknis mulu",
+      "perbaiki",
+      "sistem",
+      "teknis gangguan",
+      "tolong",
+      "teknisi"
+    ],
+    "15": [
+      "pinjaman",
+      "pinjam",
+      "tolak",
+      "pengajuan",
+      "bayar",
+      "telat",
+      "acc",
+      "limit",
+      "ditolak",
+      "pengajuan pinjaman"
+    ],
+    "16": [
+      "akun",
+      "login",
+      "hapus akun",
+      "hapus",
+      "masuk akun",
+      "masuk",
+      "login akun",
+      "tolong",
+      "blokir",
+      "nomor"
+    ],
+    "17": [
+      "admin",
+      "biaya",
+      "biaya admin",
+      "bos",
+      "kena",
+      "kena admin",
+      "adminnya",
+      "mahal",
+      "gratis",
+      "top"
+    ],
+    "18": [
+      "error",
+      "error error",
+      "error mulu",
+      "mulu",
+      "kebanyakan error",
+      "mulu error",
+      "suka error",
+      "kebanyakan",
+      "errorr",
+      "error sistem"
+    ],
+    "19": [
+      "gw",
+      "cicil",
+      "udh",
+      "transaksi",
+      "masuk",
+      "klo",
+      "pake",
+      "akun",
+      "limit",
+      "saldo"
+    ],
+    "20": [
+      "saldo",
+      "masuk",
+      "saldonya",
+      "saldo masuk",
+      "top",
+      "up",
+      "top up",
+      "hilang",
+      "saldo hilang",
+      "isi"
+    ],
+    "21": [
+      "transfer",
+      "transfer transfer",
+      "bertransaksi",
+      "transfer gagal",
+      "transfer gangguan",
+      "transferan",
+      "susah transfer",
+      "susah",
+      "gabisa transfer",
+      "gangguan"
+    ],
+    "22": [
+      "game",
+      "up game",
+      "top",
+      "top up",
+      "up",
+      "games",
+      "diamond",
+      "fitur top",
+      "topup",
+      "main"
+    ],
+    "23": [
+      "jam",
+      "nunggu",
+      "menit",
+      "tunggu",
+      "sampe",
+      "masuk",
+      "transaksi",
+      "suruh",
+      "suruh nunggu",
+      "proses"
+    ],
+    "24": [
+      "wajah",
+      "verifikasi wajah",
+      "verifikasi",
+      "muka",
+      "wajah gagal",
+      "gagal",
+      "login",
+      "kamera",
+      "verifikasi muka",
+      "pin"
+    ],
+    "25": [
+      "login",
+      "login login",
+      "log",
+      "login susah",
+      "susah login",
+      "susah",
+      "gabisa login",
+      "log in",
+      "pas login",
+      "login akun"
+    ],
+    "26": [
+      "sampah",
+      "gangguan",
+      "bug",
+      "eror",
+      "tolol",
+      "jelek",
+      "rusak",
+      "lemot",
+      "mulu",
+      "gangguan mulu"
+    ],
+    "27": [
+      "hp",
+      "no hp",
+      "no",
+      "ganti",
+      "nomor hp",
+      "nomor",
+      "hp hilang",
+      "login",
+      "nomer",
+      "nomer hp"
+    ],
+    "28": [
+      "gua",
+      "duit gua",
+      "saldo gua",
+      "duit",
+      "gua pake",
+      "uang gua",
+      "dikit",
+      "pake",
+      "gua ilang",
+      "gua tf"
+    ],
+    "29": [
+      "iklan",
+      "iklannya",
+      "promo",
+      "maksa",
+      "judi",
+      "lu",
+      "ganggu",
+      "mengganggu",
+      "promonya",
+      "online"
+    ],
+    "30": [
+      "wifi",
+      "pake wifi",
+      "jaringan",
+      "data",
+      "internet",
+      "pakai wifi",
+      "pake",
+      "sinyal",
+      "koneksi",
+      "lancar"
+    ],
+    "31": [
+      "bintang",
+      "kasih bintang",
+      "kasih",
+      "bintang karna",
+      "bintang kasih",
+      "bintang bintang",
+      "cicil",
+      "bintang cicil",
+      "karna",
+      "maaf"
+    ],
+    "32": [
+      "server",
+      "servernya",
+      "down",
+      "server down",
+      "server penuh",
+      "penuh",
+      "sibuk",
+      "server sibuk",
+      "transaksi",
+      "server lu"
+    ],
+    "33": [
+      "gangguan",
+      "gangguannya",
+      "perbaikan",
+      "ganguan",
+      "gangguan gangguan",
+      "eror",
+      "kalo gangguan",
+      "bener",
+      "kalo",
+      "pemeliharaan"
+    ],
+    "34": [
+      "email",
+      "nomor",
+      "otp",
+      "aktif",
+      "kode",
+      "ganti",
+      "lupa",
+      "kode otp",
+      "ganti nomor",
+      "sms"
+    ],
+    "35": [
+      "lambat",
+      "respon",
+      "respon lambat",
+      "slow",
+      "delay",
+      "slow respon",
+      "penanganan",
+      "proses",
+      "pelayanan",
+      "lambat proses"
+    ],
+    "36": [
+      "google",
+      "google play",
+      "play",
+      "langganan",
+      "akun google",
+      "pembayaran",
+      "saldo",
+      "berlangganan",
+      "kesedot",
+      "otomatis"
+    ],
+    "37": [
+      "download",
+      "mendownload",
+      "playstore",
+      "instal",
+      "mending",
+      "didownload",
+      "hapus",
+      "gw download",
+      "mending download",
+      "udh"
+    ],
+    "38": [
+      "data",
+      "paket data",
+      "paket",
+      "beli paket",
+      "beli",
+      "data masuk",
+      "pulsa data",
+      "pulsa",
+      "masuk",
+      "pembelian paket"
+    ],
+    "39": [
+      "buka",
+      "aplikasinya",
+      "klik",
+      "menu",
+      "dibuka",
+      "error",
+      "tolong",
+      "login",
+      "perangkat",
+      "perbaiki"
+    ],
+    "40": [
+      "menghapus",
+      "akun",
+      "permanen",
+      "menghapus akun",
+      "akun permanen",
+      "hapus",
+      "hapus akun",
+      "data",
+      "menghapus data",
+      "penghapusan"
+    ],
+    "41": [
+      "malam",
+      "jam",
+      "gangguan",
+      "pagi",
+      "sore",
+      "sampe",
+      "siang",
+      "gangguan jam",
+      "00",
+      "malam gangguan"
+    ],
+    "42": [
+      "saldo",
+      "saldo hilang",
+      "hilang",
+      "masuk",
+      "saldo masuk",
+      "masuk saldo",
+      "top",
+      "top up",
+      "up",
+      "isi"
+    ],
+    "43": [
+      "error",
+      "transaksi",
+      "error transaksi",
+      "gagal",
+      "transaksi error",
+      "transaksi gagal",
+      "error error",
+      "error mulu",
+      "pembayaran",
+      "mulu"
+    ],
+    "44": [
+      "sinyal",
+      "sinyal bagus",
+      "bagus",
+      "signal",
+      "sinyal lancar",
+      "lancar",
+      "gangguan sinyal",
+      "mulu sinyal",
+      "pdhl sinyal",
+      "sinyal sinyal"
+    ]
+  },
+  "bases": {
+    "unique_texts": "in_model_pool complaint rows (quote these; say 'unique review texts')",
+    "all_rows": "all complaint rows incl. duplicates (Phase 7 trends)",
+    "denominator": "all complaint rows of the app on that basis, outliers included"
+  },
+  "complaints_per_app": {
+    "unique_texts": {
+      "gopay": 13160,
+      "ovo": 4872,
+      "dana": 39919,
+      "shopeepay": 4250,
+      "all": 62201
+    },
+    "all_rows": {
+      "gopay": 14146,
+      "ovo": 5012,
+      "dana": 42955,
+      "shopeepay": 4609,
+      "all": 66722
+    }
+  },
+  "topics": [
+    {
+      "topic": -1,
+      "topic_name": "Outliers",
+      "merged_from_6a": [
+        -1
+      ],
+      "keywords": [],
+      "fit_docs": 5359,
+      "unique_texts": 5621,
+      "all_rows": 6375,
+      "share_unique_texts": {
+        "gopay": 0.0992,
+        "ovo": 0.1065,
+        "dana": 0.0767,
+        "shopeepay": 0.1727,
+        "all": 0.0904
+      },
+      "share_all_rows": {
+        "gopay": 0.1091,
+        "ovo": 0.1077,
+        "dana": 0.0805,
+        "shopeepay": 0.1805,
+        "all": 0.0955
+      }
+    },
+    {
+      "topic": 0,
+      "topic_name": "Frequent errors and outages",
+      "merged_from_6a": [
+        0,
+        2,
+        5,
+        6,
+        14,
+        18,
+        26
+      ],
+      "keywords": [
+        "gangguan",
+        "eror",
+        "error",
+        "uang",
+        "teknis",
+        "bayar",
+        "gangguan teknis",
+        "susah",
+        "gabisa",
+        "tf"
+      ],
+      "fit_docs": 16120,
+      "unique_texts": 17055,
+      "all_rows": 19208,
+      "share_unique_texts": {
+        "gopay": 0.261,
+        "ovo": 0.1851,
+        "dana": 0.3002,
+        "shopeepay": 0.1727,
+        "all": 0.2742
+      },
+      "share_all_rows": {
+        "gopay": 0.2704,
+        "ovo": 0.1927,
+        "dana": 0.3168,
+        "shopeepay": 0.1751,
+        "all": 0.2879
+      }
+    },
+    {
+      "topic": 1,
+      "topic_name": "General app complaints",
+      "merged_from_6a": [
+        3,
+        4,
+        19,
+        28,
+        31,
+        37
+      ],
+      "keywords": [
+        "uang",
+        "transaksi",
+        "saldo",
+        "masuk",
+        "download",
+        "bintang",
+        "eror",
+        "bayar",
+        "tolong",
+        "hilang"
+      ],
+      "fit_docs": 9563,
+      "unique_texts": 10306,
+      "all_rows": 11548,
+      "share_unique_texts": {
+        "gopay": 0.1609,
+        "ovo": 0.1929,
+        "dana": 0.1628,
+        "shopeepay": 0.176,
+        "all": 0.1657
+      },
+      "share_all_rows": {
+        "gopay": 0.1711,
+        "ovo": 0.1957,
+        "dana": 0.1686,
+        "shopeepay": 0.1964,
+        "all": 0.1731
+      }
+    },
+    {
+      "topic": 2,
+      "topic_name": "Transfer or top-up not credited",
+      "merged_from_6a": [
+        1,
+        42
+      ],
+      "keywords": [
+        "saldo",
+        "uang",
+        "hilang",
+        "masuk",
+        "transaksi",
+        "tolong",
+        "saldo hilang",
+        "kecewa",
+        "pembayaran",
+        "akun"
+      ],
+      "fit_docs": 5635,
+      "unique_texts": 5643,
+      "all_rows": 5665,
+      "share_unique_texts": {
+        "gopay": 0.0802,
+        "ovo": 0.0885,
+        "dana": 0.0965,
+        "shopeepay": 0.0718,
+        "all": 0.0907
+      },
+      "share_all_rows": {
+        "gopay": 0.0747,
+        "ovo": 0.0864,
+        "dana": 0.0901,
+        "shopeepay": 0.0662,
+        "all": 0.0849
+      }
+    },
+    {
+      "topic": 3,
+      "topic_name": "Transactions fail",
+      "merged_from_6a": [
+        9,
+        43
+      ],
+      "keywords": [
+        "transaksi",
+        "error",
+        "gangguan",
+        "gagal",
+        "susah",
+        "transaksi gagal",
+        "transaksi transaksi",
+        "transaksi gangguan",
+        "gangguan transaksi",
+        "susah transaksi"
+      ],
+      "fit_docs": 2426,
+      "unique_texts": 2441,
+      "all_rows": 2482,
+      "share_unique_texts": {
+        "gopay": 0.0313,
+        "ovo": 0.0234,
+        "dana": 0.0452,
+        "shopeepay": 0.0259,
+        "all": 0.0392
+      },
+      "share_all_rows": {
+        "gopay": 0.0293,
+        "ovo": 0.0229,
+        "dana": 0.0428,
+        "shopeepay": 0.0247,
+        "all": 0.0372
+      }
+    },
+    {
+      "topic": 4,
+      "topic_name": "Outages last too long",
+      "merged_from_6a": [
+        23,
+        33,
+        41
+      ],
+      "keywords": [
+        "jam",
+        "nunggu",
+        "gangguan",
+        "malam",
+        "sampe",
+        "menit",
+        "masuk",
+        "tunggu",
+        "transaksi",
+        "proses"
+      ],
+      "fit_docs": 2338,
+      "unique_texts": 2373,
+      "all_rows": 2405,
+      "share_unique_texts": {
+        "gopay": 0.06,
+        "ovo": 0.0318,
+        "dana": 0.0312,
+        "shopeepay": 0.0426,
+        "all": 0.0382
+      },
+      "share_all_rows": {
+        "gopay": 0.0566,
+        "ovo": 0.0309,
+        "dana": 0.0295,
+        "shopeepay": 0.0393,
+        "all": 0.036
+      }
+    },
+    {
+      "topic": 5,
+      "topic_name": "Cannot log in",
+      "merged_from_6a": [
+        16,
+        25
+      ],
+      "keywords": [
+        "akun",
+        "login",
+        "hapus akun",
+        "login akun",
+        "hapus",
+        "masuk",
+        "susah",
+        "masuk akun",
+        "tolong",
+        "log"
+      ],
+      "fit_docs": 2323,
+      "unique_texts": 2335,
+      "all_rows": 2406,
+      "share_unique_texts": {
+        "gopay": 0.0288,
+        "ovo": 0.0593,
+        "dana": 0.0378,
+        "shopeepay": 0.0376,
+        "all": 0.0375
+      },
+      "share_all_rows": {
+        "gopay": 0.0273,
+        "ovo": 0.0587,
+        "dana": 0.0364,
+        "shopeepay": 0.0356,
+        "all": 0.0361
+      }
+    },
+    {
+      "topic": 6,
+      "topic_name": "Network error despite good signal",
+      "merged_from_6a": [
+        10,
+        30,
+        44
+      ],
+      "keywords": [
+        "jaringan",
+        "bagus",
+        "wifi",
+        "jaringan bagus",
+        "sinyal",
+        "jaringan bermasalah",
+        "bermasalah",
+        "internet",
+        "lancar",
+        "koneksi"
+      ],
+      "fit_docs": 1977,
+      "unique_texts": 1988,
+      "all_rows": 1990,
+      "share_unique_texts": {
+        "gopay": 0.0231,
+        "ovo": 0.0096,
+        "dana": 0.04,
+        "shopeepay": 0.0096,
+        "all": 0.032
+      },
+      "share_all_rows": {
+        "gopay": 0.0215,
+        "ovo": 0.0094,
+        "dana": 0.0372,
+        "shopeepay": 0.0089,
+        "all": 0.0298
+      }
+    },
+    {
+      "topic": 7,
+      "topic_name": "Update makes the app worse",
+      "merged_from_6a": [
+        7
+      ],
+      "keywords": [
+        "update",
+        "upgrade",
+        "update update",
+        "premium",
+        "habis update",
+        "bug",
+        "perbaiki",
+        "tolong",
+        "upgrade premium",
+        "ktp"
+      ],
+      "fit_docs": 1529,
+      "unique_texts": 1537,
+      "all_rows": 1543,
+      "share_unique_texts": {
+        "gopay": 0.0162,
+        "ovo": 0.0374,
+        "dana": 0.0267,
+        "shopeepay": 0.0176,
+        "all": 0.0247
+      },
+      "share_all_rows": {
+        "gopay": 0.0153,
+        "ovo": 0.0367,
+        "dana": 0.0249,
+        "shopeepay": 0.0163,
+        "all": 0.0231
+      }
+    },
+    {
+      "topic": 8,
+      "topic_name": "DANA Cicil not usable",
+      "merged_from_6a": [
+        8
+      ],
+      "keywords": [
+        "cicil",
+        "limit",
+        "fitur cicil",
+        "limit cicil",
+        "tersedia",
+        "fitur",
+        "cicil limit",
+        "pakai",
+        "cicil pakai",
+        "cicil cicil"
+      ],
+      "fit_docs": 1499,
+      "unique_texts": 1499,
+      "all_rows": 1557,
+      "share_unique_texts": {
+        "gopay": 0.0014,
+        "ovo": 0.0012,
+        "dana": 0.0365,
+        "shopeepay": 0.0035,
+        "all": 0.0241
+      },
+      "share_all_rows": {
+        "gopay": 0.0013,
+        "ovo": 0.0012,
+        "dana": 0.0353,
+        "shopeepay": 0.0033,
+        "all": 0.0233
+      }
+    },
+    {
+      "topic": 9,
+      "topic_name": "Customer service unresponsive",
+      "merged_from_6a": [
+        11
+      ],
+      "keywords": [
+        "cs",
+        "chat",
+        "chat cs",
+        "respon",
+        "bot",
+        "hubungi",
+        "robot",
+        "solusi",
+        "masuk",
+        "saldo"
+      ],
+      "fit_docs": 1102,
+      "unique_texts": 1106,
+      "all_rows": 1106,
+      "share_unique_texts": {
+        "gopay": 0.0267,
+        "ovo": 0.0193,
+        "dana": 0.0134,
+        "shopeepay": 0.0296,
+        "all": 0.0178
+      },
+      "share_all_rows": {
+        "gopay": 0.0248,
+        "ovo": 0.0188,
+        "dana": 0.0125,
+        "shopeepay": 0.0273,
+        "all": 0.0166
+      }
+    },
+    {
+      "topic": 10,
+      "topic_name": "QRIS payment fails",
+      "merged_from_6a": [
+        12
+      ],
+      "keywords": [
+        "qris",
+        "qr",
+        "scan",
+        "pembayaran qris",
+        "pembayaran",
+        "scan qris",
+        "bayar qris",
+        "bayar",
+        "gagal",
+        "qris gagal"
+      ],
+      "fit_docs": 1095,
+      "unique_texts": 1103,
+      "all_rows": 1106,
+      "share_unique_texts": {
+        "gopay": 0.0126,
+        "ovo": 0.0203,
+        "dana": 0.0195,
+        "shopeepay": 0.0139,
+        "all": 0.0177
+      },
+      "share_all_rows": {
+        "gopay": 0.0117,
+        "ovo": 0.02,
+        "dana": 0.0182,
+        "shopeepay": 0.013,
+        "all": 0.0166
+      }
+    },
+    {
+      "topic": 11,
+      "topic_name": "Balance disappears",
+      "merged_from_6a": [
+        20
+      ],
+      "keywords": [
+        "saldo",
+        "masuk",
+        "top",
+        "up",
+        "saldonya",
+        "top up",
+        "hilang",
+        "saldo masuk",
+        "saldo hilang",
+        "isi"
+      ],
+      "fit_docs": 1030,
+      "unique_texts": 1044,
+      "all_rows": 1054,
+      "share_unique_texts": {
+        "gopay": 0.0222,
+        "ovo": 0.0378,
+        "dana": 0.0125,
+        "shopeepay": 0.016,
+        "all": 0.0168
+      },
+      "share_all_rows": {
+        "gopay": 0.0209,
+        "ovo": 0.0367,
+        "dana": 0.0118,
+        "shopeepay": 0.015,
+        "all": 0.0158
+      }
+    },
+    {
+      "topic": 12,
+      "topic_name": "Reward events cannot be claimed",
+      "merged_from_6a": [
+        13
+      ],
+      "keywords": [
+        "event",
+        "hadiah",
+        "point",
+        "voucher",
+        "vip",
+        "poin",
+        "scam",
+        "tukar",
+        "bikin event",
+        "pas"
+      ],
+      "fit_docs": 1000,
+      "unique_texts": 1032,
+      "all_rows": 1065,
+      "share_unique_texts": {
+        "gopay": 0.0108,
+        "ovo": 0.0023,
+        "dana": 0.0202,
+        "shopeepay": 0.0172,
+        "all": 0.0166
+      },
+      "share_all_rows": {
+        "gopay": 0.0105,
+        "ovo": 0.0024,
+        "dana": 0.0192,
+        "shopeepay": 0.0174,
+        "all": 0.016
+      }
+    },
+    {
+      "topic": 13,
+      "topic_name": "Loan request rejected",
+      "merged_from_6a": [
+        15
+      ],
+      "keywords": [
+        "pinjaman",
+        "pinjam",
+        "tolak",
+        "pengajuan",
+        "bayar",
+        "telat",
+        "acc",
+        "limit",
+        "ditolak",
+        "lunas"
+      ],
+      "fit_docs": 804,
+      "unique_texts": 811,
+      "all_rows": 812,
+      "share_unique_texts": {
+        "gopay": 0.0419,
+        "ovo": 0.0074,
+        "dana": 0.0025,
+        "shopeepay": 0.0289,
+        "all": 0.013
+      },
+      "share_all_rows": {
+        "gopay": 0.039,
+        "ovo": 0.0072,
+        "dana": 0.0024,
+        "shopeepay": 0.0267,
+        "all": 0.0122
+      }
+    },
+    {
+      "topic": 14,
+      "topic_name": "Transfer fails",
+      "merged_from_6a": [
+        21
+      ],
+      "keywords": [
+        "transfer",
+        "transfer transfer",
+        "bertransaksi",
+        "transfer gagal",
+        "transfer gangguan",
+        "gangguan",
+        "susah",
+        "susah transfer",
+        "transferan",
+        "gagal"
+      ],
+      "fit_docs": 794,
+      "unique_texts": 803,
+      "all_rows": 813,
+      "share_unique_texts": {
+        "gopay": 0.0127,
+        "ovo": 0.0222,
+        "dana": 0.012,
+        "shopeepay": 0.0111,
+        "all": 0.0129
+      },
+      "share_all_rows": {
+        "gopay": 0.0118,
+        "ovo": 0.0215,
+        "dana": 0.0114,
+        "shopeepay": 0.0106,
+        "all": 0.0122
+      }
+    },
+    {
+      "topic": 15,
+      "topic_name": "Admin fees too high",
+      "merged_from_6a": [
+        17
+      ],
+      "keywords": [
+        "admin",
+        "biaya",
+        "biaya admin",
+        "kena",
+        "bos",
+        "kena admin",
+        "adminnya",
+        "mahal",
+        "top",
+        "top up"
+      ],
+      "fit_docs": 760,
+      "unique_texts": 772,
+      "all_rows": 778,
+      "share_unique_texts": {
+        "gopay": 0.0116,
+        "ovo": 0.0564,
+        "dana": 0.0076,
+        "shopeepay": 0.0096,
+        "all": 0.0124
+      },
+      "share_all_rows": {
+        "gopay": 0.011,
+        "ovo": 0.0553,
+        "dana": 0.0071,
+        "shopeepay": 0.0091,
+        "all": 0.0117
+      }
+    },
+    {
+      "topic": 16,
+      "topic_name": "App will not open",
+      "merged_from_6a": [
+        39
+      ],
+      "keywords": [
+        "buka",
+        "aplikasinya",
+        "klik",
+        "menu",
+        "error",
+        "tolong",
+        "dibuka",
+        "login",
+        "perbaiki",
+        "perangkat"
+      ],
+      "fit_docs": 715,
+      "unique_texts": 716,
+      "all_rows": 729,
+      "share_unique_texts": {
+        "gopay": 0.0085,
+        "ovo": 0.0181,
+        "dana": 0.009,
+        "shopeepay": 0.0372,
+        "all": 0.0115
+      },
+      "share_all_rows": {
+        "gopay": 0.0081,
+        "ovo": 0.0176,
+        "dana": 0.0086,
+        "shopeepay": 0.0343,
+        "all": 0.0109
+      }
+    },
+    {
+      "topic": 17,
+      "topic_name": "Game top-up missing or fails",
+      "merged_from_6a": [
+        22
+      ],
+      "keywords": [
+        "game",
+        "up game",
+        "top",
+        "top up",
+        "up",
+        "games",
+        "diamond",
+        "fitur top",
+        "masuk",
+        "topup"
+      ],
+      "fit_docs": 608,
+      "unique_texts": 609,
+      "all_rows": 611,
+      "share_unique_texts": {
+        "gopay": 0.0304,
+        "ovo": 0.0039,
+        "dana": 0.004,
+        "shopeepay": 0.0075,
+        "all": 0.0098
+      },
+      "share_all_rows": {
+        "gopay": 0.0284,
+        "ovo": 0.0038,
+        "dana": 0.0037,
+        "shopeepay": 0.0069,
+        "all": 0.0092
+      }
+    },
+    {
+      "topic": 18,
+      "topic_name": "Login blocked after phone change",
+      "merged_from_6a": [
+        27
+      ],
+      "keywords": [
+        "hp",
+        "no hp",
+        "no",
+        "ganti",
+        "nomor hp",
+        "nomor",
+        "login",
+        "hp hilang",
+        "nomer",
+        "akun"
+      ],
+      "fit_docs": 507,
+      "unique_texts": 507,
+      "all_rows": 507,
+      "share_unique_texts": {
+        "gopay": 0.0062,
+        "ovo": 0.0259,
+        "dana": 0.0062,
+        "shopeepay": 0.0125,
+        "all": 0.0082
+      },
+      "share_all_rows": {
+        "gopay": 0.0058,
+        "ovo": 0.0251,
+        "dana": 0.0057,
+        "shopeepay": 0.0115,
+        "all": 0.0076
+      }
+    },
+    {
+      "topic": 19,
+      "topic_name": "Face verification fails",
+      "merged_from_6a": [
+        24
+      ],
+      "keywords": [
+        "wajah",
+        "verifikasi wajah",
+        "verifikasi",
+        "muka",
+        "gagal",
+        "login",
+        "wajah gagal",
+        "kamera",
+        "verifikasi muka",
+        "akun"
+      ],
+      "fit_docs": 491,
+      "unique_texts": 491,
+      "all_rows": 491,
+      "share_unique_texts": {
+        "gopay": 0.0093,
+        "ovo": 0.0016,
+        "dana": 0.0071,
+        "shopeepay": 0.0176,
+        "all": 0.0079
+      },
+      "share_all_rows": {
+        "gopay": 0.0087,
+        "ovo": 0.0016,
+        "dana": 0.0066,
+        "shopeepay": 0.0163,
+        "all": 0.0074
+      }
+    },
+    {
+      "topic": 20,
+      "topic_name": "OTP or email blocks login",
+      "merged_from_6a": [
+        34
+      ],
+      "keywords": [
+        "email",
+        "nomor",
+        "otp",
+        "aktif",
+        "kode",
+        "ganti",
+        "lupa",
+        "kode otp",
+        "login",
+        "akun"
+      ],
+      "fit_docs": 453,
+      "unique_texts": 454,
+      "all_rows": 456,
+      "share_unique_texts": {
+        "gopay": 0.0065,
+        "ovo": 0.0291,
+        "dana": 0.0044,
+        "shopeepay": 0.0115,
+        "all": 0.0073
+      },
+      "share_all_rows": {
+        "gopay": 0.0062,
+        "ovo": 0.0283,
+        "dana": 0.0041,
+        "shopeepay": 0.0106,
+        "all": 0.0068
+      }
+    },
+    {
+      "topic": 21,
+      "topic_name": "Too many ads",
+      "merged_from_6a": [
+        29
+      ],
+      "keywords": [
+        "iklan",
+        "promo",
+        "iklannya",
+        "maksa",
+        "judi",
+        "ganggu",
+        "mengganggu",
+        "online",
+        "promonya",
+        "spam"
+      ],
+      "fit_docs": 413,
+      "unique_texts": 441,
+      "all_rows": 456,
+      "share_unique_texts": {
+        "gopay": 0.0134,
+        "ovo": 0.0025,
+        "dana": 0.0023,
+        "shopeepay": 0.0374,
+        "all": 0.0071
+      },
+      "share_all_rows": {
+        "gopay": 0.0127,
+        "ovo": 0.0024,
+        "dana": 0.0022,
+        "shopeepay": 0.0365,
+        "all": 0.0068
+      }
+    },
+    {
+      "topic": 22,
+      "topic_name": "Server down or overloaded",
+      "merged_from_6a": [
+        32
+      ],
+      "keywords": [
+        "server",
+        "servernya",
+        "down",
+        "server down",
+        "server penuh",
+        "penuh",
+        "sibuk",
+        "server sibuk",
+        "transaksi",
+        "event"
+      ],
+      "fit_docs": 328,
+      "unique_texts": 335,
+      "all_rows": 336,
+      "share_unique_texts": {
+        "gopay": 0.0024,
+        "ovo": 0.0012,
+        "dana": 0.0072,
+        "shopeepay": 0.0024,
+        "all": 0.0054
+      },
+      "share_all_rows": {
+        "gopay": 0.0023,
+        "ovo": 0.0012,
+        "dana": 0.0067,
+        "shopeepay": 0.0022,
+        "all": 0.005
+      }
+    },
+    {
+      "topic": 23,
+      "topic_name": "Data package not delivered",
+      "merged_from_6a": [
+        38
+      ],
+      "keywords": [
+        "data",
+        "paket data",
+        "paket",
+        "beli paket",
+        "beli",
+        "data masuk",
+        "masuk",
+        "pulsa",
+        "pulsa data",
+        "pembelian paket"
+      ],
+      "fit_docs": 311,
+      "unique_texts": 312,
+      "all_rows": 312,
+      "share_unique_texts": {
+        "gopay": 0.0093,
+        "ovo": 0.0033,
+        "dana": 0.0036,
+        "shopeepay": 0.0073,
+        "all": 0.005
+      },
+      "share_all_rows": {
+        "gopay": 0.0087,
+        "ovo": 0.0032,
+        "dana": 0.0033,
+        "shopeepay": 0.0067,
+        "all": 0.0047
+      }
+    },
+    {
+      "topic": 24,
+      "topic_name": "App is slow",
+      "merged_from_6a": [
+        35
+      ],
+      "keywords": [
+        "lambat",
+        "respon",
+        "respon lambat",
+        "slow",
+        "delay",
+        "slow respon",
+        "proses",
+        "penanganan",
+        "pelayanan",
+        "transaksi"
+      ],
+      "fit_docs": 310,
+      "unique_texts": 339,
+      "all_rows": 364,
+      "share_unique_texts": {
+        "gopay": 0.0074,
+        "ovo": 0.0072,
+        "dana": 0.0045,
+        "shopeepay": 0.0061,
+        "all": 0.0055
+      },
+      "share_all_rows": {
+        "gopay": 0.0074,
+        "ovo": 0.007,
+        "dana": 0.0046,
+        "shopeepay": 0.0061,
+        "all": 0.0055
+      }
+    },
+    {
+      "topic": 25,
+      "topic_name": "Cannot delete account",
+      "merged_from_6a": [
+        40
+      ],
+      "keywords": [
+        "menghapus",
+        "akun",
+        "permanen",
+        "menghapus akun",
+        "hapus",
+        "akun permanen",
+        "hapus akun",
+        "data",
+        "menghapus data",
+        "penghapusan"
+      ],
+      "fit_docs": 275,
+      "unique_texts": 278,
+      "all_rows": 297,
+      "share_unique_texts": {
+        "gopay": 0.0005,
+        "ovo": 0.0002,
+        "dana": 0.0067,
+        "shopeepay": 0.0005,
+        "all": 0.0045
+      },
+      "share_all_rows": {
+        "gopay": 0.0004,
+        "ovo": 0.0002,
+        "dana": 0.0067,
+        "shopeepay": 0.0004,
+        "all": 0.0045
+      }
+    },
+    {
+      "topic": 26,
+      "topic_name": "Unauthorized Google Play charges",
+      "merged_from_6a": [
+        36
+      ],
+      "keywords": [
+        "google",
+        "google play",
+        "play",
+        "langganan",
+        "akun google",
+        "pembayaran",
+        "saldo",
+        "berlangganan",
+        "transaksi",
+        "kesedot"
+      ],
+      "fit_docs": 249,
+      "unique_texts": 250,
+      "all_rows": 250,
+      "share_unique_texts": {
+        "gopay": 0.0052,
+        "ovo": 0.0055,
+        "dana": 0.0035,
+        "shopeepay": 0.0035,
+        "all": 0.004
+      },
+      "share_all_rows": {
+        "gopay": 0.0049,
+        "ovo": 0.0054,
+        "dana": 0.0032,
+        "shopeepay": 0.0033,
+        "all": 0.0037
+      }
+    }
+  ],
+  "overrepresented": {
+    "primary": "leave_one_out",
+    "basis_for_summary": "unique_texts",
+    "methods": {
+      "leave_one_out": "app share / the topic's share of the other three apps' complaints combined",
+      "pooled": "app share / the topic's share of all apps' complaints (DANA is 64% of complaints, so pooled hides what is specific to DANA)"
+    },
+    "min_rows_in_app": 30,
+    "denominator": "all complaint rows of the app, outliers included",
+    "leave_one_out": {
+      "unique_texts": {
+        "gopay": [
+          {
+            "topic": 13,
+            "ratio": 7.9,
+            "share_in_app": 0.0419,
+            "share_reference": 0.0053,
+            "rows_in_app": 551,
+            "topic_name": "Loan request rejected"
+          },
+          {
+            "topic": 17,
+            "ratio": 7.13,
+            "share_in_app": 0.0304,
+            "share_reference": 0.0043,
+            "rows_in_app": 400,
+            "topic_name": "Game top-up missing or fails"
+          },
+          {
+            "topic": 21,
+            "ratio": 2.5,
+            "share_in_app": 0.0134,
+            "share_reference": 0.0054,
+            "rows_in_app": 177,
+            "topic_name": "Too many ads"
+          }
+        ],
+        "ovo": [
+          {
+            "topic": 15,
+            "ratio": 6.51,
+            "share_in_app": 0.0564,
+            "share_reference": 0.0087,
+            "rows_in_app": 275,
+            "topic_name": "Admin fees too high"
+          },
+          {
+            "topic": 20,
+            "ratio": 5.36,
+            "share_in_app": 0.0291,
+            "share_reference": 0.0054,
+            "rows_in_app": 142,
+            "topic_name": "OTP or email blocks login"
+          },
+          {
+            "topic": 18,
+            "ratio": 3.89,
+            "share_in_app": 0.0259,
+            "share_reference": 0.0066,
+            "rows_in_app": 126,
+            "topic_name": "Login blocked after phone change"
+          }
+        ],
+        "dana": [
+          {
+            "topic": 8,
+            "ratio": 20.36,
+            "share_in_app": 0.0365,
+            "share_reference": 0.0018,
+            "rows_in_app": 1459,
+            "topic_name": "DANA Cicil not usable"
+          },
+          {
+            "topic": 25,
+            "ratio": 16.68,
+            "share_in_app": 0.0067,
+            "share_reference": 0.0004,
+            "rows_in_app": 269,
+            "topic_name": "Cannot delete account"
+          },
+          {
+            "topic": 22,
+            "ratio": 3.34,
+            "share_in_app": 0.0072,
+            "share_reference": 0.0022,
+            "rows_in_app": 287,
+            "topic_name": "Server down or overloaded"
+          }
+        ],
+        "shopeepay": [
+          {
+            "topic": 21,
+            "ratio": 7.69,
+            "share_in_app": 0.0374,
+            "share_reference": 0.0049,
+            "rows_in_app": 159,
+            "topic_name": "Too many ads"
+          },
+          {
+            "topic": 16,
+            "ratio": 3.86,
+            "share_in_app": 0.0372,
+            "share_reference": 0.0096,
+            "rows_in_app": 158,
+            "topic_name": "App will not open"
+          },
+          {
+            "topic": 19,
+            "ratio": 2.46,
+            "share_in_app": 0.0176,
+            "share_reference": 0.0072,
+            "rows_in_app": 75,
+            "topic_name": "Face verification fails"
+          }
+        ]
+      },
+      "all_rows": {
+        "gopay": [
+          {
+            "topic": 13,
+            "ratio": 7.89,
+            "share_in_app": 0.039,
+            "share_reference": 0.0049,
+            "rows_in_app": 552,
+            "topic_name": "Loan request rejected"
+          },
+          {
+            "topic": 17,
+            "ratio": 7.15,
+            "share_in_app": 0.0284,
+            "share_reference": 0.004,
+            "rows_in_app": 402,
+            "topic_name": "Game top-up missing or fails"
+          },
+          {
+            "topic": 21,
+            "ratio": 2.42,
+            "share_in_app": 0.0127,
+            "share_reference": 0.0052,
+            "rows_in_app": 180,
+            "topic_name": "Too many ads"
+          }
+        ],
+        "ovo": [
+          {
+            "topic": 15,
+            "ratio": 6.81,
+            "share_in_app": 0.0553,
+            "share_reference": 0.0081,
+            "rows_in_app": 277,
+            "topic_name": "Admin fees too high"
+          },
+          {
+            "topic": 20,
+            "ratio": 5.57,
+            "share_in_app": 0.0283,
+            "share_reference": 0.0051,
+            "rows_in_app": 142,
+            "topic_name": "OTP or email blocks login"
+          },
+          {
+            "topic": 18,
+            "ratio": 4.07,
+            "share_in_app": 0.0251,
+            "share_reference": 0.0062,
+            "rows_in_app": 126,
+            "topic_name": "Login blocked after phone change"
+          }
+        ],
+        "dana": [
+          {
+            "topic": 8,
+            "ratio": 20.98,
+            "share_in_app": 0.0353,
+            "share_reference": 0.0017,
+            "rows_in_app": 1517,
+            "topic_name": "DANA Cicil not usable"
+          },
+          {
+            "topic": 25,
+            "ratio": 17.71,
+            "share_in_app": 0.0067,
+            "share_reference": 0.0004,
+            "rows_in_app": 288,
+            "topic_name": "Cannot delete account"
+          },
+          {
+            "topic": 22,
+            "ratio": 3.24,
+            "share_in_app": 0.0067,
+            "share_reference": 0.0021,
+            "rows_in_app": 287,
+            "topic_name": "Server down or overloaded"
+          }
+        ],
+        "shopeepay": [
+          {
+            "topic": 21,
+            "ratio": 7.86,
+            "share_in_app": 0.0365,
+            "share_reference": 0.0046,
+            "rows_in_app": 168,
+            "topic_name": "Too many ads"
+          },
+          {
+            "topic": 16,
+            "ratio": 3.73,
+            "share_in_app": 0.0343,
+            "share_reference": 0.0092,
+            "rows_in_app": 158,
+            "topic_name": "App will not open"
+          },
+          {
+            "topic": 19,
+            "ratio": 2.43,
+            "share_in_app": 0.0163,
+            "share_reference": 0.0067,
+            "rows_in_app": 75,
+            "topic_name": "Face verification fails"
+          }
+        ]
+      }
+    },
+    "pooled": {
+      "unique_texts": {
+        "gopay": [
+          {
+            "topic": 13,
+            "ratio": 3.21,
+            "share_in_app": 0.0419,
+            "share_reference": 0.013,
+            "rows_in_app": 551,
+            "topic_name": "Loan request rejected"
+          },
+          {
+            "topic": 17,
+            "ratio": 3.1,
+            "share_in_app": 0.0304,
+            "share_reference": 0.0098,
+            "rows_in_app": 400,
+            "topic_name": "Game top-up missing or fails"
+          },
+          {
+            "topic": 21,
+            "ratio": 1.9,
+            "share_in_app": 0.0134,
+            "share_reference": 0.0071,
+            "rows_in_app": 177,
+            "topic_name": "Too many ads"
+          }
+        ],
+        "ovo": [
+          {
+            "topic": 15,
+            "ratio": 4.55,
+            "share_in_app": 0.0564,
+            "share_reference": 0.0124,
+            "rows_in_app": 275,
+            "topic_name": "Admin fees too high"
+          },
+          {
+            "topic": 20,
+            "ratio": 3.99,
+            "share_in_app": 0.0291,
+            "share_reference": 0.0073,
+            "rows_in_app": 142,
+            "topic_name": "OTP or email blocks login"
+          },
+          {
+            "topic": 18,
+            "ratio": 3.17,
+            "share_in_app": 0.0259,
+            "share_reference": 0.0082,
+            "rows_in_app": 126,
+            "topic_name": "Login blocked after phone change"
+          }
+        ],
+        "dana": [
+          {
+            "topic": 8,
+            "ratio": 1.52,
+            "share_in_app": 0.0365,
+            "share_reference": 0.0241,
+            "rows_in_app": 1459,
+            "topic_name": "DANA Cicil not usable"
+          },
+          {
+            "topic": 25,
+            "ratio": 1.51,
+            "share_in_app": 0.0067,
+            "share_reference": 0.0045,
+            "rows_in_app": 269,
+            "topic_name": "Cannot delete account"
+          },
+          {
+            "topic": 22,
+            "ratio": 1.33,
+            "share_in_app": 0.0072,
+            "share_reference": 0.0054,
+            "rows_in_app": 287,
+            "topic_name": "Server down or overloaded"
+          }
+        ],
+        "shopeepay": [
+          {
+            "topic": 21,
+            "ratio": 5.28,
+            "share_in_app": 0.0374,
+            "share_reference": 0.0071,
+            "rows_in_app": 159,
+            "topic_name": "Too many ads"
+          },
+          {
+            "topic": 16,
+            "ratio": 3.23,
+            "share_in_app": 0.0372,
+            "share_reference": 0.0115,
+            "rows_in_app": 158,
+            "topic_name": "App will not open"
+          },
+          {
+            "topic": 19,
+            "ratio": 2.24,
+            "share_in_app": 0.0176,
+            "share_reference": 0.0079,
+            "rows_in_app": 75,
+            "topic_name": "Face verification fails"
+          }
+        ]
+      },
+      "all_rows": {
+        "gopay": [
+          {
+            "topic": 13,
+            "ratio": 3.21,
+            "share_in_app": 0.039,
+            "share_reference": 0.0122,
+            "rows_in_app": 552,
+            "topic_name": "Loan request rejected"
+          },
+          {
+            "topic": 17,
+            "ratio": 3.1,
+            "share_in_app": 0.0284,
+            "share_reference": 0.0092,
+            "rows_in_app": 402,
+            "topic_name": "Game top-up missing or fails"
+          },
+          {
+            "topic": 21,
+            "ratio": 1.86,
+            "share_in_app": 0.0127,
+            "share_reference": 0.0068,
+            "rows_in_app": 180,
+            "topic_name": "Too many ads"
+          }
+        ],
+        "ovo": [
+          {
+            "topic": 15,
+            "ratio": 4.74,
+            "share_in_app": 0.0553,
+            "share_reference": 0.0117,
+            "rows_in_app": 277,
+            "topic_name": "Admin fees too high"
+          },
+          {
+            "topic": 20,
+            "ratio": 4.15,
+            "share_in_app": 0.0283,
+            "share_reference": 0.0068,
+            "rows_in_app": 142,
+            "topic_name": "OTP or email blocks login"
+          },
+          {
+            "topic": 18,
+            "ratio": 3.31,
+            "share_in_app": 0.0251,
+            "share_reference": 0.0076,
+            "rows_in_app": 126,
+            "topic_name": "Login blocked after phone change"
+          }
+        ],
+        "dana": [
+          {
+            "topic": 8,
+            "ratio": 1.51,
+            "share_in_app": 0.0353,
+            "share_reference": 0.0233,
+            "rows_in_app": 1517,
+            "topic_name": "DANA Cicil not usable"
+          },
+          {
+            "topic": 25,
+            "ratio": 1.51,
+            "share_in_app": 0.0067,
+            "share_reference": 0.0045,
+            "rows_in_app": 288,
+            "topic_name": "Cannot delete account"
+          },
+          {
+            "topic": 22,
+            "ratio": 1.33,
+            "share_in_app": 0.0067,
+            "share_reference": 0.005,
+            "rows_in_app": 287,
+            "topic_name": "Server down or overloaded"
+          }
+        ],
+        "shopeepay": [
+          {
+            "topic": 21,
+            "ratio": 5.33,
+            "share_in_app": 0.0365,
+            "share_reference": 0.0068,
+            "rows_in_app": 168,
+            "topic_name": "Too many ads"
+          },
+          {
+            "topic": 16,
+            "ratio": 3.14,
+            "share_in_app": 0.0343,
+            "share_reference": 0.0109,
+            "rows_in_app": 158,
+            "topic_name": "App will not open"
+          },
+          {
+            "topic": 19,
+            "ratio": 2.21,
+            "share_in_app": 0.0163,
+            "share_reference": 0.0074,
+            "rows_in_app": 75,
+            "topic_name": "Face verification fails"
+          }
+        ]
+      }
+    }
+  },
+  "fit_check": {
+    "xlsx": "data/topics/topic_fit_check.xlsx",
+    "key": "data/topics/topic_fit_key.parquet",
+    "n": 60,
+    "per_app": {
+      "gopay": 15,
+      "dana": 15,
+      "shopeepay": 15,
+      "ovo": 15
+    },
+    "assigned_by_transform": 1,
+    "topics_covered": 19
+  },
+  "outputs": {
+    "model": "models/bertopic/bertopic_final.pkl",
+    "assignments": "data/processed/topic_assignments.parquet",
+    "figures": {
+      "share_per_app": "reports\\figures\\phase6_topic_share_per_app.png",
+      "overview": "reports\\figures\\phase6_topic_overview_final.png",
+      "overrepresented": "reports\\figures\\phase6_topic_overrepresented.png"
+    }
+  },
+  "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/tuy7b2m1",
+  "fit_check_results": {
+    "n": 60,
+    "options": [
+      "yes",
+      "partly",
+      "no"
+    ],
+    "sample": "15 random complaint rows per app (seed 42), one row per distinct text, named topics only (outliers excluded); judged by hand from text and topic name",
+    "raw": {
+      "overall": {
+        "n": 60,
+        "yes": {
+          "count": 22,
+          "share": 0.36666666666666664,
+          "ci95": [
+            0.25620916687225426,
+            0.49316999369896963
+          ]
+        },
+        "partly": {
+          "count": 7,
+          "share": 0.11666666666666667,
+          "ci95": [
+            0.0576772064005603,
+            0.2217878802417086
+          ]
+        },
+        "no": {
+          "count": 31,
+          "share": 0.5166666666666667,
+          "ci95": [
+            0.39307810032592494,
+            0.6382495046026722
+          ]
+        }
+      },
+      "per_app": {
+        "gopay": {
+          "n": 15,
+          "yes": {
+            "count": 9,
+            "share": 0.6,
+            "ci95": [
+              0.357468301206246,
+              0.8017550385865841
+            ]
+          },
+          "partly": {
+            "count": 1,
+            "share": 0.06666666666666667,
+            "ci95": [
+              0.011866895493268553,
+              0.2981652987378003
+            ]
+          },
+          "no": {
+            "count": 5,
+            "share": 0.3333333333333333,
+            "ci95": [
+              0.1517632443971473,
+              0.5828645226148023
+            ]
+          }
+        },
+        "ovo": {
+          "n": 15,
+          "yes": {
+            "count": 6,
+            "share": 0.4,
+            "ci95": [
+              0.1982449614134158,
+              0.6425316987937539
+            ]
+          },
+          "partly": {
+            "count": 3,
+            "share": 0.2,
+            "ci95": [
+              0.07047549346981563,
+              0.45185448715169363
+            ]
+          },
+          "no": {
+            "count": 6,
+            "share": 0.4,
+            "ci95": [
+              0.1982449614134158,
+              0.6425316987937539
+            ]
+          }
+        },
+        "dana": {
+          "n": 15,
+          "yes": {
+            "count": 5,
+            "share": 0.3333333333333333,
+            "ci95": [
+              0.1517632443971473,
+              0.5828645226148023
+            ]
+          },
+          "partly": {
+            "count": 3,
+            "share": 0.2,
+            "ci95": [
+              0.07047549346981563,
+              0.45185448715169363
+            ]
+          },
+          "no": {
+            "count": 7,
+            "share": 0.4666666666666667,
+            "ci95": [
+              0.24809535365737387,
+              0.698830199745016
+            ]
+          }
+        },
+        "shopeepay": {
+          "n": 15,
+          "yes": {
+            "count": 2,
+            "share": 0.13333333333333333,
+            "ci95": [
+              0.03736125910306537,
+              0.37881982832322364
+            ]
+          },
+          "partly": {
+            "count": 0,
+            "share": 0.0,
+            "ci95": [
+              0.0,
+              0.20388330103584862
+            ]
+          },
+          "no": {
+            "count": 13,
+            "share": 0.8666666666666667,
+            "ci95": [
+              0.6211801716767764,
+              0.9626387408969346
+            ]
+          }
+        }
+      },
+      "by_topic_group": {
+        "broad": {
+          "n": 24,
+          "yes": {
+            "count": 6,
+            "share": 0.25,
+            "ci95": [
+              0.11999366228595004,
+              0.44899444005154004
+            ]
+          },
+          "partly": {
+            "count": 1,
+            "share": 0.041666666666666664,
+            "ci95": [
+              0.0073934561655057685,
+              0.20241806478655938
+            ]
+          },
+          "no": {
+            "count": 17,
+            "share": 0.7083333333333334,
+            "ci95": [
+              0.5083230633550337,
+              0.8508535180303913
+            ]
+          }
+        },
+        "specific": {
+          "n": 36,
+          "yes": {
+            "count": 16,
+            "share": 0.4444444444444444,
+            "ci95": [
+              0.2954126874008022,
+              0.6041893824430271
+            ]
+          },
+          "partly": {
+            "count": 6,
+            "share": 0.16666666666666666,
+            "ci95": [
+              0.07870447595018114,
+              0.31890794311279463
+            ]
+          },
+          "no": {
+            "count": 14,
+            "share": 0.3888888888888889,
+            "ci95": [
+              0.24784873065371,
+              0.5513554090339485
+            ]
+          }
+        }
+      }
+    },
+    "reweighted_overall": {
+      "weights_app_share_of_frame": {
+        "gopay": 0.2085,
+        "ovo": 0.0762,
+        "dana": 0.6537,
+        "shopeepay": 0.0616
+      },
+      "method": "app-weighted mean; 2000 stratified bootstrap draws",
+      "yes": {
+        "share": 0.3816996673623412,
+        "ci95": [
+          0.22160697896022966,
+          0.5550559170335034
+        ]
+      },
+      "partly": {
+        "share": 0.15988939359394821,
+        "ci95": [
+          0.040607896782943756,
+          0.3045382533307611
+        ]
+      },
+      "no": {
+        "share": 0.45841093904371055,
+        "ci95": [
+          0.290598835475894,
+          0.6429191146810712
+        ]
+      }
+    },
+    "broad_topics": [
+      "Frequent errors and outages",
+      "General app complaints"
+    ],
+    "per_topic": {
+      "Frequent errors and outages": {
+        "yes": 5,
+        "partly": 0,
+        "no": 8,
+        "n": 13
+      },
+      "General app complaints": {
+        "yes": 1,
+        "partly": 1,
+        "no": 9,
+        "n": 11
+      },
+      "Loan request rejected": {
+        "yes": 5,
+        "partly": 1,
+        "no": 0,
+        "n": 6
+      },
+      "Transfer or top-up not credited": {
+        "yes": 0,
+        "partly": 0,
+        "no": 5,
+        "n": 5
+      },
+      "Transactions fail": {
+        "yes": 1,
+        "partly": 2,
+        "no": 2,
+        "n": 5
+      },
+      "Network error despite good signal": {
+        "yes": 0,
+        "partly": 3,
+        "no": 0,
+        "n": 3
+      },
+      "App will not open": {
+        "yes": 0,
+        "partly": 0,
+        "no": 2,
+        "n": 2
+      },
+      "Outages last too long": {
+        "yes": 0,
+        "partly": 0,
+        "no": 2,
+        "n": 2
+      },
+      "Balance disappears": {
+        "yes": 0,
+        "partly": 0,
+        "no": 2,
+        "n": 2
+      },
+      "Cannot log in": {
+        "yes": 2,
+        "partly": 0,
+        "no": 0,
+        "n": 2
+      },
+      "Admin fees too high": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Game top-up missing or fails": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Cannot delete account": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "DANA Cicil not usable": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Data package not delivered": {
+        "yes": 0,
+        "partly": 0,
+        "no": 1,
+        "n": 1
+      },
+      "OTP or email blocks login": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Login blocked after phone change": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Too many ads": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "QRIS payment fails": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      }
+    },
+    "not_complaint": {
+      "tag": "not complaint",
+      "count": 0,
+      "rows": [],
+      "possible_untagged": [
+        {
+          "check_id": "C09",
+          "app": "gopay",
+          "topic_name": "General app complaints",
+          "notes": "Has not tried the app; no complaint",
+          "text_clean": "saya kasih bintang satu karena saya belum coba",
+          "fits": "no"
+        },
+        {
+          "check_id": "C24",
+          "app": "shopeepay",
+          "topic_name": "Frequent errors and outages",
+          "notes": "Praise, not an outage",
+          "text_clean": "aplikasi ini sangat bagus",
+          "fits": "no"
+        }
+      ],
+      "note": "possible_untagged: notes that describe a non-complaint without the exact tag; listed for review, not counted"
+    },
+    "no_rows": [
+      {
+        "check_id": "C01",
+        "app": "gopay",
+        "topic_name": "General app complaints",
+        "notes": "Loan is hard, not a general gripe",
+        "text_clean": "Pinjam aja susah..💩"
+      },
+      {
+        "check_id": "C02",
+        "app": "gopay",
+        "topic_name": "Outages last too long",
+        "notes": "Balance cut for 2 days; recipient never got it",
+        "text_clean": "aneh udah 2hari berkurang tapi di penerima belom masuk kocak apk"
+      },
+      {
+        "check_id": "C03",
+        "app": "dana",
+        "topic_name": "Transactions fail",
+        "notes": "Generic \"sering error\"; no failed transaction",
+        "text_clean": "dana kanapa sering error"
+      },
+      {
+        "check_id": "C06",
+        "app": "shopeepay",
+        "topic_name": "Transfer or top-up not credited",
+        "notes": "Payment was reversed, then a late fee; money was refunded",
+        "text_clean": "akhir bulan Juli kemarin saya melakukan pembayaran PDAM lewat apk ini, tapi tiba-tiba tanggal 4 pembayarannya dibatalkan terus uang saya dikembalikan. waktu saya mau bayar ulang saya udah kena denda sampai 100rb, padahal transaksi saya sebelumnya berhasil. ga lagi deh pake aplikasi ini, mana waktu dilaporin cuman mau dikasih kompensasi vocher belanja 25rb. jauh banget dari kerugian yang saya dapat."
+      },
+      {
+        "check_id": "C07",
+        "app": "dana",
+        "topic_name": "General app complaints",
+        "notes": "Balance vanished and security failed",
+        "text_clean": "gaje, banyak bet bocor nye, saldo gue ilang gatau kemana, keamanan nya kacau bener, bintang 1"
+      },
+      {
+        "check_id": "C08",
+        "app": "shopeepay",
+        "topic_name": "Frequent errors and outages",
+        "notes": "App is slow, not an outage",
+        "text_clean": "apk lemot tolol"
+      },
+      {
+        "check_id": "C09",
+        "app": "gopay",
+        "topic_name": "General app complaints",
+        "notes": "Has not tried the app; no complaint",
+        "text_clean": "saya kasih bintang satu karena saya belum coba"
+      },
+      {
+        "check_id": "C11",
+        "app": "shopeepay",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Vague \"lying\"; no error or outage",
+        "text_clean": "app nya berbohong, aku gak suka."
+      },
+      {
+        "check_id": "C12",
+        "app": "shopeepay",
+        "topic_name": "Data package not delivered",
+        "notes": "Loan application failed, not a data package",
+        "text_clean": "hoax kali bisa buat pinjaman cair hanya hitungan beberapa menit,lh ini data pribadi diminta terus setelah berhasil data dibilang lagi pengajuan spinjang gagal coba bulan depan,mending GK usah download nih aplikasi😡😡"
+      },
+      {
+        "check_id": "C13",
+        "app": "dana",
+        "topic_name": "Transfer or top-up not credited",
+        "notes": "Cicilan due date is wrong, not a missing transfer",
+        "text_clean": "tdk jelas dana cicilan saya buat satu bulan eehh malah dua minggu jatuh tempo pembayaran tokennya jgn pernah pinjam dana cicilan tidak beres dana cicilan nya"
+      },
+      {
+        "check_id": "C15",
+        "app": "shopeepay",
+        "topic_name": "Transfer or top-up not credited",
+        "notes": "Wants a higher limit, not a failed transfer",
+        "text_clean": "Limit Spaylater saya kok netep 750 dan Spinjam 1.5juta? Padahal rutin saya transaksi loh, naikkan lagi donk yang besar??"
+      },
+      {
+        "check_id": "C16",
+        "app": "ovo",
+        "topic_name": "App will not open",
+        "notes": "Forgot PIN and cannot log in; unresponsive is not \"won't open\"",
+        "text_clean": "saya lupa pin ovo dan mau ganti tetapi aplikasi tidak merespon, lalu bagaimana saya mau login dan bertransaksi!"
+      },
+      {
+        "check_id": "C21",
+        "app": "dana",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Dana Bisnis notification sound is too loud",
+        "text_clean": "suara dana bisnis yg masuk keras banget kocak,"
+      },
+      {
+        "check_id": "C24",
+        "app": "shopeepay",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Praise, not an outage",
+        "text_clean": "aplikasi ini sangat bagus"
+      },
+      {
+        "check_id": "C25",
+        "app": "ovo",
+        "topic_name": "Balance disappears",
+        "notes": "Top-up succeeded but the balance never increased",
+        "text_clean": "kenapa transaksi top up berhasil masuk tapi saldo nya ga bertambah coba jelaskan gimna bisa begitu😡😡"
+      },
+      {
+        "check_id": "C26",
+        "app": "shopeepay",
+        "topic_name": "Outages last too long",
+        "notes": "Paylater still suspended after payment",
+        "text_clean": "saya lunasin dari bulan 11 tahun 2025, walau telat tapi akun paylater tetap ditangguhkan, padahal limit mau saya pakai, dari banyaknya cicilan cuma sekali telat, itupun sampai sekarang masih ditangguhkan, aneh, saya baru sekali loh telat"
+      },
+      {
+        "check_id": "C30",
+        "app": "dana",
+        "topic_name": "Frequent errors and outages",
+        "notes": "KTP change stuck for a month via Diana",
+        "text_clean": "APLIKASI JELEK MAU GANTI KTP AJA SUSAH SUDAH BEBERAPA KALI COBA KE DIANA SISTEM TETEP AJA NUNGGU SEBULAN GA ADA PERUBAHAN APLIKASI JELEK TIDAK BISA GANTI KTP"
+      },
+      {
+        "check_id": "C34",
+        "app": "shopeepay",
+        "topic_name": "App will not open",
+        "notes": "Email login; OTP never arrives",
+        "text_clean": "aplikasi aneh.. moso mau login kaga bisa via email malah diarahin ke browser & kode otp tak kunjung dikirimkan dari shopeebrowser anehh, gw juga install shopeepay cuman buat keperluan beli paketan di myXL yang gak ngedukung QRIS/dana & gopay selaen shopeepay ini."
+      },
+      {
+        "check_id": "C37",
+        "app": "shopeepay",
+        "topic_name": "General app complaints",
+        "notes": "Installment quote jumps from 666k to over 900k",
+        "text_clean": "aplikasi gak bener pas aku mau ajuin ubah ke cicilan 6bulan tertulis 666k, pas aku klik oke malah jadi 900k lebih. hati2 aplikasi penipu"
+      },
+      {
+        "check_id": "C39",
+        "app": "dana",
+        "topic_name": "General app complaints",
+        "notes": "\"Lelet\" means slow",
+        "text_clean": "naonsih meni lelet ampun"
+      },
+      {
+        "check_id": "C43",
+        "app": "ovo",
+        "topic_name": "General app complaints",
+        "notes": "Paid and deducted; merchant still unpaid after a week",
+        "text_clean": "bener bner parah ini aplikasi transaksi sudah berhasil saldo pun sudah terpotong tapi di marchant blm masuk ,gimana ini ovo tanggung jawabnya sudah 1 minggu ngga ada kejelasan"
+      },
+      {
+        "check_id": "C44",
+        "app": "gopay",
+        "topic_name": "Transactions fail",
+        "notes": "Wait after a mistyped code is too long; the payment did not fail",
+        "text_clean": "ini tolong kalo kita salah ketik code jangan terlalu lama soalnya kan kita lagi lakukan transaksi jadi ya lama"
+      },
+      {
+        "check_id": "C45",
+        "app": "shopeepay",
+        "topic_name": "General app complaints",
+        "notes": "Screen stays blank",
+        "text_clean": "shopeepay ngeblank mulu ,nyeselin banget"
+      },
+      {
+        "check_id": "C46",
+        "app": "dana",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Charged with no verification; refund never came",
+        "text_clean": "keamanan nya jelek, jelas\" sy ga verif apa\" tpi tiba\" terbayar, mana uang nya ga balik"
+      },
+      {
+        "check_id": "C48",
+        "app": "ovo",
+        "topic_name": "General app complaints",
+        "notes": "Balance is blocked",
+        "text_clean": "sen ku adh dalam ovo di blokir ajing nian"
+      },
+      {
+        "check_id": "C49",
+        "app": "shopeepay",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Rude Shopee courier, not the wallet",
+        "text_clean": "untuk kp pasir jati, ds.cikaum timur kec.cikaum kab.subang - jawa barat, kurirnya gk sopan mohon untuk di tindak lanjuti, saya jd males belanja"
+      },
+      {
+        "check_id": "C51",
+        "app": "ovo",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Lost SIM; new-number change keeps failing",
+        "text_clean": "apk gajelas,saya hilang kartu sim mau di ganti pake nomor baru malah gagal terus !!"
+      },
+      {
+        "check_id": "C53",
+        "app": "shopeepay",
+        "topic_name": "Transfer or top-up not credited",
+        "notes": "Balance vanished; nothing was sent",
+        "text_clean": "saldo saya hilang 200.000 secara tiba tiba dan cuma cuma? tolong kembalikan pls"
+      },
+      {
+        "check_id": "C55",
+        "app": "gopay",
+        "topic_name": "General app complaints",
+        "notes": "Auto-debit with no confirmation",
+        "text_clean": "gopay ini menyeramkan segala pembayaran langsung di potong otomatis sama aplikasi tanpa ada konfirmasi apapun jadi misalnya isi gopay untuk pembagian pengeluaran bulanan dia langsung terpotong otomatis padahal kita tidak bermaksud untuk memperpanjang, ini merugikan dan menyebalkan kalau secara seperti ini sarannya segala pembayaran di konfirmasi dulu karna tidak semuanya harus di bayar lewat gopay apalagi gopay ini biasanya untuk uang makan."
+      },
+      {
+        "check_id": "C58",
+        "app": "ovo",
+        "topic_name": "Balance disappears",
+        "notes": "E-money top-up deducted but the balance did not update",
+        "text_clean": "gajelas, topup emoney, saldo kepotong malah ga bisa update saldo"
+      },
+      {
+        "check_id": "C59",
+        "app": "shopeepay",
+        "topic_name": "Transfer or top-up not credited",
+        "notes": "95rb taken before they registered",
+        "text_clean": "tolong Shopee pay kenapa dana sya kesedot ke Shopee pay padahal sya belum daftar nyaa da kesedot 95 ribu tolong balikan dan kerja sama nyaa"
+      }
+    ],
+    "assigned_by_transform_in_sample": 1,
+    "caveat": "The sample is almost entirely fitted documents (unique, non-short texts): only 1 of 60 rows were assigned by transform. The fit rate does not describe short or duplicate reviews, which are 10% of complaint rows (6,708 of 66,722) and had more outliers after transform (15% vs 9%)."
+  }
+}
