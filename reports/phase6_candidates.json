@@ -1,0 +1,1188 @@
+{
+  "seed": 42,
+  "n_docs": 60014,
+  "candidates": [
+    {
+      "min_cluster_size": 150,
+      "n_topics": 45,
+      "outlier_share": 0.3969073882760689,
+      "largest_topic_share": 0.059052887659546104,
+      "smallest_topic_size": 178,
+      "outlier_share_after_reduction": {
+        "0.0": 0.0,
+        "0.3": 0.00039990668843936417,
+        "0.4": 0.003882427433598827,
+        "0.5": 0.022611390675509047,
+        "0.6": 0.08929583097277302
+      },
+      "fit_seconds": 94.4,
+      "topics": {
+        "0": {
+          "size": 3544,
+          "keywords": [
+            "uang",
+            "eror",
+            "gangguan",
+            "duit",
+            "bayar",
+            "cicil",
+            "transaksi",
+            "pake"
+          ]
+        },
+        "1": {
+          "size": 3244,
+          "keywords": [
+            "uang",
+            "hilang",
+            "saldo",
+            "masuk",
+            "transaksi",
+            "uang hilang",
+            "saldo hilang",
+            "kecewa"
+          ]
+        },
+        "2": {
+          "size": 2882,
+          "keywords": [
+            "gabisa",
+            "udh",
+            "mulu",
+            "eror",
+            "gua",
+            "gw",
+            "saldo",
+            "pake"
+          ]
+        },
+        "3": {
+          "size": 2563,
+          "keywords": [
+            "uang",
+            "transaksi",
+            "saldo",
+            "hilang",
+            "bayar",
+            "masuk",
+            "duit",
+            "aplikasinya"
+          ]
+        },
+        "4": {
+          "size": 1782,
+          "keywords": [
+            "eror",
+            "mulu",
+            "ganguan",
+            "eror mulu",
+            "suka",
+            "lemot",
+            "jelek",
+            "ngirim"
+          ]
+        },
+        "5": {
+          "size": 1463,
+          "keywords": [
+            "gangguan",
+            "gangguan mulu",
+            "gangguan gangguan",
+            "eror",
+            "mulu",
+            "eror gangguan",
+            "kebanyakan",
+            "kebanyakan gangguan"
+          ]
+        },
+        "6": {
+          "size": 1326,
+          "keywords": [
+            "gangguan",
+            "eror",
+            "aplikasinya",
+            "jelek",
+            "buruk",
+            "tolol",
+            "mulu",
+            "lemot"
+          ]
+        },
+        "7": {
+          "size": 1272,
+          "keywords": [
+            "update",
+            "upgrade",
+            "update update",
+            "habis update",
+            "ktp",
+            "plus",
+            "premium",
+            "upgrade plus"
+          ]
+        },
+        "8": {
+          "size": 1206,
+          "keywords": [
+            "cicil",
+            "limit",
+            "limit cicil",
+            "tersedia",
+            "fitur cicil",
+            "cicil limit",
+            "fitur",
+            "pakai"
+          ]
+        },
+        "9": {
+          "size": 1085,
+          "keywords": [
+            "transaksi",
+            "transaksi gangguan",
+            "transaksi transaksi",
+            "gangguan transaksi",
+            "gangguan",
+            "susah transaksi",
+            "susah",
+            "eror"
+          ]
+        },
+        "10": {
+          "size": 1034,
+          "keywords": [
+            "jaringan",
+            "jaringan bagus",
+            "bagus",
+            "jaringan bermasalah",
+            "bermasalah",
+            "internet",
+            "koneksi",
+            "stabil"
+          ]
+        },
+        "11": {
+          "size": 1011,
+          "keywords": [
+            "cs",
+            "chat",
+            "chat cs",
+            "bot",
+            "respon",
+            "robot",
+            "hubungi",
+            "solusi"
+          ]
+        },
+        "12": {
+          "size": 1001,
+          "keywords": [
+            "qris",
+            "qr",
+            "scan",
+            "pembayaran qris",
+            "scan qris",
+            "pembayaran",
+            "galeri",
+            "pakai qris"
+          ]
+        },
+        "13": {
+          "size": 809,
+          "keywords": [
+            "event",
+            "hadiah",
+            "point",
+            "voucher",
+            "vip",
+            "scam",
+            "bikin event",
+            "poin"
+          ]
+        },
+        "14": {
+          "size": 743,
+          "keywords": [
+            "teknis",
+            "gangguan teknis",
+            "maintenance",
+            "gangguan",
+            "teknis mulu",
+            "teknis gangguan",
+            "teknisi",
+            "ganguan teknis"
+          ]
+        },
+        "15": {
+          "size": 699,
+          "keywords": [
+            "pinjaman",
+            "pinjam",
+            "tolak",
+            "pengajuan",
+            "telat",
+            "bayar",
+            "pengajuan pinjaman",
+            "ditolak"
+          ]
+        },
+        "16": {
+          "size": 687,
+          "keywords": [
+            "akun",
+            "login",
+            "hapus akun",
+            "hapus",
+            "login akun",
+            "masuk akun",
+            "akun susah",
+            "akun login"
+          ]
+        },
+        "17": {
+          "size": 637,
+          "keywords": [
+            "admin",
+            "biaya",
+            "biaya admin",
+            "kena",
+            "bos",
+            "kena admin",
+            "adminnya",
+            "mahal"
+          ]
+        },
+        "18": {
+          "size": 617,
+          "keywords": [
+            "error",
+            "error error",
+            "error mulu",
+            "mulu",
+            "kebanyakan error",
+            "mulu error",
+            "suka error",
+            "kebanyakan"
+          ]
+        },
+        "19": {
+          "size": 611,
+          "keywords": [
+            "cicil",
+            "gw",
+            "udh",
+            "transaksi",
+            "pake",
+            "limit",
+            "klo",
+            "masuk"
+          ]
+        },
+        "20": {
+          "size": 584,
+          "keywords": [
+            "saldo",
+            "saldo hilang",
+            "hilang",
+            "saldonya",
+            "saldo masuk",
+            "masuk",
+            "isi saldo",
+            "isi"
+          ]
+        },
+        "21": {
+          "size": 503,
+          "keywords": [
+            "transfer",
+            "transfer transfer",
+            "transfer gangguan",
+            "transfer gagal",
+            "susah transfer",
+            "transfer susah",
+            "transferan",
+            "gangguan"
+          ]
+        },
+        "22": {
+          "size": 498,
+          "keywords": [
+            "game",
+            "up game",
+            "top",
+            "top up",
+            "up",
+            "diamond",
+            "games",
+            "fitur top"
+          ]
+        },
+        "23": {
+          "size": 493,
+          "keywords": [
+            "jam",
+            "nunggu",
+            "menit",
+            "masuk",
+            "sampe",
+            "tunggu",
+            "transaksi",
+            "24"
+          ]
+        },
+        "24": {
+          "size": 470,
+          "keywords": [
+            "wajah",
+            "verifikasi wajah",
+            "verifikasi",
+            "muka",
+            "wajah gagal",
+            "gagal",
+            "login",
+            "kamera"
+          ]
+        },
+        "25": {
+          "size": 441,
+          "keywords": [
+            "login",
+            "login login",
+            "log",
+            "susah login",
+            "login susah",
+            "susah",
+            "log in",
+            "in"
+          ]
+        },
+        "26": {
+          "size": 433,
+          "keywords": [
+            "sampah",
+            "gangguan",
+            "eror",
+            "sampah gangguan",
+            "gangguan mulu",
+            "rusak",
+            "mulu",
+            "tolol"
+          ]
+        },
+        "27": {
+          "size": 426,
+          "keywords": [
+            "hp",
+            "no hp",
+            "no",
+            "ganti",
+            "nomor hp",
+            "nomor",
+            "hp hilang",
+            "login"
+          ]
+        },
+        "28": {
+          "size": 417,
+          "keywords": [
+            "gua",
+            "duit gua",
+            "saldo gua",
+            "duit",
+            "gua pake",
+            "uang gua",
+            "pake",
+            "gua beli"
+          ]
+        },
+        "29": {
+          "size": 375,
+          "keywords": [
+            "iklan",
+            "iklannya",
+            "promo",
+            "maksa",
+            "judi",
+            "lu",
+            "ganggu",
+            "mengganggu"
+          ]
+        },
+        "30": {
+          "size": 344,
+          "keywords": [
+            "wifi",
+            "pake wifi",
+            "jaringan",
+            "pakai wifi",
+            "data",
+            "pake",
+            "internet",
+            "lancar"
+          ]
+        },
+        "31": {
+          "size": 274,
+          "keywords": [
+            "bintang",
+            "kasih bintang",
+            "kasih",
+            "bintang karna",
+            "bintang bintang",
+            "bintang kasih",
+            "cicil",
+            "maaf"
+          ]
+        },
+        "32": {
+          "size": 266,
+          "keywords": [
+            "server",
+            "servernya",
+            "down",
+            "server down",
+            "server penuh",
+            "penuh",
+            "sibuk",
+            "server sibuk"
+          ]
+        },
+        "33": {
+          "size": 254,
+          "keywords": [
+            "gangguan",
+            "gangguannya",
+            "ganguan",
+            "gangguan gangguan",
+            "abad",
+            "lama2",
+            "kalo gangguan",
+            "pemeliharaan"
+          ]
+        },
+        "34": {
+          "size": 232,
+          "keywords": [
+            "email",
+            "nomor",
+            "aktif",
+            "otp",
+            "lupa",
+            "ganti",
+            "ganti nomor",
+            "kode"
+          ]
+        },
+        "35": {
+          "size": 232,
+          "keywords": [
+            "lambat",
+            "respon",
+            "respon lambat",
+            "slow",
+            "slow respon",
+            "transaksi lambat",
+            "penanganan",
+            "pelayanan"
+          ]
+        },
+        "36": {
+          "size": 220,
+          "keywords": [
+            "google",
+            "google play",
+            "play",
+            "langganan",
+            "akun google",
+            "pembayaran",
+            "saldo",
+            "berlangganan"
+          ]
+        },
+        "37": {
+          "size": 208,
+          "keywords": [
+            "download",
+            "download download",
+            "mendownload",
+            "didownload",
+            "download jelek",
+            "download ni",
+            "gw download",
+            "jelek"
+          ]
+        },
+        "38": {
+          "size": 202,
+          "keywords": [
+            "data",
+            "paket data",
+            "paket",
+            "beli paket",
+            "beli",
+            "data masuk",
+            "pulsa data",
+            "pembelian paket"
+          ]
+        },
+        "39": {
+          "size": 195,
+          "keywords": [
+            "buka",
+            "menu",
+            "klik",
+            "aplikasinya",
+            "dibuka",
+            "perangkat",
+            "pencet",
+            "freeze"
+          ]
+        },
+        "40": {
+          "size": 189,
+          "keywords": [
+            "menghapus",
+            "permanen",
+            "akun",
+            "menghapus akun",
+            "akun permanen",
+            "hapus",
+            "hapus akun",
+            "data"
+          ]
+        },
+        "41": {
+          "size": 184,
+          "keywords": [
+            "malam",
+            "jam",
+            "pagi",
+            "gangguan",
+            "sore",
+            "malam gangguan",
+            "gangguan jam",
+            "jam malam"
+          ]
+        },
+        "42": {
+          "size": 180,
+          "keywords": [
+            "saldo",
+            "hilang",
+            "saldo hilang",
+            "saldo masuk",
+            "masuk saldo",
+            "hilang saldo",
+            "masuk",
+            "saldo ku"
+          ]
+        },
+        "43": {
+          "size": 180,
+          "keywords": [
+            "error",
+            "transaksi error",
+            "error transaksi",
+            "error error",
+            "transaksi",
+            "error mulu",
+            "mulu",
+            "error kirim"
+          ]
+        },
+        "44": {
+          "size": 178,
+          "keywords": [
+            "sinyal",
+            "sinyal bagus",
+            "bagus",
+            "gangguan sinyal",
+            "signal",
+            "teknis sinyal",
+            "sinyal lancar",
+            "lancar"
+          ]
+        }
+      }
+    },
+    {
+      "min_cluster_size": 300,
+      "n_topics": 25,
+      "outlier_share": 0.4011230712833672,
+      "largest_topic_share": 0.10254274002732695,
+      "smallest_topic_size": 347,
+      "outlier_share_after_reduction": {
+        "0.0": 0.0,
+        "0.3": 0.0008331389342486754,
+        "0.4": 0.007381610957443263,
+        "0.5": 0.037108008131436,
+        "0.6": 0.12253807444929517
+      },
+      "fit_seconds": 53.8,
+      "topics": {
+        "0": {
+          "size": 6154,
+          "keywords": [
+            "uang",
+            "transaksi",
+            "saldo",
+            "aplikasinya",
+            "gangguan",
+            "eror",
+            "masuk",
+            "sampah"
+          ]
+        },
+        "1": {
+          "size": 4719,
+          "keywords": [
+            "gangguan",
+            "eror",
+            "mulu",
+            "gangguan mulu",
+            "ganguan",
+            "gangguan gangguan",
+            "susah",
+            "jelek"
+          ]
+        },
+        "2": {
+          "size": 3741,
+          "keywords": [
+            "uang",
+            "saldo",
+            "hilang",
+            "masuk",
+            "transaksi",
+            "tolong",
+            "uang hilang",
+            "kecewa"
+          ]
+        },
+        "3": {
+          "size": 2757,
+          "keywords": [
+            "login",
+            "akun",
+            "hp",
+            "nomor",
+            "email",
+            "ganti",
+            "otp",
+            "no"
+          ]
+        },
+        "4": {
+          "size": 2176,
+          "keywords": [
+            "gangguan",
+            "uang",
+            "eror",
+            "duit",
+            "pake",
+            "cicil",
+            "transaksi",
+            "susah"
+          ]
+        },
+        "5": {
+          "size": 2082,
+          "keywords": [
+            "jaringan",
+            "bagus",
+            "wifi",
+            "jaringan bagus",
+            "sinyal",
+            "jaringan bermasalah",
+            "bermasalah",
+            "internet"
+          ]
+        },
+        "6": {
+          "size": 1536,
+          "keywords": [
+            "event",
+            "game",
+            "hadiah",
+            "point",
+            "up game",
+            "top",
+            "top up",
+            "up"
+          ]
+        },
+        "7": {
+          "size": 1444,
+          "keywords": [
+            "eror",
+            "gabisa",
+            "mulu",
+            "gua",
+            "gangguan",
+            "saldo",
+            "tf",
+            "lu"
+          ]
+        },
+        "8": {
+          "size": 1162,
+          "keywords": [
+            "update",
+            "upgrade",
+            "update update",
+            "habis update",
+            "plus",
+            "habis",
+            "kebanyakan update",
+            "upgrade plus"
+          ]
+        },
+        "9": {
+          "size": 1104,
+          "keywords": [
+            "cicil",
+            "limit",
+            "limit cicil",
+            "tersedia",
+            "fitur cicil",
+            "fitur",
+            "cicil limit",
+            "pakai"
+          ]
+        },
+        "10": {
+          "size": 1003,
+          "keywords": [
+            "cs",
+            "chat",
+            "chat cs",
+            "respon",
+            "bot",
+            "robot",
+            "hubungi",
+            "masuk"
+          ]
+        },
+        "11": {
+          "size": 981,
+          "keywords": [
+            "qris",
+            "qr",
+            "scan",
+            "pembayaran qris",
+            "pembayaran",
+            "scan qris",
+            "bayar",
+            "gagal"
+          ]
+        },
+        "12": {
+          "size": 699,
+          "keywords": [
+            "pinjaman",
+            "pinjam",
+            "tolak",
+            "pengajuan",
+            "bayar",
+            "telat",
+            "limit",
+            "ditolak"
+          ]
+        },
+        "13": {
+          "size": 650,
+          "keywords": [
+            "saldo",
+            "saldo hilang",
+            "masuk",
+            "hilang",
+            "top",
+            "saldonya",
+            "saldo masuk",
+            "top up"
+          ]
+        },
+        "14": {
+          "size": 637,
+          "keywords": [
+            "error",
+            "error error",
+            "error mulu",
+            "mulu",
+            "kebanyakan error",
+            "mulu error",
+            "suka error",
+            "kebanyakan"
+          ]
+        },
+        "15": {
+          "size": 622,
+          "keywords": [
+            "admin",
+            "biaya",
+            "biaya admin",
+            "kena",
+            "bos",
+            "kena admin",
+            "adminnya",
+            "mahal"
+          ]
+        },
+        "16": {
+          "size": 620,
+          "keywords": [
+            "transaksi",
+            "transaksi gangguan",
+            "gangguan",
+            "susah transaksi",
+            "susah",
+            "gangguan transaksi",
+            "eror",
+            "transaksi susah"
+          ]
+        },
+        "17": {
+          "size": 614,
+          "keywords": [
+            "cicil",
+            "gw",
+            "transaksi",
+            "udh",
+            "masuk",
+            "pake",
+            "limit",
+            "klo"
+          ]
+        },
+        "18": {
+          "size": 610,
+          "keywords": [
+            "teknis",
+            "gangguan teknis",
+            "gangguan",
+            "teknis mulu",
+            "teknis gangguan",
+            "teknisi",
+            "ganguan teknis",
+            "mulu"
+          ]
+        },
+        "19": {
+          "size": 515,
+          "keywords": [
+            "transfer",
+            "transfer transfer",
+            "transfer gangguan",
+            "transfer gagal",
+            "transfer susah",
+            "susah transfer",
+            "gangguan",
+            "transferan"
+          ]
+        },
+        "20": {
+          "size": 505,
+          "keywords": [
+            "udh",
+            "saldo",
+            "tetep",
+            "gw",
+            "susah",
+            "pake",
+            "bikin",
+            "akun"
+          ]
+        },
+        "21": {
+          "size": 470,
+          "keywords": [
+            "wajah",
+            "verifikasi wajah",
+            "verifikasi",
+            "muka",
+            "gagal",
+            "login",
+            "wajah gagal",
+            "kamera"
+          ]
+        },
+        "22": {
+          "size": 418,
+          "keywords": [
+            "gua",
+            "duit gua",
+            "saldo gua",
+            "duit",
+            "pake",
+            "gua pake",
+            "uang gua",
+            "gua beli"
+          ]
+        },
+        "23": {
+          "size": 375,
+          "keywords": [
+            "iklan",
+            "iklannya",
+            "promo",
+            "maksa",
+            "judi",
+            "lu",
+            "ganggu",
+            "mengganggu"
+          ]
+        },
+        "24": {
+          "size": 347,
+          "keywords": [
+            "sampah",
+            "gangguan",
+            "eror",
+            "sampah gangguan",
+            "gangguan mulu",
+            "mulu",
+            "jelek",
+            "rusak"
+          ]
+        }
+      }
+    },
+    {
+      "min_cluster_size": 500,
+      "n_topics": 17,
+      "outlier_share": 0.3829606425167461,
+      "largest_topic_share": 0.12177158662978638,
+      "smallest_topic_size": 594,
+      "outlier_share_after_reduction": {
+        "0.0": 0.0,
+        "0.3": 0.001549638417702536,
+        "0.4": 0.011397340620521878,
+        "0.5": 0.05248775285766655,
+        "0.6": 0.15026493818109107
+      },
+      "fit_seconds": 53.4,
+      "topics": {
+        "0": {
+          "size": 7308,
+          "keywords": [
+            "cicil",
+            "transaksi",
+            "limit",
+            "gangguan",
+            "uang",
+            "eror",
+            "bayar",
+            "pake"
+          ]
+        },
+        "1": {
+          "size": 6181,
+          "keywords": [
+            "uang",
+            "transaksi",
+            "saldo",
+            "aplikasinya",
+            "gangguan",
+            "eror",
+            "masuk",
+            "sampah"
+          ]
+        },
+        "2": {
+          "size": 4351,
+          "keywords": [
+            "gangguan",
+            "eror",
+            "mulu",
+            "gangguan mulu",
+            "ganguan",
+            "susah",
+            "jelek",
+            "suka"
+          ]
+        },
+        "3": {
+          "size": 3985,
+          "keywords": [
+            "saldo",
+            "uang",
+            "hilang",
+            "masuk",
+            "transaksi",
+            "tolong",
+            "kecewa",
+            "saldo hilang"
+          ]
+        },
+        "4": {
+          "size": 2600,
+          "keywords": [
+            "login",
+            "akun",
+            "nomor",
+            "email",
+            "hp",
+            "otp",
+            "kode",
+            "ganti"
+          ]
+        },
+        "5": {
+          "size": 2339,
+          "keywords": [
+            "gabisa",
+            "saldo",
+            "udh",
+            "eror",
+            "gua",
+            "mulu",
+            "gangguan",
+            "pake"
+          ]
+        },
+        "6": {
+          "size": 1985,
+          "keywords": [
+            "jaringan",
+            "bagus",
+            "wifi",
+            "jaringan bagus",
+            "bermasalah",
+            "sinyal",
+            "jaringan bermasalah",
+            "internet"
+          ]
+        },
+        "7": {
+          "size": 1509,
+          "keywords": [
+            "event",
+            "game",
+            "hadiah",
+            "point",
+            "up game",
+            "top",
+            "top up",
+            "up"
+          ]
+        },
+        "8": {
+          "size": 1131,
+          "keywords": [
+            "update",
+            "upgrade",
+            "update update",
+            "habis update",
+            "plus",
+            "habis",
+            "kebanyakan update",
+            "upgrade plus"
+          ]
+        },
+        "9": {
+          "size": 907,
+          "keywords": [
+            "cs",
+            "chat",
+            "chat cs",
+            "respon",
+            "hubungi",
+            "robot",
+            "masuk",
+            "solusi"
+          ]
+        },
+        "10": {
+          "size": 858,
+          "keywords": [
+            "qris",
+            "qr",
+            "scan",
+            "scan qris",
+            "pembayaran",
+            "pembayaran qris",
+            "galeri",
+            "bayar"
+          ]
+        },
+        "11": {
+          "size": 707,
+          "keywords": [
+            "saldo",
+            "masuk",
+            "hilang",
+            "top",
+            "saldo hilang",
+            "top up",
+            "up",
+            "saldo masuk"
+          ]
+        },
+        "12": {
+          "size": 700,
+          "keywords": [
+            "pinjaman",
+            "pinjam",
+            "tolak",
+            "pengajuan",
+            "bayar",
+            "telat",
+            "limit",
+            "ditolak"
+          ]
+        },
+        "13": {
+          "size": 638,
+          "keywords": [
+            "error",
+            "error error",
+            "error mulu",
+            "mulu",
+            "mulu error",
+            "kebanyakan error",
+            "suka error",
+            "kebanyakan"
+          ]
+        },
+        "14": {
+          "size": 622,
+          "keywords": [
+            "cicil",
+            "transaksi",
+            "gw",
+            "udh",
+            "masuk",
+            "pake",
+            "saldo",
+            "limit"
+          ]
+        },
+        "15": {
+          "size": 616,
+          "keywords": [
+            "admin",
+            "biaya",
+            "biaya admin",
+            "kena",
+            "bos",
+            "kena admin",
+            "adminnya",
+            "top"
+          ]
+        },
+        "16": {
+          "size": 594,
+          "keywords": [
+            "teknis",
+            "gangguan teknis",
+            "gangguan",
+            "teknis mulu",
+            "teknis gangguan",
+            "teknisi",
+            "ganguan teknis",
+            "mulu"
+          ]
+        }
+      }
+    }
+  ]
+}

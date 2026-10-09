@@ -1,0 +1,81 @@
+{
+  "seed": 42,
+  "model_id": "indobert/spec_3class/none|star_1_2_or_model",
+  "model_dir": "models/indobert/spec_3class/none/final",
+  "device": "cuda",
+  "rows": 201860,
+  "unique_texts_scored": 122625,
+  "seconds": 119.7,
+  "consistency_vs_phase5d_batching": {
+    "n": 2000,
+    "label_agreement": 1.0
+  },
+  "complaint_share": {
+    "all_rows": {
+      "dana": {
+        "rows": 103777,
+        "complaints": 42955,
+        "share": 0.4139
+      },
+      "gopay": {
+        "rows": 56108,
+        "complaints": 14146,
+        "share": 0.2521
+      },
+      "ovo": {
+        "rows": 6394,
+        "complaints": 5012,
+        "share": 0.7839
+      },
+      "shopeepay": {
+        "rows": 35581,
+        "complaints": 4609,
+        "share": 0.1295
+      },
+      "all": {
+        "rows": 201860,
+        "complaints": 66722,
+        "share": 0.3305
+      }
+    },
+    "unique_texts": {
+      "dana": {
+        "rows": 66385,
+        "complaints": 39919,
+        "share": 0.6013
+      },
+      "gopay": {
+        "rows": 32166,
+        "complaints": 13160,
+        "share": 0.4091
+      },
+      "ovo": {
+        "rows": 5594,
+        "complaints": 4872,
+        "share": 0.8709
+      },
+      "shopeepay": {
+        "rows": 16874,
+        "complaints": 4250,
+        "share": 0.2519
+      },
+      "all": {
+        "rows": 121019,
+        "complaints": 62201,
+        "share": 0.514
+      }
+    }
+  },
+  "flagged_by_all_rows": {
+    "-": 135138,
+    "star+model": 50311,
+    "model": 10923,
+    "star rule": 5488
+  },
+  "pred_label_all_rows": {
+    "positive": 140190,
+    "negative": 61234,
+    "neutral": 436
+  },
+  "note": "Predicted shares, not validated rates. On gold (Phase 5d) PRIMARY had reweighted precision 0.973 and recall 0.876, so predicted shares likely understate true complaint shares."
+}

@@ -1,0 +1,63 @@
+# Phase 6a: BERTopic on complaints (PRIMARY predictions). No gold or dev labels.
+seed: 42
+
+input_path: data/processed/reviews_clean.parquet
+predictions_path: data/processed/predictions.parquet
+predictions_report: reports/phase6_predictions.json
+text_col: text_clean               # display text, emoji kept (CLAUDE.md)
+apps: [gopay, ovo, dana, shopeepay]
+
+# Fit documents: unique texts (in_model_pool) predicted as complaints, not is_short.
+# Every other complaint row (duplicates, short) is assigned with transform.
+
+embedding:
+  model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  batch_size: 256
+  cache_dir: data/processed/embeddings   # gitignored; keyed by model + text hash
+
+umap: {n_neighbors: 15, n_components: 5, min_dist: 0.0, metric: cosine, random_state: 42}
+
+hdbscan:
+  candidates: [150, 300, 500]     # --explore fits each; pick by readability for ~20-40 topics
+  min_cluster_size: 150           # chosen after --explore: 45 topics, most specific and readable (see report)
+  metric: euclidean
+  cluster_selection_method: eom
+
+vectorizer:
+  ngram_range: [1, 2]
+  min_df: 5
+  stopwords: id                   # stopwordsiso Indonesian list (758 words)
+  extra_stopwords:
+    # slang fillers
+    [yg, gk, ga, gak, aja, nya, dong, sih, deh, kok, udah, banget,
+    # generic app words
+     aplikasi, apk, app, gopay, ovo, dana, shopeepay, shopee]
+top_n_words: 10
+
+outliers:
+  max_share: 0.30                 # reduce_outliers only if the outlier share is above this
+  strategy: embeddings            # cosine similarity of the doc embedding to each topic embedding
+  threshold: 0.6                  # chosen after --explore: 39.7% -> 8.9% outliers at mcs=150
+  thresholds_to_report: [0.0, 0.3, 0.4, 0.5, 0.6]
+
+export:
+  xlsx_path: data/topics/topics_to_name.xlsx   # refuses to overwrite
+  n_representative: 5             # nearest to the topic's embedding centroid
+transform_check_n: 5000           # transform a sample of fit docs; agreement with fitted topic
+
+assignments_path: data/processed/topic_assignments.parquet
+model_dir: models/bertopic        # gitignored
+candidates_path: reports/phase6_candidates.json
+report_path: reports/phase6_topics.json
+figures_dir: reports/figures
+figure: phase6_topic_overview.png
+
+wandb:
+  name: phase6a-topics
+  job_type: topics
+
+smoke:
+  fit_docs: 4000
+  transform_rows: 3000
+  min_cluster_size: 25
+  out_dir: models/bertopic_smoke

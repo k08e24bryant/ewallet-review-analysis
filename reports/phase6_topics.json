@@ -1,0 +1,624 @@
+{
+  "seed": 42,
+  "smoke": false,
+  "labels_used": "none (PRIMARY predictions only; no gold or dev)",
+  "predictions": {
+    "seed": 42,
+    "model_id": "indobert/spec_3class/none|star_1_2_or_model",
+    "model_dir": "models/indobert/spec_3class/none/final",
+    "device": "cuda",
+    "rows": 201860,
+    "unique_texts_scored": 122625,
+    "seconds": 119.7,
+    "consistency_vs_phase5d_batching": {
+      "n": 2000,
+      "label_agreement": 1.0
+    },
+    "complaint_share": {
+      "all_rows": {
+        "dana": {
+          "rows": 103777,
+          "complaints": 42955,
+          "share": 0.4139
+        },
+        "gopay": {
+          "rows": 56108,
+          "complaints": 14146,
+          "share": 0.2521
+        },
+        "ovo": {
+          "rows": 6394,
+          "complaints": 5012,
+          "share": 0.7839
+        },
+        "shopeepay": {
+          "rows": 35581,
+          "complaints": 4609,
+          "share": 0.1295
+        },
+        "all": {
+          "rows": 201860,
+          "complaints": 66722,
+          "share": 0.3305
+        }
+      },
+      "unique_texts": {
+        "dana": {
+          "rows": 66385,
+          "complaints": 39919,
+          "share": 0.6013
+        },
+        "gopay": {
+          "rows": 32166,
+          "complaints": 13160,
+          "share": 0.4091
+        },
+        "ovo": {
+          "rows": 5594,
+          "complaints": 4872,
+          "share": 0.8709
+        },
+        "shopeepay": {
+          "rows": 16874,
+          "complaints": 4250,
+          "share": 0.2519
+        },
+        "all": {
+          "rows": 121019,
+          "complaints": 62201,
+          "share": 0.514
+        }
+      }
+    },
+    "flagged_by_all_rows": {
+      "-": 135138,
+      "star+model": 50311,
+      "model": 10923,
+      "star rule": 5488
+    },
+    "pred_label_all_rows": {
+      "positive": 140190,
+      "negative": 61234,
+      "neutral": 436
+    },
+    "note": "Predicted shares, not validated rates. On gold (Phase 5d) PRIMARY had reweighted precision 0.973 and recall 0.876, so predicted shares likely understate true complaint shares."
+  },
+  "documents": {
+    "definition": "in_model_pool & PRIMARY complaint & not is_short; text_clean",
+    "n": 60014,
+    "per_app": {
+      "dana": 38540,
+      "gopay": 12697,
+      "ovo": 4742,
+      "shopeepay": 4035
+    },
+    "complaint_rows_total": 66722
+  },
+  "embedding": {
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "batch_size": 256,
+    "cache_dir": "data/processed/embeddings",
+    "dim": 384
+  },
+  "umap": {
+    "n_neighbors": 15,
+    "n_components": 5,
+    "min_dist": 0.0,
+    "metric": "cosine",
+    "random_state": 42
+  },
+  "hdbscan": {
+    "candidates": [
+      150,
+      300,
+      500
+    ],
+    "min_cluster_size": 150,
+    "metric": "euclidean",
+    "cluster_selection_method": "eom"
+  },
+  "vectorizer": {
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 5,
+    "stopwords": "id",
+    "extra_stopwords": [
+      "yg",
+      "gk",
+      "ga",
+      "gak",
+      "aja",
+      "nya",
+      "dong",
+      "sih",
+      "deh",
+      "kok",
+      "udah",
+      "banget",
+      "aplikasi",
+      "apk",
+      "app",
+      "gopay",
+      "ovo",
+      "dana",
+      "shopeepay",
+      "shopee"
+    ],
+    "n_stopwords": 776
+  },
+  "candidates_report": "reports\\phase6_candidates.json",
+  "fit": {
+    "min_cluster_size": 150,
+    "n_topics": 45,
+    "outlier_share": 0.3969073882760689,
+    "largest_topic_share": 0.059052887659546104,
+    "smallest_topic_size": 178,
+    "outlier_share_after_reduction": {
+      "0.0": 0.0,
+      "0.3": 0.00039990668843936417,
+      "0.4": 0.003882427433598827,
+      "0.5": 0.022611390675509047,
+      "0.6": 0.08929583097277302
+    },
+    "fit_seconds": 129.9
+  },
+  "outlier_reduction": {
+    "applied": true,
+    "strategy": "embeddings",
+    "threshold": 0.6,
+    "outlier_share_before": 0.3969073882760689,
+    "outlier_share_after": 0.08929583097277302,
+    "reassigned_docs": 18461
+  },
+  "transform_check_on_fit_docs": {
+    "n": 5000,
+    "agreement_with_fit_topic": 0.9416,
+    "agreement_excluding_fit_outliers": 0.9394338380513496
+  },
+  "assignments": {
+    "rows": 66722,
+    "fit": 60014,
+    "transform": 6708,
+    "transform_by_reason": {
+      "short": 5972,
+      "duplicate_text_not_short": 736
+    },
+    "outlier_share_transform_rows_before": 0.3752236135957066,
+    "outlier_share_transform_rows_after": 0.15146094215861658,
+    "outlier_share_all_rows": 0.09554569707143071,
+    "duplicate_rows_with_fit_text": 531,
+    "duplicate_transform_matches_fit_topic": 0.9981167608286252
+  },
+  "docs_mentioning_cicil": 3883,
+  "topics": [
+    {
+      "topic_id": -1,
+      "size": 5359,
+      "share_gopay": 0.09836969362841616,
+      "share_ovo": 0.10670603121045973,
+      "share_dana": 0.07527244421380384,
+      "share_shopeepay": 0.1742255266418835,
+      "keywords": ""
+    },
+    {
+      "topic_id": 0,
+      "size": 5882,
+      "share_gopay": 0.04764905095691896,
+      "share_ovo": 0.04597216364403205,
+      "share_dana": 0.12672548002075765,
+      "share_shopeepay": 0.04337050805452292,
+      "keywords": "uang, eror, gangguan, cicil, duit, bayar, pake, transaksi, kirim, orang"
+    },
+    {
+      "topic_id": 1,
+      "size": 5151,
+      "share_gopay": 0.069543986768528,
+      "share_ovo": 0.07401940109658373,
+      "share_dana": 0.09421380384016606,
+      "share_shopeepay": 0.07087980173482032,
+      "keywords": "uang, saldo, hilang, masuk, transaksi, tolong, pembayaran, kecewa, berhasil, uang hilang"
+    },
+    {
+      "topic_id": 2,
+      "size": 3121,
+      "share_gopay": 0.04977553752855005,
+      "share_ovo": 0.059890341628005064,
+      "share_dana": 0.051608718214841726,
+      "share_shopeepay": 0.053531598513011154,
+      "keywords": "gabisa, mulu, udh, eror, gua, saldo, pake, gw, tf, gangguan"
+    },
+    {
+      "topic_id": 3,
+      "size": 3877,
+      "share_gopay": 0.05607623848153107,
+      "share_ovo": 0.10185575706452973,
+      "share_dana": 0.06305137519460301,
+      "share_shopeepay": 0.06245353159851301,
+      "keywords": "uang, transaksi, saldo, masuk, hilang, bayar, pake, aplikasinya, pembayaran, pengguna"
+    },
+    {
+      "topic_id": 4,
+      "size": 3587,
+      "share_gopay": 0.06347956210128376,
+      "share_ovo": 0.05504006748207507,
+      "share_dana": 0.05843279709392839,
+      "share_shopeepay": 0.0664188351920694,
+      "keywords": "eror, mulu, ganguan, tf, tolol, pake, jelek, eror mulu, gabisa, gw"
+    },
+    {
+      "topic_id": 5,
+      "size": 2358,
+      "share_gopay": 0.04213593762306057,
+      "share_ovo": 0.012652889076339097,
+      "share_dana": 0.044577062791904515,
+      "share_shopeepay": 0.011152416356877323,
+      "keywords": "gangguan, gangguan mulu, eror, gangguan gangguan, mulu, eror gangguan, kebanyakan, buruk, kesini, kebanyakan gangguan"
+    },
+    {
+      "topic_id": 6,
+      "size": 2221,
+      "share_gopay": 0.039694416003780424,
+      "share_ovo": 0.04070012652889076,
+      "share_dana": 0.0353918007265179,
+      "share_shopeepay": 0.03965303593556382,
+      "keywords": "gangguan, eror, aplikasinya, jelek, sampah, buruk, tolol, mulu, lemot, bug"
+    },
+    {
+      "topic_id": 7,
+      "size": 1529,
+      "share_gopay": 0.016696857525399702,
+      "share_ovo": 0.03816954871362294,
+      "share_dana": 0.027529839128178517,
+      "share_shopeepay": 0.01858736059479554,
+      "keywords": "update, upgrade, update update, habis update, premium, bug, upgrade premium, perbaiki, ktp, tolong"
+    },
+    {
+      "topic_id": 8,
+      "size": 1499,
+      "share_gopay": 0.0014964164763329921,
+      "share_ovo": 0.0012652889076339097,
+      "share_dana": 0.03785677218474313,
+      "share_shopeepay": 0.0037174721189591076,
+      "keywords": "cicil, limit, fitur cicil, limit cicil, tersedia, fitur, cicil limit, pakai, cicil pakai, cicil cicil"
+    },
+    {
+      "topic_id": 9,
+      "size": 1889,
+      "share_gopay": 0.025990391431046703,
+      "share_ovo": 0.01982285955293125,
+      "share_dana": 0.03580695381421899,
+      "share_shopeepay": 0.021065675340768277,
+      "keywords": "transaksi, gangguan, transaksi gangguan, transaksi transaksi, susah, gangguan transaksi, susah transaksi, transaksi gagal, eror, gagal"
+    },
+    {
+      "topic_id": 10,
+      "size": 1323,
+      "share_gopay": 0.012443884382137513,
+      "share_ovo": 0.004428511176718684,
+      "share_dana": 0.02911261027503892,
+      "share_shopeepay": 0.005452292441140025,
+      "keywords": "jaringan, jaringan bagus, bagus, jaringan bermasalah, bermasalah, internet, koneksi, stabil, lancar, login"
+    },
+    {
+      "topic_id": 11,
+      "size": 1102,
+      "share_gopay": 0.027408049145467434,
+      "share_ovo": 0.01982285955293125,
+      "share_dana": 0.01388168137000519,
+      "share_shopeepay": 0.030978934324659233,
+      "keywords": "cs, chat, chat cs, bot, respon, hubungi, robot, solusi, hubungi cs, masuk"
+    },
+    {
+      "topic_id": 12,
+      "size": 1095,
+      "share_gopay": 0.012995195715523352,
+      "share_ovo": 0.02087726697595951,
+      "share_dana": 0.02003113648157758,
+      "share_shopeepay": 0.014622057001239157,
+      "keywords": "qris, qr, scan, pembayaran qris, pembayaran, scan qris, bayar, qris gagal, gagal, pakai qris"
+    },
+    {
+      "topic_id": 13,
+      "size": 1000,
+      "share_gopay": 0.010789950381979996,
+      "share_ovo": 0.002108814846056516,
+      "share_dana": 0.020264660093409444,
+      "share_shopeepay": 0.017843866171003718,
+      "keywords": "event, hadiah, point, voucher, vip, poin, scam, tukar, bikin event, bola"
+    },
+    {
+      "topic_id": 14,
+      "size": 1043,
+      "share_gopay": 0.05450106324328582,
+      "share_ovo": 0.002741459299873471,
+      "share_dana": 0.00851063829787234,
+      "share_shopeepay": 0.0024783147459727386,
+      "keywords": "teknis, gangguan teknis, gangguan, maintenance, teknis mulu, perbaiki, sistem, teknis gangguan, tolong, teknisi"
+    },
+    {
+      "topic_id": 15,
+      "size": 804,
+      "share_gopay": 0.043081042766007716,
+      "share_ovo": 0.007591733445803458,
+      "share_dana": 0.002594706798131811,
+      "share_shopeepay": 0.029987608426270136,
+      "keywords": "pinjaman, pinjam, tolak, pengajuan, bayar, telat, acc, limit, ditolak, pengajuan pinjaman"
+    },
+    {
+      "topic_id": 16,
+      "size": 1582,
+      "share_gopay": 0.0207135543829251,
+      "share_ovo": 0.03374103753690426,
+      "share_dana": 0.027555786196159834,
+      "share_shopeepay": 0.024039653035935565,
+      "keywords": "akun, login, hapus akun, hapus, masuk akun, masuk, login akun, tolong, blokir, nomor"
+    },
+    {
+      "topic_id": 17,
+      "size": 760,
+      "share_gopay": 0.0120500905725762,
+      "share_ovo": 0.05651623787431464,
+      "share_dana": 0.0077581733264141155,
+      "share_shopeepay": 0.009913258983890954,
+      "keywords": "admin, biaya, biaya admin, bos, kena, kena admin, adminnya, mahal, gratis, top"
+    },
+    {
+      "topic_id": 18,
+      "size": 770,
+      "share_gopay": 0.011577538001102623,
+      "share_ovo": 0.008013496415014762,
+      "share_dana": 0.014660093409444732,
+      "share_shopeepay": 0.004956629491945477,
+      "keywords": "error, error error, error mulu, mulu, kebanyakan error, mulu error, suka error, kebanyakan, errorr, error sistem"
+    },
+    {
+      "topic_id": 19,
+      "size": 926,
+      "share_gopay": 0.012837678191698827,
+      "share_ovo": 0.011387600168705188,
+      "share_dana": 0.016969382459782044,
+      "share_shopeepay": 0.013630731102850062,
+      "keywords": "gw, cicil, udh, transaksi, masuk, klo, pake, akun, limit, saldo"
+    },
+    {
+      "topic_id": 20,
+      "size": 1030,
+      "share_gopay": 0.02268252343073167,
+      "share_ovo": 0.03859131168283425,
+      "share_dana": 0.01276595744680851,
+      "share_shopeepay": 0.01660470879801735,
+      "keywords": "saldo, masuk, saldonya, saldo masuk, top, up, top up, hilang, saldo hilang, isi"
+    },
+    {
+      "topic_id": 21,
+      "size": 794,
+      "share_gopay": 0.013152713239347878,
+      "share_ovo": 0.022353437368199072,
+      "share_dana": 0.012298910223144785,
+      "share_shopeepay": 0.011648079306071871,
+      "keywords": "transfer, transfer transfer, bertransaksi, transfer gagal, transfer gangguan, transferan, susah transfer, susah, gabisa transfer, gangguan"
+    },
+    {
+      "topic_id": 22,
+      "size": 608,
+      "share_gopay": 0.03150350476490509,
+      "share_ovo": 0.003795866722901729,
+      "share_dana": 0.004099636741048261,
+      "share_shopeepay": 0.007930607187112764,
+      "keywords": "game, up game, top, top up, up, games, diamond, fitur top, topup, main"
+    },
+    {
+      "topic_id": 23,
+      "size": 1396,
+      "share_gopay": 0.038906828384657796,
+      "share_ovo": 0.025516659637283848,
+      "share_dana": 0.016424494032174365,
+      "share_shopeepay": 0.03667905824039653,
+      "keywords": "jam, nunggu, menit, tunggu, sampe, masuk, transaksi, suruh, suruh nunggu, proses"
+    },
+    {
+      "topic_id": 24,
+      "size": 491,
+      "share_gopay": 0.009687327715208317,
+      "share_ovo": 0.001687051876845213,
+      "share_dana": 0.007394914374675662,
+      "share_shopeepay": 0.01858736059479554,
+      "keywords": "wajah, verifikasi wajah, verifikasi, muka, wajah gagal, gagal, login, kamera, verifikasi muka, pin"
+    },
+    {
+      "topic_id": 25,
+      "size": 741,
+      "share_gopay": 0.008978498857997952,
+      "share_ovo": 0.026360185575706453,
+      "share_dana": 0.011416709911779968,
+      "share_shopeepay": 0.015365551425030979,
+      "keywords": "login, login login, log, login susah, susah login, susah, gabisa login, log in, pas login, login akun"
+    },
+    {
+      "topic_id": 26,
+      "size": 725,
+      "share_gopay": 0.011026226667716783,
+      "share_ovo": 0.009700548291859975,
+      "share_dana": 0.012947586922677737,
+      "share_shopeepay": 0.009913258983890954,
+      "keywords": "sampah, gangguan, bug, eror, tolol, jelek, rusak, lemot, mulu, gangguan mulu"
+    },
+    {
+      "topic_id": 27,
+      "size": 507,
+      "share_gopay": 0.006458218476805545,
+      "share_ovo": 0.026571067060312106,
+      "share_dana": 0.006382978723404255,
+      "share_shopeepay": 0.013135068153655513,
+      "keywords": "hp, no hp, no, ganti, nomor hp, nomor, hp hilang, login, nomer, nomer hp"
+    },
+    {
+      "topic_id": 28,
+      "size": 509,
+      "share_gopay": 0.00976608647712058,
+      "share_ovo": 0.006959088991986504,
+      "share_dana": 0.008614426569797613,
+      "share_shopeepay": 0.004956629491945477,
+      "keywords": "gua, duit gua, saldo gua, duit, gua pake, uang gua, dikit, pake, gua ilang, gua tf"
+    },
+    {
+      "topic_id": 29,
+      "size": 413,
+      "share_gopay": 0.0126801606678743,
+      "share_ovo": 0.0025305778152678194,
+      "share_dana": 0.002387130254281266,
+      "share_shopeepay": 0.03667905824039653,
+      "keywords": "iklan, iklannya, promo, maksa, judi, lu, ganggu, mengganggu, promonya, online"
+    },
+    {
+      "topic_id": 30,
+      "size": 384,
+      "share_gopay": 0.005828148381507443,
+      "share_ovo": 0.0035849852382960775,
+      "share_dana": 0.0073430202387130255,
+      "share_shopeepay": 0.0024783147459727386,
+      "keywords": "wifi, pake wifi, jaringan, data, internet, pakai wifi, pake, sinyal, koneksi, lancar"
+    },
+    {
+      "topic_id": 31,
+      "size": 348,
+      "share_gopay": 0.006221942191068757,
+      "share_ovo": 0.0025305778152678194,
+      "share_dana": 0.0059159314997405295,
+      "share_shopeepay": 0.007187112763320942,
+      "keywords": "bintang, kasih bintang, kasih, bintang karna, bintang kasih, bintang bintang, cicil, bintang cicil, karna, maaf"
+    },
+    {
+      "topic_id": 32,
+      "size": 328,
+      "share_gopay": 0.0025202803811924077,
+      "share_ovo": 0.0012652889076339097,
+      "share_dana": 0.007265179034769071,
+      "share_shopeepay": 0.0024783147459727386,
+      "keywords": "server, servernya, down, server down, server penuh, penuh, sibuk, server sibuk, transaksi, server lu"
+    },
+    {
+      "topic_id": 33,
+      "size": 457,
+      "share_gopay": 0.011735055524927148,
+      "share_ovo": 0.0029523407844791226,
+      "share_dana": 0.007135443694862481,
+      "share_shopeepay": 0.004708798017348203,
+      "keywords": "gangguan, gangguannya, perbaikan, ganguan, gangguan gangguan, eror, kalo gangguan, bener, kalo, pemeliharaan"
+    },
+    {
+      "topic_id": 34,
+      "size": 453,
+      "share_gopay": 0.006773253524454596,
+      "share_ovo": 0.029945170814002532,
+      "share_dana": 0.004566683964711988,
+      "share_shopeepay": 0.012143742255266418,
+      "keywords": "email, nomor, otp, aktif, kode, ganti, lupa, kode otp, ganti nomor, sms"
+    },
+    {
+      "topic_id": 35,
+      "size": 310,
+      "share_gopay": 0.006930771048279121,
+      "share_ovo": 0.006959088991986504,
+      "share_dana": 0.004307213284898807,
+      "share_shopeepay": 0.005700123915737299,
+      "keywords": "lambat, respon, respon lambat, slow, delay, slow respon, penanganan, proses, pelayanan, lambat proses"
+    },
+    {
+      "topic_id": 36,
+      "size": 249,
+      "share_gopay": 0.005434354571946129,
+      "share_ovo": 0.005693800084352594,
+      "share_dana": 0.0035806953814218993,
+      "share_shopeepay": 0.0037174721189591076,
+      "keywords": "google, google play, play, langganan, akun google, pembayaran, saldo, berlangganan, kesedot, otomatis"
+    },
+    {
+      "topic_id": 37,
+      "size": 316,
+      "share_gopay": 0.005355595810033867,
+      "share_ovo": 0.011598481653310838,
+      "share_dana": 0.004099636741048261,
+      "share_shopeepay": 0.008674101610904586,
+      "keywords": "download, mendownload, playstore, instal, mending, didownload, hapus, gw download, mending download, udh"
+    },
+    {
+      "topic_id": 38,
+      "size": 311,
+      "share_gopay": 0.009687327715208317,
+      "share_ovo": 0.003374103753690426,
+      "share_dana": 0.003658536585365854,
+      "share_shopeepay": 0.0076827757125154895,
+      "keywords": "data, paket data, paket, beli paket, beli, data masuk, pulsa data, pulsa, masuk, pembelian paket"
+    },
+    {
+      "topic_id": 39,
+      "size": 715,
+      "share_gopay": 0.008820981334173427,
+      "share_ovo": 0.018557570645297342,
+      "share_dana": 0.009263103269330566,
+      "share_shopeepay": 0.03915737298636927,
+      "keywords": "buka, aplikasinya, klik, menu, dibuka, error, tolong, login, perangkat, perbaiki"
+    },
+    {
+      "topic_id": 40,
+      "size": 275,
+      "share_gopay": 0.0004725525714735764,
+      "share_ovo": 0.00021088148460565162,
+      "share_dana": 0.006901920083030618,
+      "share_shopeepay": 0.0004956629491945477,
+      "keywords": "menghapus, akun, permanen, menghapus akun, akun permanen, hapus, hapus akun, data, menghapus data, penghapusan"
+    },
+    {
+      "topic_id": 41,
+      "size": 485,
+      "share_gopay": 0.010868709143892258,
+      "share_ovo": 0.0035849852382960775,
+      "share_dana": 0.008277114686040478,
+      "share_shopeepay": 0.0027261462205700124,
+      "keywords": "malam, jam, gangguan, pagi, sore, sampe, siang, gangguan jam, 00, malam gangguan"
+    },
+    {
+      "topic_id": 42,
+      "size": 484,
+      "share_gopay": 0.013310230763172403,
+      "share_ovo": 0.016448755799240825,
+      "share_dana": 0.0056564608199273485,
+      "share_shopeepay": 0.004708798017348203,
+      "keywords": "saldo, saldo hilang, hilang, masuk, saldo masuk, masuk saldo, top, top up, up, isi"
+    },
+    {
+      "topic_id": 43,
+      "size": 537,
+      "share_gopay": 0.006379459714893282,
+      "share_ovo": 0.004217629692113032,
+      "share_dana": 0.010742086144265698,
+      "share_shopeepay": 0.005452292441140025,
+      "keywords": "error, transaksi, error transaksi, gagal, transaksi error, transaksi gagal, error error, error mulu, pembayaran, mulu"
+    },
+    {
+      "topic_id": 44,
+      "size": 270,
+      "share_gopay": 0.0055131133338583915,
+      "share_ovo": 0.001687051876845213,
+      "share_dana": 0.004748313440581214,
+      "share_shopeepay": 0.0022304832713754648,
+      "keywords": "sinyal, sinyal bagus, bagus, signal, sinyal lancar, lancar, gangguan sinyal, mulu sinyal, pdhl sinyal, sinyal sinyal"
+    }
+  ],
+  "outputs": {
+    "workbook": "data\\topics\\topics_to_name.xlsx",
+    "assignments": "data\\processed\\topic_assignments.parquet",
+    "model": "models\\bertopic\\bertopic.pkl",
+    "figure": "reports\\figures\\phase6_topic_overview.png"
+  },
+  "versions": {
+    "python": "3.11.16",
+    "bertopic": "0.17.4",
+    "umap": "0.5.12",
+    "hdbscan": "?"
+  },
+  "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/ob457t7y"
+}

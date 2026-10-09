@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "accelerate>=1.15.0",
+    "bertopic>=0.17.4",
     "datasets>=5.0.1",
     "emoji>=2.16.0",
     "google-play-scraper>=1.2.7",
@@ -16,6 +17,8 @@ dependencies = [
     "pyarrow>=25.0.1",
     "pyyaml>=6.0.3",
     "scikit-learn>=1.9.1",
+    "sentence-transformers>=6.1.0",
+    "stopwordsiso>=0.7.1",
     "torch>=2.14.1",
     "transformers>=5.18.0",
     "wandb>=0.30.0",

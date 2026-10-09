@@ -1,0 +1,22 @@
+# Phase 6a step 1: PRIMARY complaint predictions for every review (no labels read)
+seed: 42
+
+input_path: data/processed/reviews_clean.parquet
+output_path: data/processed/predictions.parquet
+report_path: reports/phase6_predictions.json
+
+# PRIMARY, fixed in Phase 5c and evaluated once on gold in Phase 5d
+model_id: indobert/spec_3class/none|star_1_2_or_model
+model_dir: models/indobert/spec_3class/none/final
+text_col: model_text
+max_length: 128
+batch_size: 128            # unique texts, sorted by length to limit padding
+star_negative_max: 2       # rule: complaint = score <= 2 OR model predicts negative
+
+# Same texts scored in the Phase 5d order (unsorted, batch 64): checks that
+# length-sorted batching does not change predictions
+consistency_check_n: 2000
+
+smoke:
+  rows: 3000
+  out_dir: models/predict_smoke
