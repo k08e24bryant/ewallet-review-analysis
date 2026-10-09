@@ -1,0 +1,40 @@
+# Phase 6c-1 proposals for v2 topics (Indonesian SBERT, 32 topics).
+# Written by Claude after reading 20 random documents per topic (sheet reading_sample in
+# topics_to_name_v2.xlsx; the 60 diagnostic rows were excluded from the draw).
+# purity = how many of the 20 match `name` (for topics sent to the bucket: the best single
+# name's count, given in `note`). Rules: purity < 12/20 -> "Unspecified complaint";
+# merges only between topics describing the same problem; mixed topics are never merged
+# into specific or outage topics. These are proposals; the user confirms or changes them.
+topics:
+  0:  {name: "Unspecified complaint", purity: 7, note: "Mixed money, outage, login and account complaints; best single name 'money deducted or missing' fits 7/20. Bucket anchor (largest low-purity topic)."}
+  1:  {name: "Frequent errors and outages", purity: 12, note: "Mostly DANA: errors, outages, 'sedang ramai'; 2 transfer failures, 5 vanished balance."}
+  2:  {merge_into: 0, purity: 5, note: "GoPay grab-bag (31% of GoPay complaints): top-up not credited 5, GoPay Pinjam/Later 5, outages 4, GoPay Plus upgrade 2, other 4. Clustered by app, not problem."}
+  3:  {name: "Cannot pay or transfer", purity: 17, note: "Transfer, QRIS, payment or withdrawal fails ('banyak yang transaksi'); 1 points, 2 vague."}
+  4:  {name: "DANA Cicil not usable", purity: 19, note: "Cicil feature unavailable or unusable despite limit; 1 multi-issue."}
+  5:  {name: "Login, OTP or verification fails", purity: 16, note: "OTP not received, face verification fails, cannot log in, phone-number change (4 of 20); 1 lost balance, 1 privacy, 1 delete account, 1 blocked account."}
+  6:  {merge_into: 0, purity: 8, note: "Generic 'aplikasi jelek': errors 8, slow 2, update 2, admin fee, CS, download, NIK upgrade. Mixed."}
+  7:  {name: "Network error despite good signal", purity: 16, note: "'Jaringan bermasalah' message while the user's connection is fine; 1 frozen account, 1 NFC, 1 system error."}
+  8:  {merge_into: 1, purity: 14, note: "Frequent outages ('gangguan mulu'); 2 slow, 4 other."}
+  9:  {merge_into: 0, purity: 6, note: "OVO grab-bag (31% of OVO complaints): fees 6, money not credited 4, login 2, vague 4, other 4. Clustered by app, not problem."}
+  10: {name: "Phone credit, data or bill purchase fails", purity: 12, note: "Pulsa, data package, PLN token, e-money purchases fail or arrive late (12); vouchers and promos (8). Borderline."}
+  11: {name: "Reward points cannot be redeemed", purity: 20, note: "DANA points / World Cup event rewards cannot be exchanged."}
+  12: {name: "Balance missing or top-up not credited", purity: 17, note: "Top-up 'berhasil' but balance unchanged, balance cut or vanished, debits without verification; 2 errors, 1 fee."}
+  13: {name: "Loan or paylater rejected or frozen", purity: 20, note: "SPinjam, SPayLater, GoPay Pinjam/Later, DANA instan: rejected, frozen after repayment, low limit, high interest."}
+  14: {merge_into: 1, purity: 13, note: "Long outages and maintenance (10), frequent outages (3); 7 other."}
+  15: {merge_into: 1, purity: 19, note: "'Eror mulu': frequent errors."}
+  16: {name: "Customer service unhelpful", purity: 18, note: "Slow CS, bot/AI answers, help center unreachable; 1 praise, 1 multi-issue."}
+  17: {merge_into: 0, purity: 7, note: "Defined by the insult 'aplikasi sampah' (writing style): outages 7, money 4, account 2, fees, slow, other. Style heuristic missed it (3 of 4 lexicon hits)."}
+  18: {merge_into: 16, purity: 13, note: "DANA chatbot 'Diana' unhelpful or unreachable (13); the underlying problem varies (Cicil, top-up, OTP)."}
+  19: {name: "Admin and top-up fees too high", purity: 19, note: "Admin fees on top-up and transfer; 1 spam."}
+  20: {merge_into: 1, purity: 18, note: "GoPay 'gangguan teknis' outages; 2 slow fix."}
+  21: {merge_into: 3, purity: 20, note: "'Gabisa TF': transfer fails."}
+  22: {name: "Intrusive ads", purity: 20, note: "Ads (mostly ShopeePay/Shopee) in other apps, unskippable, close button too small."}
+  23: {merge_into: 0, purity: 4, note: "Very short, vague complaints: top-up not credited 4, cannot open/install 3, vague 7, other 6."}
+  24: {merge_into: 1, purity: 15, note: "'Sistem sibuk / sistem error' outages; 2 insults, 1 CS, 1 balance."}
+  25: {name: "Updates make the app worse", purity: 14, note: "Slower or broken after update, too many updates; 2 maintenance without notice, 4 other. Holds part of the slowness complaints."}
+  26: {merge_into: 1, purity: 19, note: "Question-form outage complaints ('kenapa gangguan?')."}
+  27: {name: "Server down or overloaded", purity: 19, note: "Server down / busy at peak times; kept separate (users name the cause). Could merge into T1 if you prefer."}
+  28: {name: "QRIS scan or gallery upload fails", purity: 17, note: "Cannot scan QR or pick a QR image from the gallery; 1 loan, 1 login, 1 camera."}
+  29: {merge_into: 1, purity: 13, note: "Generic 'apk error/rusak': errors 13, insults or uninstall advice 6, 1 skin. Borderline (13/20)."}
+  30: {name: "Game top-up missing or fails", purity: 14, note: "GoPay: game top-up removed or fails (14); mini games removed (3); 3 other."}
+  31: {merge_into: 0, purity: 10, note: "DANA access: cannot log in 10, cannot transact 5, delete account, other. Below 12 -> bucket (not merged into the login topic: mixed)."}

@@ -1,0 +1,60 @@
+# Phase 6c-1: improved topic model (embedding comparison, refit, proposals for naming).
+# The 60 Phase 6b fit-check rows are DIAGNOSTIC only. The new model is judged on a fresh
+# sample in 6c-2. Decision rule (fixed before 6c): adopt v2 if its fresh-sample "yes"
+# rate is higher than 37%; report both either way.
+seed: 42
+
+topics_config: configs/topics.yaml        # documents, UMAP, HDBSCAN, base vectorizer (6a)
+final_config: configs/topics_final.yaml   # 6b extra stopwords, keep_words
+
+embeddings:                               # compared with identical BERTopic settings
+  - name: minilm                          # current (6a/6b)
+    model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+    prefix: ""
+    license: apache-2.0
+  - name: e5_base
+    model: intfloat/multilingual-e5-base
+    prefix: "query: "                     # model card: use "query: " for non-retrieval tasks
+    license: mit
+  - name: indo_sbert
+    model: firqaaa/indo-sentence-bert-base    # Indonesian (language: id), mean pooling, 768-d
+    prefix: ""
+    license: apache-2.0
+  # LazarusNLP/all-indo-e5-small-v4 excluded: no license in its model card or repo
+max_seq_length: 128                       # same truncation for every model (p95 = 39 tokens)
+batch_size: 128
+cache_dir: data/processed/embeddings      # gitignored; keyed by model + prefix + text hash
+
+# One fixed min_cluster_size is not comparable across embedding spaces (e5 collapses to < 5 clusters
+# at 150). Each model is compared at the grid value whose topic count is closest to target_topics.
+mcs_grid: [40, 75, 150, 300]
+target_topics: 40                         # MiniLM's count at 150 with the v2 vectorizer
+top_n_words: 10
+
+# Topics whose top-10 keywords are mostly writing style (slang, insults, generic verdicts)
+# rather than a problem. Heuristic, reported next to a manual reading.
+style_lexicon: [tolol, goblok, bego, anjing, ajg, anjir, bangsat, babi, taik, tai, asu, kontol, sialan,
+                kocak, gaje, gajelas, jelek, buruk, sampah, parah, kecewa, payah, ampas, busuk, bodoh,
+                bener, emang, pokoknya, gimana, kenapa, knp, kayak, kaya, bikin, terus, trus, mana,
+                lah, ya, yaa, nih, tuh, sumpah, wkwk, wkwkwk, cok, jir, njir, si, dah, aja, lagi]
+style_threshold: 4                        # >= this many of the top-10 keywords in the lexicon
+
+outliers:
+  strategy: embeddings
+  target_share: 0.089                     # threshold calibrated per model to keep the 6a outlier level
+
+reading:
+  per_topic: 20                           # random documents per topic I read to propose names
+  sample_path: data/topics/v2_reading_sample.parquet   # reviewIds read here; 6c-2 excludes them
+  diagnostic_key: data/topics/topic_fit_key.parquet    # 6b fit-check rows (diagnostic)
+  purity_min: 12                          # purity below 12/20 -> "Unspecified complaint"
+proposals_path: data/topics/topic_proposals_v2.yaml   # my proposals (name, purity, merge)
+gap_terms:                                # diagnostic gaps: do these get their own topics?
+  paylater_loan: [paylater, spaylater, spinjam, pinjam, pinjaman, gopaylater, "pay later", cicilan]
+  security_unauthorized: [keamanan, dibobol, bobol, hack, diretas, kesedot, tanpa konfirmasi, terpotong otomatis, potong otomatis, penipu, penipuan, otomatis terpotong]
+  slowness: [lemot, lambat, lelet, loading, ngelag, lag, lama banget]
+  id_phone_change: [ktp, ganti nomor, nomor baru, kartu sim, ganti hp, hp baru, nomor hp, ganti email]
+
+comparison_path: reports/phase6c_embedding_comparison.json
+model_dir: models/bertopic_v2             # gitignored
+xlsx_path: data/topics/topics_to_name_v2.xlsx   # refuses to overwrite
