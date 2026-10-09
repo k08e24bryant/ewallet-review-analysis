@@ -168,10 +168,14 @@ def _row_share(cm: np.ndarray) -> np.ndarray:
 
 # ---------------------------------------------------------------- errors
 
-def sample_errors(gold: pd.DataFrame, pred: np.ndarray, n: int, seed: int) -> pd.DataFrame:
-    """Up to ``n`` misclassified gold rows, spread evenly over (gold -> predicted) error types."""
+def sample_errors(gold: pd.DataFrame, pred: np.ndarray, n: int, seed: int, is_error: np.ndarray | None = None) -> pd.DataFrame:
+    """Up to ``n`` misclassified gold rows, spread evenly over (gold -> predicted) error types.
+
+    ``is_error`` overrides the default (gold_label != predicted), e.g. for binary
+    predictions scored against 3-class gold labels.
+    """
     df = gold.assign(predicted=pred)
-    wrong = df[df["gold_label"] != df["predicted"]].copy()
+    wrong = df[df["gold_label"] != df["predicted"] if is_error is None else is_error].copy()
     wrong["error_type"] = wrong["gold_label"] + "->" + wrong["predicted"]
     groups = {t: g.sample(frac=1, random_state=seed) for t, g in wrong.groupby("error_type")}
     picked: list[pd.DataFrame] = []

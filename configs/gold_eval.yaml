@@ -1,0 +1,42 @@
+# Phase 5d: single gold evaluation. No selection or tuning after this.
+seed: 42
+
+evaluate_config: configs/evaluate.yaml        # gold path, pool, bootstrap (same method as Phase 4)
+dev_select_config: configs/dev_select.yaml    # model paths, text column, star rule, dev set (smoke)
+dev_report: reports/phase5_dev_selection.json # dev numbers for the dev-vs-gold table
+gold_config: configs/gold.yaml                # relabel workbook + key, labels, note tags
+per_app_excluded: []                          # gold has 50 rows per app x weak_label, OVO included
+
+# Ids match reports/phase5_dev_selection.json. Order = row order in tables and figures.
+options:
+  reference/star_1_2: {role: reference, label: "Star rating 1-2"}
+  tfidf/spec_3class|model_only: {role: phase4_baseline, label: "TF-IDF spec_3class (Phase 4)"}
+  indobert/spec_3class/balanced|model_only: {role: spec_variant, label: "IndoBERT spec_3class · balanced"}
+  indobert/spec_3class/none|star_1_2_or_model: {role: primary, label: "PRIMARY: IndoBERT spec · none + star 1-2"}
+  tfidf/binary_3star_negative|star_1_2_or_model: {role: comparison, label: "TF-IDF binary_3star_neg + star 1-2"}
+primary: indobert/spec_3class/none|star_1_2_or_model   # fixed before gold (Phase 5c)
+
+differences:                                  # paired bootstrap, first minus second
+  - [indobert/spec_3class/none|star_1_2_or_model, reference/star_1_2]
+  - [indobert/spec_3class/none|star_1_2_or_model, tfidf/binary_3star_negative|star_1_2_or_model]
+diff_metrics: [bin_neg_f1, bin_neg_precision, bin_neg_recall, recall_star_3, recall_star_4-5, false_alarm_star_4-5]
+
+errors:
+  path: reports/phase5_errors.csv             # PRIMARY errors, stratified by gold -> predicted type
+  n: 40
+star45_path: reports/phase5_45star_complaints.csv   # every gold 4-5 star complaint, caught/missed per option
+
+report_path: reports/phase5_gold.json         # refuses to overwrite: gold is evaluated once
+figures_dir: reports/figures
+figures:
+  complaint: phase5_gold_complaint_detection.png
+  per_app: phase5_gold_per_app.png
+  confusion: phase5_confusion_indobert_spec.png   # 3-class, spec_3class/balanced
+
+wandb:
+  name: phase5-summary
+  job_type: summary
+
+smoke:                                        # runs the whole pipeline on DEV labels; gold is not read
+  bootstrap_n: 50
+  out_dir: models/gold_eval_smoke

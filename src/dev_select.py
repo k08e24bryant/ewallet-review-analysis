@@ -233,13 +233,16 @@ def metric_set(
     for g, (lo, hi) in STAR_GROUPS.items():
         m = (score >= lo) & (score <= hi)
         out[f"recall_star_{g}"] = _prf(y[m], p[m], w[m])[1]
+        # false-alarm rate: share of non-complaints in this star group flagged as complaints
+        out[f"false_alarm_star_{g}"] = _prf(~y[m], p[m], w[m])[1]
     for a in apps:
         m = app == a
         out[f"bin_neg_f1_{a}"] = _prf(y[m], p[m], w[m])[2]
     if p3 is not None:
-        f1s = [_prf(y3 == l, p3 == l, w)[2] for l in labels]
-        out["macro_f1_3class"] = float(np.mean(f1s))
-        out.update({f"{l}_f1_3class": f for l, f in zip(labels, f1s)})
+        prf = [_prf(y3 == l, p3 == l, w) for l in labels]
+        out["macro_f1_3class"] = float(np.mean([f for _, _, f in prf]))
+        for l, (pr, rc, f) in zip(labels, prf):
+            out[f"{l}_precision_3class"], out[f"{l}_recall_3class"], out[f"{l}_f1_3class"] = pr, rc, f
     return out
 
 
