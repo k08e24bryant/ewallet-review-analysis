@@ -37,6 +37,7 @@ torch = { index = "pytorch-cu132" }
 
 [dependency-groups]
 dev = [
+    "playwright>=1.63.0",
     "psutil>=7.2.2",
     "pytest>=9.1.1",
 ]

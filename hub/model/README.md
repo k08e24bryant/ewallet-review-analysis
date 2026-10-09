@@ -22,8 +22,10 @@ predicts **negative / neutral / positive**. It is the text part of a complaint d
 > **complaint = the model predicts `negative`, or the review has a 1–2 star rating**
 
 The repository also contains a BERTopic topic model (`bertopic/`) that assigns an approximate
-complaint topic. Both are used in the demo Space
-[k08e24bryant/ewallet-complaint-analyzer](https://huggingface.co/spaces/k08e24bryant/ewallet-complaint-analyzer).
+complaint topic. Findings from 201,860 reviews are on the static Space
+[k08e24bryant/ewallet-complaint-findings](https://huggingface.co/spaces/k08e24bryant/ewallet-complaint-findings).
+A live demo Space is coming soon; until then, run the demo locally from the
+[GitHub repo](https://github.com/k08e24bryant/ewallet-review-analysis) with `uv run python app/app.py`.
 
 ## Intended use
 
@@ -53,7 +55,7 @@ is_complaint = label == "negative" or (star is not None and star <= 2)
 
 Training used preprocessed text: Unicode NFKC, URLs removed, repeated characters capped at 2,
 and emoji replaced by their Indonesian names (Python `emoji` library). For best results apply the
-same preprocessing; the demo Space contains the exact code (`demo_core.py`).
+same preprocessing; the demo's `app/demo_core.py` in the GitHub repo contains the exact code.
 
 ## Training data
 
