@@ -1,0 +1,49 @@
+# Phase 7: weekly complaint trends, spikes, hidden complaints, topic trends, versions
+seed: 42
+
+input_path: data/processed/reviews_clean.parquet
+predictions_path: data/processed/predictions.parquet      # PRIMARY (Phase 5): is_complaint, pred_label
+assignments_path: data/processed/topic_assignments.parquet  # v3 topics (adopted in 6c-2)
+apps: [gopay, ovo, dana, shopeepay]
+timezone_note: "Dates and weeks in UTC (WIB = UTC+7); weeks start Monday."
+
+# Complete Monday-Sunday weeks only. The Sep 28 week is partial (data ends Sat Oct 3,
+# 16:31 UTC; the feed lags ~24 h) and is shown separately; the Jun 29 week (data starts
+# Wed Jul 1) is dropped.
+partial_week_shown: "2026-09-28"
+
+spikes:                                   # each vs that app's median non-spike complete week
+  - {app: dana, week: "2026-07-20"}
+  - {app: dana, week: "2026-09-21"}
+  - {app: dana, week: "2026-09-28", partial: true}
+  - {app: gopay, week: "2026-07-27"}
+spike_window_days_before: 7               # daily volume from 7 days before the spike week to its end
+
+# Topic trends: specific topics only (17 named v3 topics minus these 3 = 14), fitted documents only
+excluded_topics: ["Frequent errors and outages", "App bugs, updates or device problems", "Unspecified complaint"]
+outlier_label: Outliers
+topics_per_app: 5
+spike_top_topics: 2
+spike_examples_per_topic: 10
+versions_per_app: 3
+ci: 0.95
+
+fit_caveat: >-
+  Topic fit on a fresh check: 40% yes [26, 55] on fitted documents (n=40), 52% yes on specific topics (n=21);
+  short reviews are not included here.
+
+report_path: reports/phase7_trends.json
+examples_path: reports/phase7_spike_examples.csv
+findings_path: reports/phase7_findings.md
+figures_dir: reports/figures
+figures:
+  weekly: phase7_weekly_complaint_share.png
+  spike_daily: phase7_spike_daily.png
+  spike_topics: phase7_spike_topics.png
+  hidden: phase7_hidden_complaints.png
+  topics: phase7_topic_trends.png
+  versions: phase7_versions.png
+
+wandb:
+  name: phase7-trends
+  job_type: trends
