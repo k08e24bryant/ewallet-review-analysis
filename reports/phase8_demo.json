@@ -1,0 +1,136 @@
+{
+  "seed": 42,
+  "topic_export": {
+    "path": "C:\\Code\\ewallet-review-analysis\\models\\demo\\bertopic_v3",
+    "serialization": "safetensors (+ c-TF-IDF, labels)",
+    "embedding_model": "firqaaa/indo-sentence-bert-base",
+    "topic_embeddings": "centroids of brand-neutral embeddings of fitted documents per final v3 topic (outliers included)",
+    "agreement_check": {
+      "n": 2000,
+      "seed": 42,
+      "embedded_on": "cpu (demo path)",
+      "cpu_seconds": 32.7,
+      "mean_cosine_cpu_vs_pipeline_embeddings": 1.0,
+      "rules": {
+        "argmax_all": {
+          "overall": 0.6685,
+          "on_pipeline_named_topics": 0.7149972329828445,
+          "pipeline_outliers_kept_as_outlier": 0.23316062176165803,
+          "predicted_outlier_share": 0.064
+        },
+        "threshold": {
+          "overall": 0.5895,
+          "on_pipeline_named_topics": 0.5500830105146652,
+          "pipeline_outliers_kept_as_outlier": 0.9585492227979274,
+          "predicted_outlier_share": 0.3675
+        }
+      },
+      "chosen": "argmax_all",
+      "per_topic_chosen_rule": {
+        "Outliers": {
+          "n": 193,
+          "agreement": 0.23316062176165803
+        },
+        "Frequent errors and outages": {
+          "n": 525,
+          "agreement": 0.4780952380952381
+        },
+        "Money lost, missing or taken without consent": {
+          "n": 354,
+          "agreement": 0.7175141242937854
+        },
+        "Login, verification or number change fails": {
+          "n": 132,
+          "agreement": 0.696969696969697
+        },
+        "Cannot pay or transfer": {
+          "n": 121,
+          "agreement": 0.7768595041322314
+        },
+        "Unspecified complaint": {
+          "n": 120,
+          "agreement": 0.8416666666666667
+        },
+        "DANA Cicil not usable": {
+          "n": 122,
+          "agreement": 0.9508196721311475
+        },
+        "App bugs, updates or device problems": {
+          "n": 130,
+          "agreement": 0.9615384615384616
+        },
+        "Network error or lag despite good signal": {
+          "n": 60,
+          "agreement": 0.9166666666666666
+        },
+        "Loan or paylater rejected, frozen or costly": {
+          "n": 62,
+          "agreement": 0.9032258064516129
+        },
+        "Phone credit, data or token purchase fails": {
+          "n": 35,
+          "agreement": 0.8571428571428571
+        },
+        "Reward points cannot be redeemed": {
+          "n": 45,
+          "agreement": 0.7555555555555555
+        },
+        "Customer service unhelpful": {
+          "n": 36,
+          "agreement": 0.6944444444444444
+        },
+        "Voucher, cashback or game top-up not received": {
+          "n": 22,
+          "agreement": 0.7727272727272727
+        },
+        "Intrusive ads": {
+          "n": 15,
+          "agreement": 1.0
+        },
+        "Game top-up feature removed or fails": {
+          "n": 10,
+          "agreement": 1.0
+        },
+        "Server down or overloaded": {
+          "n": 8,
+          "agreement": 0.875
+        },
+        "QRIS scan or gallery upload fails": {
+          "n": 10,
+          "agreement": 1.0
+        }
+      }
+    }
+  },
+  "cpu_benchmark": {
+    "setup": {
+      "device": "cpu (CUDA hidden)",
+      "torch_threads": 2,
+      "simulates": "HF Spaces CPU basic (2 vCPU, 16 GB)",
+      "requests": 56,
+      "inputs": "50 random reviews (with their star) + 6 demo examples",
+      "torch": "2.14.1+cu132"
+    },
+    "load_seconds": 21.3,
+    "latency_all": {
+      "n": 56,
+      "median_ms": 24.1,
+      "p95_ms": 97.9,
+      "max_ms": 206.5
+    },
+    "latency_with_topic": {
+      "n": 16,
+      "median_ms": 80.6,
+      "p95_ms": 186.4,
+      "max_ms": 206.5
+    },
+    "latency_without_topic": {
+      "n": 40,
+      "median_ms": 22.4,
+      "p95_ms": 34.6,
+      "max_ms": 84.3
+    },
+    "rss_after_load_mb": 1499,
+    "peak_rss_mb": 1889
+  }
+}

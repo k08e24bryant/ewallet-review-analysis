@@ -1,0 +1,85 @@
+# Phase 8: Gradio demo. Paths are relative to this file. Everything the demo needs is here, so
+# app/ runs without src/ (as a Hugging Face Space). Parity with the training pipeline is checked
+# by tests/test_demo_parity.py.
+
+models:
+  source: local                     # local | hub (Phase 8b)
+  hub_repo: k08e24bryant/indobert-ewallet-complaints   # planned model repo (not created yet)
+  classifier:                       # PRIMARY's model part: IndoBERT spec_3class/none
+    local: ../models/indobert/spec_3class/none/final
+    hub_subfolder: ""               # classifier files at the repo root
+    max_length: 128
+  topics:                           # v3 BERTopic, safetensors (embedding similarity only)
+    local: ../models/demo/bertopic_v3
+    hub_subfolder: bertopic
+  embedding_model: firqaaa/indo-sentence-bert-base   # apache-2.0; loaded from the Hub in both modes
+  embedding_max_seq_length: 128
+  device: cpu                       # Spaces CPU basic
+
+complaint_rule:
+  star_negative_max: 2              # complaint = (star given and star <= 2) OR model predicts negative
+  min_words_for_topic: 3            # shorter complaints get no topic (is_short in preprocessing)
+
+# Same as configs/preprocess.yaml
+preprocessing:
+  unicode_normalization: NFKC
+  max_char_repeat: 2
+  emoji_language: id
+  emoji_fallback_language: en
+  emoji_delimiters: [" ", " "]
+  underscores_to_spaces: true
+  strip_skin_tones: true
+
+# Same as configs/topics_v2.yaml (neutralize); applied to the topic-embedding input only
+neutralize:
+  paylater:
+    - 'go\s*-?\s*pay\s*-?\s*later'
+    - 'shopee\s*-?\s*(?:pay\s*-?\s*)?pay\s*-?\s*later'
+    - 'shopee\s*-?\s*pay\s*-?\s*later'
+    - 's\s*-?\s*pay\s*-?\s*later'
+    - 'ovo\s*-?\s*pay\s*-?\s*later'
+  brands:
+    - 'shopee\s*-?\s*pay'
+    - 'shopee'
+    - 'spay'
+    - 'go\s*-?\s*pay'
+    - 'go\s*-?\s*jek'
+    - 'ovo'
+  token: "[APP]"
+  clitics: [nya, ku, mu, lah]
+
+topics:
+  assignment: argmax_all                 # chosen by src/export_demo.py (agreement 66.8% on 2000 fitted docs)
+  similarity_threshold: null        # v3 outlier-reduction threshold (used in threshold mode)
+  # Reliability tiers from the fresh fit check (Phase 6c-2). "low": the two broad topics,
+  # "App bugs, updates or device problems" (2 of 10 judged correct) and the bucket.
+  low_reliability: ["Frequent errors and outages", "Money lost, missing or taken without consent",
+                    "App bugs, updates or device problems", "Unspecified complaint"]
+  notes:
+    specific: "Specific topic: in our manual check, specific topics were judged correct about half the time (52%)."
+    low: "Broad topic: low reliability (it often collects mixed complaints)."
+    unspecified: "No specific problem identified (low reliability)."
+    outlier: "No clear topic: the review is not close to any topic."
+    short: "Too short to assign a topic (fewer than 3 words)."
+
+examples:                           # written for the demo; not real reviews
+  - ["Saldo saya terpotong 50 ribu tapi transfer ke rekening bank belum masuk sejak kemarin.", "1"]
+  - ["Pengajuan paylater saya ditolak terus, padahal selalu bayar tepat waktu.", "2"]
+  - ["Aplikasinya praktis, bayar pakai QRIS di warung jadi cepat.", "5"]
+  - ["Kode OTP tidak pernah masuk ke nomor saya, jadi tidak bisa login.", "blank"]
+  - ["Bagus sih, tapi tiap mau tukar poin hadiah selalu muncul gangguan.", "5"]
+  - ["Mantap", "1"]
+
+findings:
+  figures_dir: ../reports/figures
+  items:
+    - [phase7_weekly_complaint_share.png, "OVO is the most complained-about app: 78.4% [77.3, 79.4] of OVO reviews are complaints, vs 12.5% [12.1, 12.9] for ShopeePay."]
+    - [phase7_spike_daily.png, "Spikes are single days: DANA on Jul 20, Sep 25 and Oct 1, GoPay on Jul 28 (each about 80–86% complaints)."]
+    - [phase7_spike_topics.png, "DANA's Jul 20 spike was about reward points (+12.8 pp [11.8, 13.8]); Sep 25 and Oct 1 about network errors and payments."]
+    - [phase7_hidden_complaints.png, "Hidden complaints: the text model flags 16.9% [15.0, 19.0] of OVO's 4–5★ reviews as complaints (a lower bound)."]
+    - [phase7_topic_trends.png, "Money lost or taken is the largest specific topic everywhere (low fit: 3 of 8 in the check); loans/paylater stand out for ShopeePay and GoPay."]
+  limitations: |
+    - Complaint detection: complaint F1 0.922 [0.89, 0.95] on 600 hand-labeled reviews (precision 0.973, recall 0.876); the model alone finds about half of complaints written with 4–5★.
+    - The star rule counts 1–2★ praise as a complaint when a star is given.
+    - Topics are approximate: specific topics were judged correct about half the time; broad topics less often; short reviews get no topic.
+    - Shares describe Google Play reviews (people who chose to write one), not all users. Data: Jul 1 – Oct 3, 2026.
