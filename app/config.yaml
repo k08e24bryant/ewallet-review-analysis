@@ -14,7 +14,9 @@ models:
     hub_subfolder: bertopic
   embedding_model: firqaaa/indo-sentence-bert-base   # apache-2.0; loaded from the Hub in both modes
   embedding_max_seq_length: 128
-  device: cpu                       # Spaces CPU basic
+  device: cpu                       # local default; the ZeroGPU Space uses cuda (set by scripts/publish_hub.py)
+  zero_gpu: false                   # true on the Space: inference runs inside @spaces.GPU
+  gpu_duration: 15                  # seconds requested per call (short -> better queue priority)
 
 complaint_rule:
   star_negative_max: 2              # complaint = (star given and star <= 2) OR model predicts negative

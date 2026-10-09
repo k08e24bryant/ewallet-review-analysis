@@ -156,6 +156,10 @@ class Analyzer:
         self.prep = TextPrep(cfg)
         m = cfg["models"]
         self.device = m["device"]
+        if self.device.startswith("cuda"):
+            # Strict fp32 (no TF32 matmuls), as in the CPU-tested results
+            torch.backends.cuda.matmul.allow_tf32 = False
+            torch.backends.cudnn.allow_tf32 = False
         clf_dir = _resolve(cfg, "classifier")
         self.tok = AutoTokenizer.from_pretrained(clf_dir)
         self.clf = AutoModelForSequenceClassification.from_pretrained(clf_dir).to(self.device).eval()

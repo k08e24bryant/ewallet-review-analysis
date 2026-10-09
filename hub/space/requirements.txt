@@ -1,0 +1,24 @@
+# Pinned to the versions that passed tests/test_demo_parity.py (Phase 8a).
+# torch: same version and CUDA 13.2 build as the tested local install; its arch list includes
+# sm_120 (Blackwell, ZeroGPU's RTX Pro 6000) and sm_90.
+# gradio is installed by Spaces from sdk_version in README.md (6.30.0, as tested).
+--extra-index-url https://download.pytorch.org/whl/cu132
+torch==2.14.1+cu132
+spaces==0.51.3
+transformers==5.18.0
+tokenizers==0.23.2
+safetensors==0.8.0
+sentence-transformers==6.1.0
+bertopic==0.17.4
+umap-learn==0.5.12
+hdbscan==0.8.44
+numba==0.68.0
+llvmlite==0.50.0
+scikit-learn==1.9.1
+scipy==1.17.1
+numpy==2.4.6
+pandas==3.0.6
+emoji==2.16.0
+lingua-language-detector==2.1.1
+huggingface-hub==1.33.0
+pyyaml==6.0.3

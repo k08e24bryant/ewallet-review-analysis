@@ -448,5 +448,52 @@
     "with_3plus_words": 1132,
     "warned": 18,
     "share_of_3plus_word_reviews": 0.015901060070671377
+  },
+  "hub_checks": {
+    "hub_vs_local_in_process": {
+      "hub_load_seconds_incl_download": 61.2,
+      "rows": [
+        {
+          "text": "saldo saya hilang setelah top up",
+          "star": "blank",
+          "max_prob_diff": 0.0,
+          "same_outputs": true,
+          "is_complaint": true,
+          "topic": "Money lost, missing or taken without consent"
+        },
+        {
+          "text": "aplikasinya bagus banget, makasih",
+          "star": "1",
+          "max_prob_diff": 0.0,
+          "same_outputs": true,
+          "is_complaint": true,
+          "topic": null
+        },
+        {
+          "text": "bintang 5 deh, tapi kenapa transfer saya gagal terus",
+          "star": "5",
+          "max_prob_diff": 0.0,
+          "same_outputs": true,
+          "is_complaint": false,
+          "topic": null
+        },
+        {
+          "text": "worst app ever",
+          "star": "blank",
+          "max_prob_diff": 0.0,
+          "same_outputs": true,
+          "is_complaint": false,
+          "topic": null
+        },
+        {
+          "text": "jelek",
+          "star": "blank",
+          "max_prob_diff": 0.0,
+          "same_outputs": true,
+          "is_complaint": true,
+          "topic": null
+        }
+      ]
+    }
   }
 }

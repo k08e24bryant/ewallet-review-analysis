@@ -11,16 +11,36 @@ Run locally:
 from __future__ import annotations
 
 import os
+import time
 from pathlib import Path
 
-import gradio as gr
-
-from demo_core import Analyzer, load_config
+from demo_core import load_config
 
 CFG = load_config(Path(__file__).with_name("config.yaml"))
+if CFG["models"].get("zero_gpu"):
+    import spaces  # ZeroGPU: import before torch touches CUDA (models go to cuda at startup)
+
+    gpu = spaces.GPU(duration=CFG["models"]["gpu_duration"])
+else:
+    def gpu(fn):  # no-op outside ZeroGPU
+        return fn
+
+import gradio as gr  # noqa: E402
+
+from demo_core import Analyzer  # noqa: E402
+
 ANALYZER = Analyzer(CFG)
 STAR_CHOICES = ["blank", "1", "2", "3", "4", "5"]
 LABEL_NAMES = {"negative": "negative", "neutral": "neutral", "positive": "positive"}
+
+
+@gpu
+def run_model(text: str, star: int | None):
+    """All model work for one review (classifier + topic embedding); on ZeroGPU this holds the GPU."""
+    t = time.perf_counter()
+    r = ANALYZER.analyze(text, star)
+    print(f"[timing] analyze {1000 * (time.perf_counter() - t):.0f} ms on {ANALYZER.device}", flush=True)
+    return r
 
 
 def analyze(text: str, star: str) -> tuple[str, dict[str, float], str]:
@@ -28,7 +48,7 @@ def analyze(text: str, star: str) -> tuple[str, dict[str, float], str]:
     if not text or not text.strip():
         return "Enter a review to analyze.", {}, ""
     s = None if star in (None, "", "blank") else int(star)
-    r = ANALYZER.analyze(text, s)
+    r = run_model(text, s)
     reason = {"star+model": "the star rating is 1–2 and the model reads the text as negative",
               "star rule": f"the star rating is {s} (1–2★ counts as a complaint), although the model reads the text as {r.model_label}",
               "model": "the model reads the text as negative" + (f" (despite {s}★)" if s and s >= 4 else ""),
