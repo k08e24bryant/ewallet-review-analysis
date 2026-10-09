@@ -311,6 +311,125 @@ def fit_check(cfg: dict[str, Any]) -> None:
     print("topics covered:", pick["topic_name"].nunique(), pick["topic_name"].value_counts().to_dict())
 
 
+def fit_rate(cfg: dict[str, Any]) -> None:  # noqa: PLR0915 - linear report
+    """Score the filled fresh fit check, compare with 6b, and apply the pre-registered decision rule."""
+    tcfg = load_config(Path(cfg["topics_config"]))
+    fc, dec = cfg["fit_check"], cfg["decision"]
+    options, apps = fc["options"], tcfg["apps"]
+    ci = 0.95
+    sheet = pd.read_excel(fc["xlsx_path"], sheet_name="fit_check")
+    key = pd.read_parquet(fc["key_path"])
+    errors = []
+    if sheet["check_id"].tolist() != key["check_id"].tolist():
+        errors.append("check_id order/content differs from the key")
+    if (sheet["topic_name"].to_numpy() != key["topic_name"].to_numpy()).any():
+        errors.append("topic_name column was changed")
+    sheet["fits"] = sheet["fits"].map(lambda v: v.strip().lower() if isinstance(v, str) and v.strip() else None)
+    if sheet["fits"].isna().any():
+        errors.append(f"rows without a fits value: {sheet.loc[sheet['fits'].isna(), 'check_id'].tolist()}")
+    bad = sheet[sheet["fits"].notna() & ~sheet["fits"].isin(options)]
+    if len(bad):
+        errors.append(f"unknown fits values: {bad[['check_id', 'fits']].values.tolist()}")
+    if errors:
+        raise ValueError("fit check failed validation: " + "; ".join(errors))
+    pred = pd.read_parquet(tcfg["predictions_path"], columns=["reviewId", "score", "flagged_by"])
+    df = (key.merge(sheet[["check_id", "fits", "notes", "text_clean"]], on="check_id", validate="one_to_one")
+          .merge(pred, on="reviewId", how="left"))
+    df["notes"] = df["notes"].map(lambda v: v.strip() if isinstance(v, str) and v.strip() else "")
+
+    # Weighted all-rows rate: app x stratum cells weighted by their share of complaint rows with a
+    # named topic (all rows, duplicates included, as used in Phase 7)
+    a = pd.read_parquet(cfg["assignments_path"], columns=["app", "topic", "assigned_by_transform"])
+    a = a[a["topic"] != -1].assign(stratum=lambda d: np.where(d["assigned_by_transform"], "transform", "fitted"))
+    w = a.groupby(["app", "stratum"]).size() / len(a)
+    cells = {c: g for c, g in df.groupby(["app", "stratum"])}
+
+    def weighted(cs: dict, o: str) -> float:
+        return float(sum(w[c] * (g["fits"] == o).mean() for c, g in cs.items()))
+
+    rng = np.random.default_rng(cfg["seed"])
+    boot = {o: [] for o in options}
+    for _ in range(2000):
+        res = {c: g.iloc[rng.integers(0, len(g), len(g))] for c, g in cells.items()}
+        for o in options:
+            boot[o].append(weighted(res, o))
+    q = [(1 - ci) / 2 * 100, (1 + ci) / 2 * 100]
+    weighted_all = {"weights_cell_share_of_rows": {f"{a_}|{s}": round(float(v), 4) for (a_, s), v in w.items()},
+                    "method": "cell-weighted mean (app x fitted/transform); 2000 stratified bootstrap draws",
+                    **{o: {"share": weighted(cells, o), "ci95": [float(x) for x in np.percentile(boot[o], q)]} for o in options}}
+
+    fitted = df[df["stratum"] == "fitted"]
+    metric = fitted["fits"].eq("yes").mean()
+    adopt = bool(metric > dec["baseline_yes"])
+    six_b = json.loads(Path(load_config(Path(cfg["final_config"]))["report_path"]).read_text(encoding="utf-8"))["fit_check_results"]
+    broad = ["Frequent errors and outages", "Money lost, missing or taken without consent"]
+    non_complaint = df[df["notes"].str.lower().str.contains("not a complaint|no complaint|praise")]
+    cols = ["check_id", "app", "stratum", "topic_name", "notes", "text_clean"]
+    r = {
+        "n": int(len(df)), "options": options,
+        "decision": {"rule": f"adopt v3 if the fitted-document 'yes' rate > {dec['baseline_yes']:.1%} (6b)",
+                     "metric": "fitted_docs_yes_rate", "value": float(metric),
+                     "ci95": tf.wilson(int(fitted["fits"].eq("yes").sum()), len(fitted), ci),
+                     "baseline": dec["baseline_yes"], "baseline_ci95": six_b["raw"]["overall"]["yes"]["ci95"],
+                     "adopt_v3": adopt},
+        "fitted_docs": tf.fit_shares(fitted, options, ci),
+        "transform_rows": tf.fit_shares(df[df["stratum"] == "transform"], options, ci),
+        "all_rows_raw": tf.fit_shares(df, options, ci),
+        "all_rows_weighted": weighted_all,
+        "per_app": {x: tf.fit_shares(df[df["app"] == x], options, ci) for x in apps},
+        "per_app_fitted": {x: tf.fit_shares(fitted[fitted["app"] == x], options, ci) for x in apps},
+        "broad_vs_specific_fitted": {
+            "broad": tf.fit_shares(fitted[fitted["topic_name"].isin(broad)], options, ci),
+            "specific": tf.fit_shares(fitted[~fitted["topic_name"].isin(broad + ["Unspecified complaint"])], options, ci)},
+        "broad_topics": broad,
+        "per_topic": df.groupby("topic_name")["fits"].value_counts().unstack(fill_value=0).reindex(columns=options, fill_value=0)
+        .assign(n=lambda t: t.sum(axis=1)).sort_values("n", ascending=False).to_dict("index"),
+        "per_topic_fitted": fitted.groupby("topic_name")["fits"].value_counts().unstack(fill_value=0)
+        .reindex(columns=options, fill_value=0).assign(n=lambda t: t.sum(axis=1)).sort_values("n", ascending=False).to_dict("index"),
+        "non_complaints": {"count": int(len(non_complaint)), "by_stratum": non_complaint["stratum"].value_counts().to_dict(),
+                           "flagged_by": non_complaint["flagged_by"].value_counts().to_dict(),
+                           "rows": non_complaint[cols + ["score", "flagged_by"]].to_dict("records"),
+                           "note": "notes describing praise or no complaint (sentiment errors of PRIMARY)"},
+        "no_rows": df[df["fits"] == "no"].sort_values("check_id")[cols].to_dict("records"),
+        "comparison_6b": {"6b_fitted_mostly_n60": {o: six_b["raw"]["overall"][o] for o in options},
+                          "6b_broad_no": six_b["raw"]["by_topic_group"]["broad"]["no"]["share"],
+                          "6b_specific_no": six_b["raw"]["by_topic_group"]["specific"]["no"]["share"],
+                          "6b_non_complaints": len(six_b["not_complaint"]["possible_untagged"]),
+                          "note": "6b sample: 15 per app, 59 of 60 fitted documents, outliers excluded"},
+    }
+    rp = Path(cfg["report_path"])
+    rep = json.loads(rp.read_text(encoding="utf-8"))
+    rep["fresh_fit_check_results"] = r
+    rp.write_text(json.dumps(rep, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
+
+    def line(label: str, s: dict[str, Any]) -> str:
+        return f"   {label:<26} n={s['n']:>2}  " + "  ".join(
+            f"{o}: {s[o]['share']:5.1%} [{s[o]['ci95'][0]:.0%}, {s[o]['ci95'][1]:.0%}]" for o in options)
+
+    d = r["decision"]
+    print(f"\n== DECISION: fitted-document yes = {d['value']:.1%} [{d['ci95'][0]:.0%}, {d['ci95'][1]:.0%}] vs 6b "
+          f"{d['baseline']:.1%} [{d['baseline_ci95'][0]:.0%}, {d['baseline_ci95'][1]:.0%}] -> adopt v3: {adopt}")
+    print("\n== fit rates (Wilson 95% CI) ==")
+    print(line("fitted docs (decision)", r["fitted_docs"]))
+    print(line("transform rows", r["transform_rows"]))
+    print(line("all 60 rows (raw)", r["all_rows_raw"]))
+    wa = r["all_rows_weighted"]
+    print("   all rows weighted          " + "  ".join(f"{o}: {wa[o]['share']:5.1%} [{wa[o]['ci95'][0]:.0%}, {wa[o]['ci95'][1]:.0%}]"
+                                                    for o in options) + "   (bootstrap CI)")
+    for x in apps:
+        print(line(f"{x} (all 15)", r["per_app"][x]))
+    for x in apps:
+        print(line(f"{x} (fitted 10)", r["per_app_fitted"][x]))
+    for g, s in r["broad_vs_specific_fitted"].items():
+        print(line(f"fitted, {g} topics", s))
+    print("\nper topic (all rows):", json.dumps(r["per_topic"]))
+    nc = r["non_complaints"]
+    print(f"\nnon-complaints: {nc['count']} {nc['by_stratum']} flagged_by {nc['flagged_by']}")
+    print(f"\n== 'no' rows ({len(r['no_rows'])}) ==")
+    for x in r["no_rows"]:
+        print(f"   {x['check_id']} {x['app']:<9} {x['stratum']:<9} [{x['topic_name']}] {x['notes']}\n        {x['text_clean'][:140]!r}")
+
+
 def main() -> None:
     """CLI entry point."""
     sys.stdout.reconfigure(encoding="utf-8")
@@ -319,17 +438,21 @@ def main() -> None:
     g = parser.add_mutually_exclusive_group(required=True)
     g.add_argument("--apply", action="store_true")
     g.add_argument("--fit-check", action="store_true")
+    g.add_argument("--fit-rate", action="store_true", help="score the filled fresh fit check and apply the decision rule")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
     for noisy in ("httpx", "huggingface_hub", "BERTopic", "numba", "sentence_transformers"):
         logging.getLogger(noisy).setLevel(logging.WARNING)
     cfg = load_config(args.config)
     np.random.seed(cfg["seed"])
-    logger.info("seed=%d mode=%s", cfg["seed"], "apply" if args.apply else "fit-check")
+    mode = "apply" if args.apply else ("fit-check" if args.fit_check else "fit-rate")
+    logger.info("seed=%d mode=%s", cfg["seed"], mode)
     if args.apply:
         apply(cfg)
-    else:
+    elif args.fit_check:
         fit_check(cfg)
+    else:
+        fit_rate(cfg)
 
 
 if __name__ == "__main__":

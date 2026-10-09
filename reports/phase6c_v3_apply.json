@@ -622,5 +622,921 @@
     "readme_rules": [
       "A row in 'Unspecified complaint' is 'yes' only if the review truly has no specific problem; if a specific problem is buried there, it is 'no'."
     ]
+  },
+  "fresh_fit_check_results": {
+    "n": 60,
+    "options": [
+      "yes",
+      "partly",
+      "no"
+    ],
+    "decision": {
+      "rule": "adopt v3 if the fitted-document 'yes' rate > 36.7% (6b)",
+      "metric": "fitted_docs_yes_rate",
+      "value": 0.4,
+      "ci95": [
+        0.2634832568429192,
+        0.5540410633965381
+      ],
+      "baseline": 0.367,
+      "baseline_ci95": [
+        0.25620916687225426,
+        0.49316999369896963
+      ],
+      "adopt_v3": true
+    },
+    "fitted_docs": {
+      "n": 40,
+      "yes": {
+        "count": 16,
+        "share": 0.4,
+        "ci95": [
+          0.2634832568429192,
+          0.5540410633965381
+        ]
+      },
+      "partly": {
+        "count": 8,
+        "share": 0.2,
+        "ci95": [
+          0.10499989725437704,
+          0.347573063463995
+        ]
+      },
+      "no": {
+        "count": 16,
+        "share": 0.4,
+        "ci95": [
+          0.2634832568429192,
+          0.5540410633965381
+        ]
+      }
+    },
+    "transform_rows": {
+      "n": 20,
+      "yes": {
+        "count": 3,
+        "share": 0.15,
+        "ci95": [
+          0.052368745896216595,
+          0.36041886474075696
+        ]
+      },
+      "partly": {
+        "count": 2,
+        "share": 0.1,
+        "ci95": [
+          0.027866481213768224,
+          0.3010336452284873
+        ]
+      },
+      "no": {
+        "count": 15,
+        "share": 0.75,
+        "ci95": [
+          0.531299122381256,
+          0.8881382985923343
+        ]
+      }
+    },
+    "all_rows_raw": {
+      "n": 60,
+      "yes": {
+        "count": 19,
+        "share": 0.31666666666666665,
+        "ci95": [
+          0.21305867552366523,
+          0.44233767026176773
+        ]
+      },
+      "partly": {
+        "count": 10,
+        "share": 0.16666666666666666,
+        "ci95": [
+          0.0931317697919145,
+          0.2803161316361453
+        ]
+      },
+      "no": {
+        "count": 31,
+        "share": 0.5166666666666667,
+        "ci95": [
+          0.39307810032592494,
+          0.6382495046026722
+        ]
+      }
+    },
+    "all_rows_weighted": {
+      "weights_cell_share_of_rows": {
+        "dana|fitted": 0.5831,
+        "dana|transform": 0.0685,
+        "gopay|fitted": 0.1866,
+        "gopay|transform": 0.0227,
+        "ovo|fitted": 0.0694,
+        "ovo|transform": 0.0041,
+        "shopeepay|fitted": 0.0567,
+        "shopeepay|transform": 0.0088
+      },
+      "method": "cell-weighted mean (app x fitted/transform); 2000 stratified bootstrap draws",
+      "yes": {
+        "share": 0.3404522366049484,
+        "ci95": [
+          0.16736899885302314,
+          0.5283805095854497
+        ]
+      },
+      "partly": {
+        "share": 0.11448959528100934,
+        "ci95": [
+          0.05687649516631166,
+          0.17742020317876453
+        ]
+      },
+      "no": {
+        "share": 0.5450581681140424,
+        "ci95": [
+          0.3565573078813699,
+          0.7179437571686054
+        ]
+      }
+    },
+    "per_app": {
+      "gopay": {
+        "n": 15,
+        "yes": {
+          "count": 3,
+          "share": 0.2,
+          "ci95": [
+            0.07047549346981563,
+            0.45185448715169363
+          ]
+        },
+        "partly": {
+          "count": 5,
+          "share": 0.3333333333333333,
+          "ci95": [
+            0.1517632443971473,
+            0.5828645226148023
+          ]
+        },
+        "no": {
+          "count": 7,
+          "share": 0.4666666666666667,
+          "ci95": [
+            0.24809535365737387,
+            0.698830199745016
+          ]
+        }
+      },
+      "ovo": {
+        "n": 15,
+        "yes": {
+          "count": 4,
+          "share": 0.26666666666666666,
+          "ci95": [
+            0.10897453325692374,
+            0.5195043405598057
+          ]
+        },
+        "partly": {
+          "count": 4,
+          "share": 0.26666666666666666,
+          "ci95": [
+            0.10897453325692374,
+            0.5195043405598057
+          ]
+        },
+        "no": {
+          "count": 7,
+          "share": 0.4666666666666667,
+          "ci95": [
+            0.24809535365737387,
+            0.698830199745016
+          ]
+        }
+      },
+      "dana": {
+        "n": 15,
+        "yes": {
+          "count": 4,
+          "share": 0.26666666666666666,
+          "ci95": [
+            0.10897453325692374,
+            0.5195043405598057
+          ]
+        },
+        "partly": {
+          "count": 0,
+          "share": 0.0,
+          "ci95": [
+            0.0,
+            0.20388330103584862
+          ]
+        },
+        "no": {
+          "count": 11,
+          "share": 0.7333333333333333,
+          "ci95": [
+            0.4804956594401943,
+            0.8910254667430761
+          ]
+        }
+      },
+      "shopeepay": {
+        "n": 15,
+        "yes": {
+          "count": 8,
+          "share": 0.5333333333333333,
+          "ci95": [
+            0.30116980025498397,
+            0.7519046463426261
+          ]
+        },
+        "partly": {
+          "count": 1,
+          "share": 0.06666666666666667,
+          "ci95": [
+            0.011866895493268553,
+            0.2981652987378003
+          ]
+        },
+        "no": {
+          "count": 6,
+          "share": 0.4,
+          "ci95": [
+            0.1982449614134158,
+            0.6425316987937539
+          ]
+        }
+      }
+    },
+    "per_app_fitted": {
+      "gopay": {
+        "n": 10,
+        "yes": {
+          "count": 2,
+          "share": 0.2,
+          "ci95": [
+            0.05668215145437519,
+            0.5098375284633583
+          ]
+        },
+        "partly": {
+          "count": 5,
+          "share": 0.5,
+          "ci95": [
+            0.236593090512564,
+            0.7634069094874361
+          ]
+        },
+        "no": {
+          "count": 3,
+          "share": 0.3,
+          "ci95": [
+            0.10779126740630099,
+            0.6032218525388546
+          ]
+        }
+      },
+      "ovo": {
+        "n": 10,
+        "yes": {
+          "count": 4,
+          "share": 0.4,
+          "ci95": [
+            0.16818032970623614,
+            0.6873262302663417
+          ]
+        },
+        "partly": {
+          "count": 2,
+          "share": 0.2,
+          "ci95": [
+            0.05668215145437519,
+            0.5098375284633583
+          ]
+        },
+        "no": {
+          "count": 4,
+          "share": 0.4,
+          "ci95": [
+            0.16818032970623614,
+            0.6873262302663417
+          ]
+        }
+      },
+      "dana": {
+        "n": 10,
+        "yes": {
+          "count": 4,
+          "share": 0.4,
+          "ci95": [
+            0.16818032970623614,
+            0.6873262302663417
+          ]
+        },
+        "partly": {
+          "count": 0,
+          "share": 0.0,
+          "ci95": [
+            0.0,
+            0.2775327998628892
+          ]
+        },
+        "no": {
+          "count": 6,
+          "share": 0.6,
+          "ci95": [
+            0.31267376973365824,
+            0.8318196702937638
+          ]
+        }
+      },
+      "shopeepay": {
+        "n": 10,
+        "yes": {
+          "count": 6,
+          "share": 0.6,
+          "ci95": [
+            0.31267376973365824,
+            0.8318196702937638
+          ]
+        },
+        "partly": {
+          "count": 1,
+          "share": 0.1,
+          "ci95": [
+            0.017876213095072896,
+            0.4041500267952385
+          ]
+        },
+        "no": {
+          "count": 3,
+          "share": 0.3,
+          "ci95": [
+            0.10779126740630099,
+            0.6032218525388546
+          ]
+        }
+      }
+    },
+    "broad_vs_specific_fitted": {
+      "broad": {
+        "n": 17,
+        "yes": {
+          "count": 5,
+          "share": 0.29411764705882354,
+          "ci95": [
+            0.1327998961029523,
+            0.5313311006653985
+          ]
+        },
+        "partly": {
+          "count": 3,
+          "share": 0.17647058823529413,
+          "ci95": [
+            0.06191126637620997,
+            0.41029458568834126
+          ]
+        },
+        "no": {
+          "count": 9,
+          "share": 0.5294117647058824,
+          "ci95": [
+            0.30963235060004424,
+            0.7383489355759056
+          ]
+        }
+      },
+      "specific": {
+        "n": 21,
+        "yes": {
+          "count": 11,
+          "share": 0.5238095238095238,
+          "ci95": [
+            0.3236953458284443,
+            0.7165599389846583
+          ]
+        },
+        "partly": {
+          "count": 5,
+          "share": 0.23809523809523808,
+          "ci95": [
+            0.10628013022636468,
+            0.4509117368295075
+          ]
+        },
+        "no": {
+          "count": 5,
+          "share": 0.23809523809523808,
+          "ci95": [
+            0.10628013022636468,
+            0.4509117368295075
+          ]
+        }
+      }
+    },
+    "broad_topics": [
+      "Frequent errors and outages",
+      "Money lost, missing or taken without consent"
+    ],
+    "per_topic": {
+      "Frequent errors and outages": {
+        "yes": 4,
+        "partly": 4,
+        "no": 16,
+        "n": 24
+      },
+      "App bugs, updates or device problems": {
+        "yes": 2,
+        "partly": 2,
+        "no": 6,
+        "n": 10
+      },
+      "Money lost, missing or taken without consent": {
+        "yes": 3,
+        "partly": 1,
+        "no": 4,
+        "n": 8
+      },
+      "Login, verification or number change fails": {
+        "yes": 4,
+        "partly": 0,
+        "no": 1,
+        "n": 5
+      },
+      "Phone credit, data or token purchase fails": {
+        "yes": 2,
+        "partly": 1,
+        "no": 1,
+        "n": 4
+      },
+      "Loan or paylater rejected, frozen or costly": {
+        "yes": 1,
+        "partly": 0,
+        "no": 1,
+        "n": 2
+      },
+      "Unspecified complaint": {
+        "yes": 0,
+        "partly": 0,
+        "no": 2,
+        "n": 2
+      },
+      "Customer service unhelpful": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "DANA Cicil not usable": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Intrusive ads": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Network error or lag despite good signal": {
+        "yes": 0,
+        "partly": 1,
+        "no": 0,
+        "n": 1
+      },
+      "Reward points cannot be redeemed": {
+        "yes": 0,
+        "partly": 1,
+        "no": 0,
+        "n": 1
+      }
+    },
+    "per_topic_fitted": {
+      "Frequent errors and outages": {
+        "yes": 2,
+        "partly": 2,
+        "no": 5,
+        "n": 9
+      },
+      "Money lost, missing or taken without consent": {
+        "yes": 3,
+        "partly": 1,
+        "no": 4,
+        "n": 8
+      },
+      "App bugs, updates or device problems": {
+        "yes": 2,
+        "partly": 2,
+        "no": 2,
+        "n": 6
+      },
+      "Login, verification or number change fails": {
+        "yes": 4,
+        "partly": 0,
+        "no": 1,
+        "n": 5
+      },
+      "Phone credit, data or token purchase fails": {
+        "yes": 2,
+        "partly": 1,
+        "no": 1,
+        "n": 4
+      },
+      "Loan or paylater rejected, frozen or costly": {
+        "yes": 1,
+        "partly": 0,
+        "no": 1,
+        "n": 2
+      },
+      "Unspecified complaint": {
+        "yes": 0,
+        "partly": 0,
+        "no": 2,
+        "n": 2
+      },
+      "DANA Cicil not usable": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Customer service unhelpful": {
+        "yes": 1,
+        "partly": 0,
+        "no": 0,
+        "n": 1
+      },
+      "Network error or lag despite good signal": {
+        "yes": 0,
+        "partly": 1,
+        "no": 0,
+        "n": 1
+      },
+      "Reward points cannot be redeemed": {
+        "yes": 0,
+        "partly": 1,
+        "no": 0,
+        "n": 1
+      }
+    },
+    "non_complaints": {
+      "count": 6,
+      "by_stratum": {
+        "transform": 5,
+        "fitted": 1
+      },
+      "flagged_by": {
+        "star rule": 4,
+        "model": 2
+      },
+      "rows": [
+        {
+          "check_id": "F01",
+          "app": "gopay",
+          "stratum": "fitted",
+          "topic_name": "Money lost, missing or taken without consent",
+          "notes": "Praise and a feature request; no money was lost",
+          "text_clean": "BAGUS bisa isi kuota 1rp real no fake! cuma makanan pet nya jangan dibikin terlalu mahal ya!,dan mungkin coins nya harus bisa di jadiin saldo gopayy!!..!!..!!..!!..!!..!!..!!..",
+          "score": 5,
+          "flagged_by": "model"
+        },
+        {
+          "check_id": "F09",
+          "app": "gopay",
+          "stratum": "transform",
+          "topic_name": "Frequent errors and outages",
+          "notes": "Not a complaint",
+          "text_clean": "Semoga membantu",
+          "score": 1,
+          "flagged_by": "star rule"
+        },
+        {
+          "check_id": "F24",
+          "app": "shopeepay",
+          "stratum": "transform",
+          "topic_name": "Frequent errors and outages",
+          "notes": "Praise, not a complaint",
+          "text_clean": "good job",
+          "score": 1,
+          "flagged_by": "star rule"
+        },
+        {
+          "check_id": "F26",
+          "app": "shopeepay",
+          "stratum": "transform",
+          "topic_name": "Frequent errors and outages",
+          "notes": "Praise, not a complaint",
+          "text_clean": "singkat,padat,JELAASS",
+          "score": 5,
+          "flagged_by": "model"
+        },
+        {
+          "check_id": "F50",
+          "app": "gopay",
+          "stratum": "transform",
+          "topic_name": "Frequent errors and outages",
+          "notes": "Mild praise, not a complaint",
+          "text_clean": "sementara bagus.",
+          "score": 2,
+          "flagged_by": "star rule"
+        },
+        {
+          "check_id": "F53",
+          "app": "shopeepay",
+          "stratum": "transform",
+          "topic_name": "App bugs, updates or device problems",
+          "notes": "Praise, not a complaint",
+          "text_clean": "aplikasi nya sangat membantu",
+          "score": 1,
+          "flagged_by": "star rule"
+        }
+      ],
+      "note": "notes describing praise or no complaint (sentiment errors of PRIMARY)"
+    },
+    "no_rows": [
+      {
+        "check_id": "F01",
+        "app": "gopay",
+        "stratum": "fitted",
+        "topic_name": "Money lost, missing or taken without consent",
+        "notes": "Praise and a feature request; no money was lost",
+        "text_clean": "BAGUS bisa isi kuota 1rp real no fake! cuma makanan pet nya jangan dibikin terlalu mahal ya!,dan mungkin coins nya harus bisa di jadiin saldo gopayy!!..!!..!!..!!..!!..!!..!!.."
+      },
+      {
+        "check_id": "F03",
+        "app": "dana",
+        "stratum": "fitted",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Pending and double charges, then a missing balance",
+        "text_clean": "apasi dana makin lama makin ga jelas, transaksi pending lah, transaksi double lah. gara gara masalah itu saya harus lapor saldo hilang"
+      },
+      {
+        "check_id": "F07",
+        "app": "dana",
+        "stratum": "fitted",
+        "topic_name": "Money lost, missing or taken without consent",
+        "notes": "A face scan is required to pay; no money was lost",
+        "text_clean": "aq mau ngambil uang aj bukak dana GK seperti dulu dulu gampang sekarang ruwet bener ini dana yg daftar istri sayatapi sayang yg di suru pakek kalau dekat dia enak GK mikir ni aq mau bayar makan aj ribet seng harus seken waja"
+      },
+      {
+        "check_id": "F09",
+        "app": "gopay",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Not a complaint",
+        "text_clean": "Semoga membantu"
+      },
+      {
+        "check_id": "F12",
+        "app": "shopeepay",
+        "stratum": "fitted",
+        "topic_name": "Login, verification or number change fails",
+        "notes": "Face check is required on every payment; it does not fail",
+        "text_clean": "KARENA SETIAP TRANSAKSI SELALU MENGGUNAKAN VERIFIKASI WAJAH BAGI KAMI YG PUNYA USAHA DENGAN KARYAWAN APLIKASI INI TIDAK BERGUNA. KALAU INGIN RAMAI PEMINAT BUATLAH PENGATURAN AGAR VERIFIKASI WAJAH BISA DI MATIKAN KETIKA TRANSAKSI. SANGAT MEREPOTKAN.. BOLEH LH TIRU APLIKASI SEBELAH DANA DAN GOPAY"
+      },
+      {
+        "check_id": "F13",
+        "app": "dana",
+        "stratum": "fitted",
+        "topic_name": "Frequent errors and outages",
+        "notes": "QRIS cannot be used; not a general outage",
+        "text_clean": "gabisa buat qris ppk apk apa ini apk apa pantat"
+      },
+      {
+        "check_id": "F15",
+        "app": "shopeepay",
+        "stratum": "fitted",
+        "topic_name": "Phone credit, data or token purchase fails",
+        "notes": "Instant delivery is slow; not pulsa, data, or a token",
+        "text_clean": "tolol anter paket instant pake waktu"
+      },
+      {
+        "check_id": "F18",
+        "app": "gopay",
+        "stratum": "fitted",
+        "topic_name": "Money lost, missing or taken without consent",
+        "notes": "Maintenance blocks the transfer; the balance was not taken",
+        "text_clean": "GK jelas gopay ini . terlalu banyak kendala.saya mau TF masak terus dalam perbaikan sehingga saldo saya jdi tidak bisa di gunakan.."
+      },
+      {
+        "check_id": "F19",
+        "app": "dana",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "The app lags; it is not an outage",
+        "text_clean": "lag kali"
+      },
+      {
+        "check_id": "F21",
+        "app": "dana",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "The app lags; it is not an outage",
+        "text_clean": "lag mulu"
+      },
+      {
+        "check_id": "F22",
+        "app": "ovo",
+        "stratum": "fitted",
+        "topic_name": "Unspecified complaint",
+        "notes": "Money taken and a forced admin fee; both are specific",
+        "text_clean": "aplikasi penipu, masa uang nasabah nya dimakan juga. mana maksa lagi itu admin nya.."
+      },
+      {
+        "check_id": "F23",
+        "app": "dana",
+        "stratum": "fitted",
+        "topic_name": "Money lost, missing or taken without consent",
+        "notes": "The barcode broke after an update; no money was lost",
+        "text_clean": "saya update apk dana saya tapi barcode nya kok ga bisa y?"
+      },
+      {
+        "check_id": "F24",
+        "app": "shopeepay",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Praise, not a complaint",
+        "text_clean": "good job"
+      },
+      {
+        "check_id": "F25",
+        "app": "ovo",
+        "stratum": "transform",
+        "topic_name": "App bugs, updates or device problems",
+        "notes": "Vague insult; no bug, update, or device issue",
+        "text_clean": "Aplikasi parah"
+      },
+      {
+        "check_id": "F26",
+        "app": "shopeepay",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Praise, not a complaint",
+        "text_clean": "singkat,padat,JELAASS"
+      },
+      {
+        "check_id": "F28",
+        "app": "ovo",
+        "stratum": "transform",
+        "topic_name": "App bugs, updates or device problems",
+        "notes": "Vague insult; no bug, update, or device issue",
+        "text_clean": "aplikasi terburuk"
+      },
+      {
+        "check_id": "F32",
+        "app": "ovo",
+        "stratum": "fitted",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Top-up is slow to arrive; not an outage",
+        "text_clean": "awlnya lancar skg stiap top up lelet masuknya kecewa"
+      },
+      {
+        "check_id": "F33",
+        "app": "ovo",
+        "stratum": "fitted",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Complaints are ignored; no error or outage is named",
+        "text_clean": "gila ni apk ga ada malu dan sadar dirinya sudah banyak yang ngeluh juga bukannya mikir buat perbaiki malah nambah ga karuan aplikasinya, woi klo mau banyak yang tetep setia dengerin keluhan pemakai bukannya di abaikan, tolol.."
+      },
+      {
+        "check_id": "F35",
+        "app": "gopay",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Vague insult; no error or outage",
+        "text_clean": "apk terburuk"
+      },
+      {
+        "check_id": "F36",
+        "app": "dana",
+        "stratum": "fitted",
+        "topic_name": "App bugs, updates or device problems",
+        "notes": "Repeated outages; not an update or device bug",
+        "text_clean": "gangguan mulu aplikasinya"
+      },
+      {
+        "check_id": "F37",
+        "app": "shopeepay",
+        "stratum": "fitted",
+        "topic_name": "Loan or paylater rejected, frozen or costly",
+        "notes": "A bank transfer is slow to arrive; not a loan",
+        "text_clean": "transfer ke bank Lelet masuk lama banget.!"
+      },
+      {
+        "check_id": "F38",
+        "app": "dana",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Insult only; no error or outage",
+        "text_clean": "gublukk"
+      },
+      {
+        "check_id": "F41",
+        "app": "dana",
+        "stratum": "transform",
+        "topic_name": "App bugs, updates or device problems",
+        "notes": "Vague; no bug, update, or device issue",
+        "text_clean": "aplikasi pusingg"
+      },
+      {
+        "check_id": "F47",
+        "app": "dana",
+        "stratum": "fitted",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Premium upgrade fails and the balance often disappears",
+        "text_clean": "Hai dana atau kenapa saat kita Mao upgrade ke dana premium ga bisa padahal baru daftar kemaren dan satulagi saldo dana kita sering ilang ya mengapo dana"
+      },
+      {
+        "check_id": "F50",
+        "app": "gopay",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Mild praise, not a complaint",
+        "text_clean": "sementara bagus."
+      },
+      {
+        "check_id": "F52",
+        "app": "ovo",
+        "stratum": "fitted",
+        "topic_name": "Unspecified complaint",
+        "notes": "Top-up is charged twice: bank admin, then another OVO cut",
+        "text_clean": "aplikasi ga jelas dikit dikit topup kena admin dari bank eh kepotong lagi saldonya di ovo, kalau bikin aplikasi yang memudahkan orang dong"
+      },
+      {
+        "check_id": "F53",
+        "app": "shopeepay",
+        "stratum": "transform",
+        "topic_name": "App bugs, updates or device problems",
+        "notes": "Praise, not a complaint",
+        "text_clean": "aplikasi nya sangat membantu"
+      },
+      {
+        "check_id": "F55",
+        "app": "gopay",
+        "stratum": "fitted",
+        "topic_name": "App bugs, updates or device problems",
+        "notes": "OTP never arrives; not an update or device bug",
+        "text_clean": "ini aplikasi ada masalah,otp nya GK kekirim padahal udh coba berkali kali"
+      },
+      {
+        "check_id": "F56",
+        "app": "dana",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "The app is slow; it is not an outage",
+        "text_clean": "lemott bangett"
+      },
+      {
+        "check_id": "F57",
+        "app": "gopay",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Vague; no error or outage",
+        "text_clean": "NO RECOMMENDED"
+      },
+      {
+        "check_id": "F58",
+        "app": "ovo",
+        "stratum": "transform",
+        "topic_name": "Frequent errors and outages",
+        "notes": "Vague insult; no error or outage",
+        "text_clean": "cacad"
+      }
+    ],
+    "comparison_6b": {
+      "6b_fitted_mostly_n60": {
+        "yes": {
+          "count": 22,
+          "share": 0.36666666666666664,
+          "ci95": [
+            0.25620916687225426,
+            0.49316999369896963
+          ]
+        },
+        "partly": {
+          "count": 7,
+          "share": 0.11666666666666667,
+          "ci95": [
+            0.0576772064005603,
+            0.2217878802417086
+          ]
+        },
+        "no": {
+          "count": 31,
+          "share": 0.5166666666666667,
+          "ci95": [
+            0.39307810032592494,
+            0.6382495046026722
+          ]
+        }
+      },
+      "6b_broad_no": 0.7083333333333334,
+      "6b_specific_no": 0.3888888888888889,
+      "6b_non_complaints": 2,
+      "note": "6b sample: 15 per app, 59 of 60 fitted documents, outliers excluded"
+    }
   }
 }
