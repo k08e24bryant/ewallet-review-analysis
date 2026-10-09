@@ -45,10 +45,8 @@ outliers:
 
 reading:
   per_topic: 20                           # random documents per topic I read to propose names
-  sample_path: data/topics/v2_reading_sample.parquet   # reviewIds read here; 6c-2 excludes them
   diagnostic_key: data/topics/topic_fit_key.parquet    # 6b fit-check rows (diagnostic)
   purity_min: 12                          # purity below 12/20 -> "Unspecified complaint"
-proposals_path: data/topics/topic_proposals_v2.yaml   # my proposals (name, purity, merge)
 gap_terms:                                # diagnostic gaps: do these get their own topics?
   paylater_loan: [paylater, spaylater, spinjam, pinjam, pinjaman, gopaylater, "pay later", cicilan]
   security_unauthorized: [keamanan, dibobol, bobol, hack, diretas, kesedot, tanpa konfirmasi, terpotong otomatis, potong otomatis, penipu, penipuan, otomatis terpotong]
@@ -56,5 +54,51 @@ gap_terms:                                # diagnostic gaps: do these get their 
   id_phone_change: [ktp, ganti nomor, nomor baru, kartu sim, ganti hp, hp baru, nomor hp, ganti email]
 
 comparison_path: reports/phase6c_embedding_comparison.json
-model_dir: models/bertopic_v2             # gitignored
-xlsx_path: data/topics/topics_to_name_v2.xlsx   # refuses to overwrite
+
+# Per-version outputs (--version). v3 = v2 settings with brand names neutralized in the
+# embedding input only (text_clean, keywords and display are unchanged).
+versions:
+  v2:
+    neutralize: false
+    model_dir: models/bertopic_v2         # gitignored
+    xlsx_path: data/topics/topics_to_name_v2.xlsx
+    proposals_path: data/topics/topic_proposals_v2.yaml
+    sample_path: data/topics/v2_reading_sample.parquet
+    exclude_samples: []
+    report_path: reports/phase6c_embedding_comparison.json
+    report_key: chosen
+  v3:
+    neutralize: true
+    model_dir: models/bertopic_v3
+    xlsx_path: data/topics/topics_to_name_v3.xlsx
+    proposals_path: data/topics/topic_proposals_v3.yaml
+    sample_path: data/topics/v3_reading_sample.parquet
+    exclude_samples: [data/topics/v2_reading_sample.parquet]   # never re-read the 640 v2 rows
+    report_path: reports/phase6c_v3_brand_neutral.json
+    report_key: fit
+    compare_with: v2                      # before/after: app-dominated topics, Unspecified share
+
+# Embedding input only. Applied in order: paylater product names -> "paylater", then
+# brands -> "[APP]". Case-insensitive; optional spaces/hyphens inside names; a trailing
+# clitic (nya, ku, mu, lah) is kept. "dana" is NOT replaced (also means "funds").
+neutralize:
+  paylater:
+    - 'go\s*-?\s*pay\s*-?\s*later'
+    - 'shopee\s*-?\s*(?:pay\s*-?\s*)?pay\s*-?\s*later'
+    - 'shopee\s*-?\s*pay\s*-?\s*later'
+    - 's\s*-?\s*pay\s*-?\s*later'
+    - 'ovo\s*-?\s*pay\s*-?\s*later'
+  brands:
+    - 'shopee\s*-?\s*pay'
+    - 'shopee'
+    - 'spay'
+    - 'go\s*-?\s*pay'
+    - 'go\s*-?\s*jek'
+    - 'ovo'
+  token: "[APP]"
+  clitics: [nya, ku, mu, lah]
+  residual_typos: [shopepay, shope, shoope, shoppe, shoopee, sopi, gopey]   # counted, not replaced
+
+# 6c-2 fresh fit check: written into the README sheet of the new fit-check workbook
+fit_check_rules:
+  - "A row in 'Unspecified complaint' is 'yes' only if the review truly has no specific problem; if a specific problem is buried there, it is 'no'."

@@ -1,0 +1,699 @@
+{
+  "seed": 42,
+  "fit": {
+    "version": "v3",
+    "name": "indo_sbert",
+    "model": "firqaaa/indo-sentence-bert-base",
+    "min_cluster_size": 150,
+    "threshold": 0.6134535680280456,
+    "neutralization": {
+      "docs_changed": 7402,
+      "docs_changed_share": 0.12333788782617389,
+      "replacements": {
+        "brand:shopee\\s*-?\\s*pay": 619,
+        "brand:shopee": 493,
+        "brand:go\\s*-?\\s*pay": 6350,
+        "brand:ovo": 2381,
+        "paylater:s\\s*-?\\s*pay\\s*-?\\s*later": 134,
+        "brand:go\\s*-?\\s*jek": 147,
+        "paylater:shopee\\s*-?\\s*(?:pay\\s*-?\\s*)?pay\\s*-?\\s*later": 18,
+        "brand:spay": 47,
+        "paylater:go\\s*-?\\s*pay\\s*-?\\s*later": 220,
+        "paylater:ovo\\s*-?\\s*pay\\s*-?\\s*later": 16
+      },
+      "residual_typo_docs": {
+        "shopepay": 94,
+        "shope": 78,
+        "shoope": 39,
+        "shoppe": 53,
+        "shoopee": 3,
+        "sopi": 9,
+        "gopey": 20
+      },
+      "examples": [
+        [
+          "kenapa ya mau transaksi ke shopeepay gagal terus, biasanya mudah tapi kali ini susah sekali",
+          "kenapa ya mau transaksi ke [APP] gagal terus, biasanya mudah tapi kali ini susah sekali"
+        ],
+        [
+          "tolong lah iklan shopee hilangkan saja terlalu menganggu saat buka bukti transakasi",
+          "tolong lah iklan [APP] hilangkan saja terlalu menganggu saat buka bukti transakasi"
+        ],
+        [
+          "sekarang tiap habis transaksi kok langsung masuk ke shopee ya ? gabisa dihapus tuh iklan ? padahal juga gk klik popup. langsung aja gitu nyamber buka shopee. tolong diperbaiki dong, jangan ada iklan2 kaya gitu",
+          "sekarang tiap habis transaksi kok langsung masuk ke [APP] ya ? gabisa dihapus tuh iklan ? padahal juga gk klik popup. langsung aja gitu nyamber buka [APP]. tolong diperbaiki dong, jangan ada iklan2 kaya gitu"
+        ],
+        [
+          "kenapa Uang saya hilang d akun GO-PAY 600.000 ,, gmn itu min",
+          "kenapa Uang saya hilang d akun [APP] 600.000 ,, gmn itu min"
+        ],
+        [
+          "iklan aplikasi shopee sangat mengganggu ketika mau membagikan hasil transferan ke no wa.",
+          "iklan aplikasi [APP] sangat mengganggu ketika mau membagikan hasil transferan ke no wa."
+        ],
+        [
+          "saya pindah ovo dan sebenk bisa pinjam duit,pake dana ngk ada dana cicil y padahal udh 10 thun pake dana..",
+          "saya pindah [APP] dan sebenk bisa pinjam duit,pake dana ngk ada dana cicil y padahal udh 10 thun pake dana.."
+        ],
+        [
+          "saya sarankan kalo mau kirim uang jangan suruh pake dana premium ribet, alhasil saya pake gopay enak nggk ribet",
+          "saya sarankan kalo mau kirim uang jangan suruh pake dana premium ribet, alhasil saya pake [APP] enak nggk ribet"
+        ],
+        [
+          "gada yang becus pihak dana,mending pake ovo",
+          "gada yang becus pihak dana,mending pake [APP]"
+        ]
+      ]
+    },
+    "outlier_share_raw": 0.21599960009331157,
+    "outlier_share_after": 0.08897923817775852,
+    "after_reduction": {
+      "n_topics": 28,
+      "outlier_share": 0.08897923817775852,
+      "largest_topic_share": 0.16184556936714767,
+      "npmi_mean": 0.15516649961821138,
+      "npmi_size_weighted": 0.12944406026480265,
+      "style_topics": [],
+      "n_style_topics": 0,
+      "style_docs_share": 0.0
+    },
+    "gap_check": {
+      "paylater_loan": {
+        "docs": 1941,
+        "top_topics": {
+          "9": 1186,
+          "4": 194,
+          "0": 191,
+          "-1": 115,
+          "7": 58,
+          "11": 33
+        },
+        "share_in_top_topic": 0.6110252447192169
+      },
+      "security_unauthorized": {
+        "docs": 1600,
+        "top_topics": {
+          "0": 663,
+          "7": 176,
+          "-1": 118,
+          "10": 115,
+          "3": 110,
+          "2": 88
+        },
+        "share_in_top_topic": 0.414375
+      },
+      "slowness": {
+        "docs": 3214,
+        "top_topics": {
+          "1": 574,
+          "5": 371,
+          "6": 279,
+          "7": 275,
+          "-1": 255,
+          "2": 255
+        },
+        "share_in_top_topic": 0.17859365276913503
+      },
+      "id_phone_change": {
+        "docs": 800,
+        "top_topics": {
+          "3": 609,
+          "0": 74,
+          "7": 24,
+          "-1": 20,
+          "6": 9,
+          "2": 9
+        },
+        "share_in_top_topic": 0.76125
+      }
+    },
+    "app_profile": {
+      "min_share": 0.8,
+      "topics": {
+        "0": {
+          "size": 9713,
+          "dominant_app": "dana",
+          "dominant_share": 0.585,
+          "share_of_app_docs": 0.147
+        },
+        "1": {
+          "size": 6947,
+          "dominant_app": "dana",
+          "dominant_share": 0.704,
+          "share_of_app_docs": 0.127
+        },
+        "2": {
+          "size": 5155,
+          "dominant_app": "dana",
+          "dominant_share": 0.942,
+          "share_of_app_docs": 0.126
+        },
+        "3": {
+          "size": 4035,
+          "dominant_app": "dana",
+          "dominant_share": 0.514,
+          "share_of_app_docs": 0.054
+        },
+        "4": {
+          "size": 3539,
+          "dominant_app": "dana",
+          "dominant_share": 0.987,
+          "share_of_app_docs": 0.091
+        },
+        "5": {
+          "size": 3456,
+          "dominant_app": "dana",
+          "dominant_share": 0.556,
+          "share_of_app_docs": 0.05
+        },
+        "6": {
+          "size": 2260,
+          "dominant_app": "dana",
+          "dominant_share": 0.811,
+          "share_of_app_docs": 0.048
+        },
+        "7": {
+          "size": 3272,
+          "dominant_app": "dana",
+          "dominant_share": 0.701,
+          "share_of_app_docs": 0.06
+        },
+        "8": {
+          "size": 2318,
+          "dominant_app": "dana",
+          "dominant_share": 0.781,
+          "share_of_app_docs": 0.047
+        },
+        "9": {
+          "size": 1821,
+          "dominant_app": "gopay",
+          "dominant_share": 0.552,
+          "share_of_app_docs": 0.079
+        },
+        "10": {
+          "size": 1097,
+          "dominant_app": "dana",
+          "dominant_share": 0.935,
+          "share_of_app_docs": 0.027
+        },
+        "11": {
+          "size": 1331,
+          "dominant_app": "gopay",
+          "dominant_share": 0.69,
+          "share_of_app_docs": 0.072
+        },
+        "12": {
+          "size": 1487,
+          "dominant_app": "dana",
+          "dominant_share": 0.553,
+          "share_of_app_docs": 0.021
+        },
+        "13": {
+          "size": 1105,
+          "dominant_app": "dana",
+          "dominant_share": 0.45,
+          "share_of_app_docs": 0.013
+        },
+        "14": {
+          "size": 1046,
+          "dominant_app": "dana",
+          "dominant_share": 0.599,
+          "share_of_app_docs": 0.016
+        },
+        "15": {
+          "size": 633,
+          "dominant_app": "gopay",
+          "dominant_share": 0.645,
+          "share_of_app_docs": 0.032
+        },
+        "16": {
+          "size": 490,
+          "dominant_app": "dana",
+          "dominant_share": 0.616,
+          "share_of_app_docs": 0.008
+        },
+        "17": {
+          "size": 587,
+          "dominant_app": "dana",
+          "dominant_share": 0.477,
+          "share_of_app_docs": 0.007
+        },
+        "18": {
+          "size": 446,
+          "dominant_app": "dana",
+          "dominant_share": 1.0,
+          "share_of_app_docs": 0.012
+        },
+        "19": {
+          "size": 511,
+          "dominant_app": "dana",
+          "dominant_share": 0.695,
+          "share_of_app_docs": 0.009
+        },
+        "20": {
+          "size": 466,
+          "dominant_app": "gopay",
+          "dominant_share": 0.981,
+          "share_of_app_docs": 0.036
+        },
+        "21": {
+          "size": 955,
+          "dominant_app": "dana",
+          "dominant_share": 0.543,
+          "share_of_app_docs": 0.013
+        },
+        "22": {
+          "size": 324,
+          "dominant_app": "gopay",
+          "dominant_share": 0.429,
+          "share_of_app_docs": 0.011
+        },
+        "23": {
+          "size": 360,
+          "dominant_app": "dana",
+          "dominant_share": 0.758,
+          "share_of_app_docs": 0.007
+        },
+        "24": {
+          "size": 271,
+          "dominant_app": "gopay",
+          "dominant_share": 0.815,
+          "share_of_app_docs": 0.017
+        },
+        "25": {
+          "size": 252,
+          "dominant_app": "dana",
+          "dominant_share": 0.857,
+          "share_of_app_docs": 0.006
+        },
+        "26": {
+          "size": 235,
+          "dominant_app": "dana",
+          "dominant_share": 0.787,
+          "share_of_app_docs": 0.005
+        },
+        "27": {
+          "size": 562,
+          "dominant_app": "dana",
+          "dominant_share": 0.934,
+          "share_of_app_docs": 0.014
+        }
+      },
+      "app_dominated": {
+        "2": {
+          "size": 5155,
+          "dominant_app": "dana",
+          "dominant_share": 0.942,
+          "share_of_app_docs": 0.126
+        },
+        "4": {
+          "size": 3539,
+          "dominant_app": "dana",
+          "dominant_share": 0.987,
+          "share_of_app_docs": 0.091
+        },
+        "6": {
+          "size": 2260,
+          "dominant_app": "dana",
+          "dominant_share": 0.811,
+          "share_of_app_docs": 0.048
+        },
+        "10": {
+          "size": 1097,
+          "dominant_app": "dana",
+          "dominant_share": 0.935,
+          "share_of_app_docs": 0.027
+        },
+        "18": {
+          "size": 446,
+          "dominant_app": "dana",
+          "dominant_share": 1.0,
+          "share_of_app_docs": 0.012
+        },
+        "20": {
+          "size": 466,
+          "dominant_app": "gopay",
+          "dominant_share": 0.981,
+          "share_of_app_docs": 0.036
+        },
+        "24": {
+          "size": 271,
+          "dominant_app": "gopay",
+          "dominant_share": 0.815,
+          "share_of_app_docs": 0.017
+        },
+        "25": {
+          "size": 252,
+          "dominant_app": "dana",
+          "dominant_share": 0.857,
+          "share_of_app_docs": 0.006
+        },
+        "27": {
+          "size": 562,
+          "dominant_app": "dana",
+          "dominant_share": 0.934,
+          "share_of_app_docs": 0.014
+        }
+      },
+      "app_dominated_docs_share_by_app": {
+        "dana": 0.324,
+        "gopay": 0.053,
+        "ovo": 0.0,
+        "shopeepay": 0.0
+      }
+    },
+    "reading_sample": "data/topics/v3_reading_sample.parquet",
+    "reading_sample_excludes": [
+      "data/topics/topic_fit_key.parquet",
+      "data/topics/v2_reading_sample.parquet"
+    ],
+    "before": {
+      "version": "v2",
+      "app_profile": {
+        "min_share": 0.8,
+        "topics": {
+          "0": {
+            "size": 10757,
+            "dominant_app": "dana",
+            "dominant_share": 0.728,
+            "share_of_app_docs": 0.203
+          },
+          "1": {
+            "size": 5100,
+            "dominant_app": "dana",
+            "dominant_share": 0.945,
+            "share_of_app_docs": 0.125
+          },
+          "2": {
+            "size": 4247,
+            "dominant_app": "gopay",
+            "dominant_share": 0.92,
+            "share_of_app_docs": 0.308
+          },
+          "3": {
+            "size": 4574,
+            "dominant_app": "dana",
+            "dominant_share": 0.707,
+            "share_of_app_docs": 0.084
+          },
+          "4": {
+            "size": 3536,
+            "dominant_app": "dana",
+            "dominant_share": 0.984,
+            "share_of_app_docs": 0.09
+          },
+          "5": {
+            "size": 3470,
+            "dominant_app": "dana",
+            "dominant_share": 0.574,
+            "share_of_app_docs": 0.052
+          },
+          "6": {
+            "size": 3029,
+            "dominant_app": "dana",
+            "dominant_share": 0.588,
+            "share_of_app_docs": 0.046
+          },
+          "7": {
+            "size": 2215,
+            "dominant_app": "dana",
+            "dominant_share": 0.836,
+            "share_of_app_docs": 0.048
+          },
+          "8": {
+            "size": 2383,
+            "dominant_app": "dana",
+            "dominant_share": 0.7,
+            "share_of_app_docs": 0.043
+          },
+          "9": {
+            "size": 1565,
+            "dominant_app": "ovo",
+            "dominant_share": 0.948,
+            "share_of_app_docs": 0.313
+          },
+          "10": {
+            "size": 1335,
+            "dominant_app": "gopay",
+            "dominant_share": 0.405,
+            "share_of_app_docs": 0.043
+          },
+          "11": {
+            "size": 1116,
+            "dominant_app": "dana",
+            "dominant_share": 0.939,
+            "share_of_app_docs": 0.027
+          },
+          "12": {
+            "size": 1496,
+            "dominant_app": "dana",
+            "dominant_share": 0.564,
+            "share_of_app_docs": 0.022
+          },
+          "13": {
+            "size": 946,
+            "dominant_app": "gopay",
+            "dominant_share": 0.428,
+            "share_of_app_docs": 0.032
+          },
+          "14": {
+            "size": 923,
+            "dominant_app": "dana",
+            "dominant_share": 0.687,
+            "share_of_app_docs": 0.016
+          },
+          "15": {
+            "size": 917,
+            "dominant_app": "dana",
+            "dominant_share": 0.795,
+            "share_of_app_docs": 0.019
+          },
+          "16": {
+            "size": 657,
+            "dominant_app": "dana",
+            "dominant_share": 0.513,
+            "share_of_app_docs": 0.009
+          },
+          "17": {
+            "size": 482,
+            "dominant_app": "dana",
+            "dominant_share": 0.629,
+            "share_of_app_docs": 0.008
+          },
+          "18": {
+            "size": 443,
+            "dominant_app": "dana",
+            "dominant_share": 1.0,
+            "share_of_app_docs": 0.011
+          },
+          "19": {
+            "size": 455,
+            "dominant_app": "ovo",
+            "dominant_share": 0.466,
+            "share_of_app_docs": 0.045
+          },
+          "20": {
+            "size": 514,
+            "dominant_app": "gopay",
+            "dominant_share": 0.94,
+            "share_of_app_docs": 0.038
+          },
+          "21": {
+            "size": 480,
+            "dominant_app": "dana",
+            "dominant_share": 0.723,
+            "share_of_app_docs": 0.009
+          },
+          "22": {
+            "size": 312,
+            "dominant_app": "gopay",
+            "dominant_share": 0.417,
+            "share_of_app_docs": 0.01
+          },
+          "23": {
+            "size": 482,
+            "dominant_app": "dana",
+            "dominant_share": 0.635,
+            "share_of_app_docs": 0.008
+          },
+          "24": {
+            "size": 323,
+            "dominant_app": "dana",
+            "dominant_share": 0.786,
+            "share_of_app_docs": 0.007
+          },
+          "25": {
+            "size": 548,
+            "dominant_app": "dana",
+            "dominant_share": 0.755,
+            "share_of_app_docs": 0.011
+          },
+          "26": {
+            "size": 416,
+            "dominant_app": "dana",
+            "dominant_share": 0.772,
+            "share_of_app_docs": 0.008
+          },
+          "27": {
+            "size": 244,
+            "dominant_app": "dana",
+            "dominant_share": 0.857,
+            "share_of_app_docs": 0.005
+          },
+          "28": {
+            "size": 236,
+            "dominant_app": "dana",
+            "dominant_share": 0.788,
+            "share_of_app_docs": 0.005
+          },
+          "29": {
+            "size": 664,
+            "dominant_app": "dana",
+            "dominant_share": 0.72,
+            "share_of_app_docs": 0.012
+          },
+          "30": {
+            "size": 213,
+            "dominant_app": "gopay",
+            "dominant_share": 0.714,
+            "share_of_app_docs": 0.012
+          },
+          "31": {
+            "size": 596,
+            "dominant_app": "dana",
+            "dominant_share": 0.941,
+            "share_of_app_docs": 0.015
+          }
+        },
+        "app_dominated": {
+          "1": {
+            "size": 5100,
+            "dominant_app": "dana",
+            "dominant_share": 0.945,
+            "share_of_app_docs": 0.125
+          },
+          "2": {
+            "size": 4247,
+            "dominant_app": "gopay",
+            "dominant_share": 0.92,
+            "share_of_app_docs": 0.308
+          },
+          "4": {
+            "size": 3536,
+            "dominant_app": "dana",
+            "dominant_share": 0.984,
+            "share_of_app_docs": 0.09
+          },
+          "7": {
+            "size": 2215,
+            "dominant_app": "dana",
+            "dominant_share": 0.836,
+            "share_of_app_docs": 0.048
+          },
+          "9": {
+            "size": 1565,
+            "dominant_app": "ovo",
+            "dominant_share": 0.948,
+            "share_of_app_docs": 0.313
+          },
+          "11": {
+            "size": 1116,
+            "dominant_app": "dana",
+            "dominant_share": 0.939,
+            "share_of_app_docs": 0.027
+          },
+          "18": {
+            "size": 443,
+            "dominant_app": "dana",
+            "dominant_share": 1.0,
+            "share_of_app_docs": 0.011
+          },
+          "20": {
+            "size": 514,
+            "dominant_app": "gopay",
+            "dominant_share": 0.94,
+            "share_of_app_docs": 0.038
+          },
+          "27": {
+            "size": 244,
+            "dominant_app": "dana",
+            "dominant_share": 0.857,
+            "share_of_app_docs": 0.005
+          },
+          "31": {
+            "size": 596,
+            "dominant_app": "dana",
+            "dominant_share": 0.941,
+            "share_of_app_docs": 0.015
+          }
+        },
+        "app_dominated_docs_share_by_app": {
+          "dana": 0.321,
+          "gopay": 0.346,
+          "ovo": 0.313,
+          "shopeepay": 0.0
+        }
+      }
+    },
+    "unspecified_shares": {
+      "v3": {
+        "dana": {
+          "unspecified": 0.0674,
+          "outliers": 0.0766,
+          "unspecified_or_outlier": 0.144
+        },
+        "gopay": {
+          "unspecified": 0.046,
+          "outliers": 0.1031,
+          "unspecified_or_outlier": 0.1491
+        },
+        "ovo": {
+          "unspecified": 0.0841,
+          "outliers": 0.1065,
+          "unspecified_or_outlier": 0.1906
+        },
+        "shopeepay": {
+          "unspecified": 0.0451,
+          "outliers": 0.1418,
+          "unspecified_or_outlier": 0.1869
+        },
+        "all": {
+          "unspecified": 0.0627,
+          "outliers": 0.089,
+          "unspecified_or_outlier": 0.1517
+        }
+      },
+      "v2": {
+        "dana": {
+          "unspecified": 0.2879,
+          "outliers": 0.0805,
+          "unspecified_or_outlier": 0.3684
+        },
+        "gopay": {
+          "unspecified": 0.4779,
+          "outliers": 0.0935,
+          "unspecified_or_outlier": 0.5714
+        },
+        "ovo": {
+          "unspecified": 0.5335,
+          "outliers": 0.0888,
+          "unspecified_or_outlier": 0.6223
+        },
+        "shopeepay": {
+          "unspecified": 0.3631,
+          "outliers": 0.1561,
+          "unspecified_or_outlier": 0.5192
+        },
+        "all": {
+          "unspecified": 0.3526,
+          "outliers": 0.089,
+          "unspecified_or_outlier": 0.4415
+        }
+      }
+    },
+    "proposals": {
+      "named": 17,
+      "merged": 11
+    }
+  }
+}

@@ -1,0 +1,37 @@
+# Phase 6c-1 (v3) proposals: Indonesian SBERT with brand names neutralized in the embedding
+# input ("[APP]", paylater names unified), 28 topics.
+# Written by Claude after reading 20 random documents per topic (sheet reading_sample in
+# topics_to_name_v3.xlsx). The draw excluded the 60 diagnostic rows and the 640 rows read for v2.
+# purity = how many of the 20 match `name` (for merged topics: how many match the target's name;
+# for the bucket: the best single specific name's count). Rules as in v2: purity < 12/20 ->
+# "Unspecified complaint"; merges only between topics describing the same problem; mixed topics
+# are never merged into specific or outage topics. Proposals only; the user confirms or changes.
+topics:
+  0:  {name: "Money lost, missing or taken without consent", purity: 13, note: "Vanished balance, transfer/top-up not credited, merchant not paid, unauthorized debits, hacked accounts (security now lands here); 7 other (loan, fee, cannot open, frozen money). 27% of OVO and 17% of GoPay documents, but by problem, not by app."}
+  1:  {name: "Frequent errors and outages", purity: 13, note: "Errors, outages, maintenance; 7 vague or other (insults, judol ads)."}
+  2:  {merge_into: 1, purity: 14, note: "DANA errors and outages ('dana error mulu'); 6 other (login, fee, points)."}
+  3:  {name: "Login, verification or number change fails", purity: 14, note: "OTP, face verification, phone-number change, KTP/NIK already registered; 2 security breach, 1 delete account, 2 paylater/loan activation, 1 mixed."}
+  4:  {name: "DANA Cicil not usable", purity: 19, note: "Cicil unavailable, stuck in queue, unusable after repayment; 1 unauthorized cicil deduction."}
+  5:  {name: "App bugs, updates or device problems", purity: 12, note: "Bugs after updates, 'device modified', tablets/specific phones, new phone cannot log in, app icon missing; 8 generic errors/insults. Borderline (12/20)."}
+  6:  {name: "Network error or lag despite good signal", purity: 16, note: "'Jaringan bermasalah' message or lag while the connection is fine (incl. XL-only issues); 4 other."}
+  7:  {name: "Unspecified complaint", purity: 9, note: "Mixed: QR or transfer fails 8, refund, premium upgrade, held balance, credit blocked, unsafe, DANA instan. Best single name 'cannot pay or transfer' fits 9/20 -> bucket anchor."}
+  8:  {name: "Cannot pay or transfer", purity: 17, note: "Cannot transact: 'sistem sedang ramai', QR or transfer fails; 3 other (refund, limit, slow)."}
+  9:  {name: "Loan or paylater rejected, frozen or costly", purity: 20, note: "GoPay Pinjam/PayLater, SPayLater/SPinjam, DANA instan/cicilan: rejected, frozen after late payment, high interest, threatening collection. Paylater now clusters across apps (61% of paylater mentions here vs 31% in v2)."}
+  10: {name: "Reward points cannot be redeemed", purity: 19, note: "DANA points / World Cup event rewards cannot be exchanged; 1 neutral."}
+  11: {merge_into: 1, purity: 12, note: "GoPay/OVO outage cluster ('gangguan teknis'); 8 other (balance, OVO points, game top-up). Residual brand signal through the GoPay error message. Borderline."}
+  12: {merge_into: 0, purity: 15, note: "Balance cut without confirmation, top-up not credited, pending then lost; same problem as T0."}
+  13: {name: "Phone credit, data or token purchase fails", purity: 16, note: "Pulsa, data package, PLN token not delivered or wrong amount; 4 other (withdrawal, SPX shipping, bill payment busy)."}
+  14: {merge_into: 8, purity: 16, note: "QRIS, bill (PDAM, TikTok Shop) and merchant payments fail; 2 loan, 1 fee, 1 multi."}
+  15: {name: "Voucher, cashback or game top-up not received", purity: 16, note: "Cashback/voucher not credited or unusable, coins not claimable, game top-up (diamonds) not delivered; 4 other."}
+  16: {merge_into: 7, purity: 10, note: "Defined by the insult 'aplikasi sampah' (writing style): errors/outages 10, money 3, CS, login, events, other. Mixed -> bucket."}
+  17: {name: "Customer service unhelpful", purity: 17, note: "Slow CS, bot/AI answers, cannot reach a human; 3 off-topic (courier, seller chat, fraud report)."}
+  18: {merge_into: 17, purity: 16, note: "DANA chatbot 'Diana' unhelpful or unreachable; the underlying problem varies."}
+  19: {merge_into: 8, purity: 19, note: "'Gabisa TF': transfer fails or pending; 1 unauthorized transfer."}
+  20: {merge_into: 1, purity: 19, note: "GoPay 'gangguan teknis' outages (98% GoPay; app-specific error message, not a grab-bag)."}
+  21: {merge_into: 1, purity: 14, note: "Outages lasting hours, maintenance at peak times; 5 pending transactions, 1 security."}
+  22: {name: "Intrusive ads", purity: 18, note: "Shopee/GoPay ads in other apps, fake close buttons, judol ads; 2 other."}
+  23: {merge_into: 1, purity: 16, note: "'Sistem sibuk / sistem error' outages; 4 other (OTP loop, game top-up removed, security, multitrip card)."}
+  24: {name: "Game top-up feature removed or fails", purity: 17, note: "GoPay removed the game top-up menu or it fails; 3 game-related other."}
+  25: {name: "Server down or overloaded", purity: 18, note: "Server down, busy or full at peak times. Kept separate as in 6b; could merge into T1."}
+  26: {name: "QRIS scan or gallery upload fails", purity: 15, note: "QRIS camera scan or gallery image fails; 5 other (slow payment, profile photo, multi)."}
+  27: {merge_into: 3, purity: 14, note: "DANA login loops, account deletion (4), frozen account; 6 other (security, fee, vague). Account deletion has no topic of its own in v3."}

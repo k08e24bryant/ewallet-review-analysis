@@ -10,13 +10,16 @@ Modes:
     --fit NAME  refit with the chosen embedding, calibrate outlier reduction to the 6a
                 outlier level, save the model, draw 20 random documents per topic to read
                 (their reviewIds are saved so 6c-2 can exclude them), print them
-    --export    build data/topics/topics_to_name_v2.xlsx from my proposals
-                (data/topics/topic_proposals_v2.yaml); refuses to overwrite
+    --export    build data/topics/topics_to_name_<version>.xlsx from my proposals
+                (data/topics/topic_proposals_<version>.yaml); refuses to overwrite
+    --version   v2 (default) or v3 (brand names neutralized in the embedding input only)
 
 Usage:
     uv run python -m src.topics_v2 --compare
-    uv run python -m src.topics_v2 --fit e5_base
+    uv run python -m src.topics_v2 --fit indo_sbert
     uv run python -m src.topics_v2 --export
+    uv run python -m src.topics_v2 --version v3 --fit indo_sbert
+    uv run python -m src.topics_v2 --version v3 --export
 """
 
 from __future__ import annotations
@@ -157,6 +160,80 @@ def summarize(model, docs: list[str], cfg: dict[str, Any], stop: list[str], tcfg
     }
 
 
+# ---------------------------------------------------------------- brand neutralization (v3)
+
+def neutralizer(ncfg: dict[str, Any]):
+    """Return (fn, patterns): fn(text) -> (embedding input, {pattern_name: replacements})."""
+    import re
+
+    clit = "|".join(ncfg["clitics"])
+    rules = [(f"paylater:{p}", re.compile(rf"\b{p}(?=(?:{clit})?\b)", re.IGNORECASE), "paylater")
+             for p in ncfg["paylater"]]
+    rules += [(f"brand:{p}", re.compile(rf"\b{p}(?=(?:{clit})?\b)", re.IGNORECASE), ncfg["token"])
+              for p in ncfg["brands"]]
+
+    def fn(text: str) -> tuple[str, dict[str, int]]:
+        counts = {}
+        for name, rx, repl in rules:
+            text, n = rx.subn(repl, text)
+            if n:
+                counts[name] = n
+        return text, counts
+
+    return fn
+
+
+def neutralize_all(docs: list[str], ncfg: dict[str, Any]) -> tuple[list[str], dict[str, Any]]:
+    """Embedding inputs with brands/paylater normalized, plus replacement and residual-typo counts."""
+    import re
+
+    fn = neutralizer(ncfg)
+    out, totals, changed = [], {}, 0
+    for d in docs:
+        t, cnt = fn(d)
+        out.append(t)
+        changed += bool(cnt)
+        for k, v in cnt.items():
+            totals[k] = totals.get(k, 0) + v
+    resid = {w: int(sum(bool(re.search(rf"\b{w}\b", d, re.IGNORECASE)) for d in out)) for w in ncfg["residual_typos"]}
+    return out, {"docs_changed": changed, "docs_changed_share": changed / len(docs), "replacements": totals,
+                 "residual_typo_docs": resid,
+                 "examples": [[a, b] for a, b in zip(docs, out) if a != b][:8]}
+
+
+def app_profile(apps: np.ndarray, topics: np.ndarray, min_share: float = 0.8) -> dict[str, Any]:
+    """Per topic: dominant app, its share of the topic, and the topic's share of that app's documents.
+
+    Topics where one app has >= min_share of the documents are listed as app-dominated.
+    """
+    base = pd.Series(apps).value_counts()
+    rows = {}
+    for t in sorted(set(topics) - {-1}):
+        a = pd.Series(apps[topics == t]).value_counts()
+        dom = a.index[0]
+        rows[int(t)] = {"size": int(a.sum()), "dominant_app": dom, "dominant_share": round(float(a.iloc[0] / a.sum()), 3),
+                        "share_of_app_docs": round(float(a.iloc[0] / base[dom]), 3)}
+    dominated = {t: r for t, r in rows.items() if r["dominant_share"] >= min_share}
+    return {"min_share": min_share, "topics": rows, "app_dominated": dominated,
+            "app_dominated_docs_share_by_app": {
+                a: round(float(sum(r["share_of_app_docs"] for r in dominated.values() if r["dominant_app"] == a)), 3)
+                for a in base.index}}
+
+
+def unspecified_shares(apps: np.ndarray, topics: np.ndarray, proposals: dict[int, dict[str, Any]],
+                       bucket: str = "Unspecified complaint") -> dict[str, Any]:
+    """Share of documents per app that the proposals put in the bucket (and in outliers)."""
+    final = {t: p.get("merge_into", t) for t, p in proposals.items()}
+    bucket_ids = {t for t, p in proposals.items() if p.get("name") == bucket}
+    in_bucket = np.array([t != -1 and final[int(t)] in bucket_ids for t in topics])
+    out = {}
+    for a in sorted(set(apps)) + ["all"]:
+        m = np.ones(len(apps), bool) if a == "all" else apps == a
+        out[a] = {"unspecified": round(float(in_bucket[m].mean()), 4), "outliers": round(float((topics[m] == -1).mean()), 4),
+                  "unspecified_or_outlier": round(float((in_bucket[m] | (topics[m] == -1)).mean()), 4)}
+    return out
+
+
 # ---------------------------------------------------------------- modes
 
 def fit_docs(tcfg: dict[str, Any]) -> pd.DataFrame:
@@ -255,7 +332,14 @@ def fit_final(name: str, cfg: dict[str, Any], tcfg: dict[str, Any], fcfg: dict[s
     mcs = comp["min_cluster_size"]
     fd = fit_docs(tcfg)
     docs = fd[tcfg["text_col"]].tolist()
-    emb = embed(docs, spec, cfg)
+    neutral_info = None
+    if cfg["neutralize_on"]:
+        emb_input, neutral_info = neutralize_all(docs, cfg["neutralize"])
+        logger.info("neutralized %d docs (%.1f%%): %s", neutral_info["docs_changed"],
+                    100 * neutral_info["docs_changed_share"], neutral_info["replacements"])
+    else:
+        emb_input = docs
+    emb = embed(emb_input, spec, cfg)
     model = build(tcfg, fcfg, cfg, spec, mcs)
     raw = np.asarray(model.fit_transform(docs, embeddings=emb)[0])
 
@@ -272,36 +356,54 @@ def fit_final(name: str, cfg: dict[str, Any], tcfg: dict[str, Any], fcfg: dict[s
 
     out_dir = Path(cfg["model_dir"])
     out_dir.mkdir(parents=True, exist_ok=True)
-    model.save(str(out_dir / "bertopic_v2.pkl"), serialization="pickle", save_embedding_model=False)
+    model.save(str(out_dir / f"bertopic_{cfg['version']}.pkl"), serialization="pickle", save_embedding_model=False)
     pd.DataFrame({"reviewId": fd["reviewId"], "app": fd["app"], "topic_raw": raw, "topic": topics}).to_parquet(
-        out_dir / "fit_topics_v2.parquet", index=False)
+        out_dir / f"fit_topics_{cfg['version']}.parquet", index=False)
 
     # Reading sample: 20 random documents per topic, excluding the 60 diagnostic rows
+    # and every row read in an earlier version
     rd = cfg["reading"]
-    diag = set(pd.read_parquet(rd["diagnostic_key"])["reviewId"])
+    excluded = set(pd.read_parquet(rd["diagnostic_key"])["reviewId"])
+    for sp in cfg["exclude_samples"]:
+        excluded |= set(pd.read_parquet(sp)["reviewId"])
     frame = fd.assign(topic=topics)
-    frame = frame[~frame["reviewId"].isin(diag)]
+    frame = frame[~frame["reviewId"].isin(excluded)]
     sample = (frame[frame["topic"] != -1].groupby("topic").sample(n=rd["per_topic"], random_state=cfg["seed"])
               .sort_values("topic", kind="stable"))
-    Path(rd["sample_path"]).parent.mkdir(parents=True, exist_ok=True)
-    sample[["reviewId", "app", "topic"]].to_parquet(rd["sample_path"], index=False)
+    Path(cfg["sample_path"]).parent.mkdir(parents=True, exist_ok=True)
+    sample[["reviewId", "app", "topic"]].to_parquet(cfg["sample_path"], index=False)
 
     stop = stopwords_v2(tcfg, fcfg)
     summ = summarize(model, docs, cfg, stop, tcfg)
     gaps = gap_check(docs, topics, cfg["gap_terms"])
     apps = tcfg["apps"]
     app_tot = fd["app"].value_counts()
-    rep_path = Path(cfg["comparison_path"])
-    rep = json.loads(rep_path.read_text(encoding="utf-8"))
-    rep["chosen"] = {"name": name, "model": spec["model"], "min_cluster_size": mcs, "threshold": threshold,
-                     "outlier_share_raw": float((raw == -1).mean()), "outlier_share_after": float((topics == -1).mean()),
-                     "after_reduction": {k: v for k, v in summ.items() if k != "topics"},
-                     "gap_check": gaps, "reading_sample": rd["sample_path"]}
-    rep_path.write_text(json.dumps(rep, indent=2, ensure_ascii=False), encoding="utf-8")
+    profile = app_profile(fd["app"].to_numpy(), topics)
+    rep_path = Path(cfg["report_path"])
+    rep = json.loads(rep_path.read_text(encoding="utf-8")) if rep_path.exists() else {"seed": cfg["seed"]}
+    rep[cfg["report_key"]] = {"version": cfg["version"], "name": name, "model": spec["model"], "min_cluster_size": mcs,
+                              "threshold": threshold, "neutralization": neutral_info,
+                              "outlier_share_raw": float((raw == -1).mean()), "outlier_share_after": float((topics == -1).mean()),
+                              "after_reduction": {k: v for k, v in summ.items() if k != "topics"},
+                              "gap_check": gaps, "app_profile": profile, "reading_sample": cfg["sample_path"],
+                              "reading_sample_excludes": [rd["diagnostic_key"], *cfg["exclude_samples"]]}
+    if cfg.get("compare_with"):
+        prev = cfg["versions"][cfg["compare_with"]]
+        pft = pd.read_parquet(Path(prev["model_dir"]) / f"fit_topics_{cfg['compare_with']}.parquet")
+        assert (pft["reviewId"].to_numpy() == fd["reviewId"].to_numpy()).all()
+        rep[cfg["report_key"]]["before"] = {"version": cfg["compare_with"],
+                                            "app_profile": app_profile(pft["app"].to_numpy(), pft["topic"].to_numpy())}
+    rep_path.parent.mkdir(parents=True, exist_ok=True)
+    rep_path.write_text(json.dumps(rep, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
 
-    print(f"\n== v2 ({name}): {summ['n_topics']} topics; outliers {(raw == -1).mean():.1%} -> {(topics == -1).mean():.1%}; "
-          f"NPMI {summ['npmi_mean']:.3f}; style topics {summ['style_topics']}")
+    print(f"\n== {cfg['version']} ({name}): {summ['n_topics']} topics; outliers {(raw == -1).mean():.1%} -> "
+          f"{(topics == -1).mean():.1%}; NPMI {summ['npmi_mean']:.3f}; style topics {summ['style_topics']}")
+    if neutral_info:
+        print("neutralization:", json.dumps({k: v for k, v in neutral_info.items() if k != "examples"}))
     print("gap check:", json.dumps(gaps))
+    print("app-dominated topics (>= 80% one app):", json.dumps(profile["app_dominated"]))
+    if cfg.get("compare_with"):
+        print(f"before ({cfg['compare_with']}):", json.dumps(rep[cfg["report_key"]]["before"]["app_profile"]["app_dominated"]))
     for t in sorted(set(topics) - {-1}):
         idx = topics == t
         shares = "  ".join(f"{a[:4]} {(fd['app'][idx] == a).sum() / app_tot[a]:.1%}" for a in apps)
@@ -322,8 +424,8 @@ def export(cfg: dict[str, Any], tcfg: dict[str, Any]) -> None:
         raise FileExistsError(f"{path} exists; refusing to overwrite (it may contain your confirmations)")
     props = load_config(Path(cfg["proposals_path"]))["topics"]
     out_dir = Path(cfg["model_dir"])
-    model = BERTopic.load(str(out_dir / "bertopic_v2.pkl"))
-    ft = pd.read_parquet(out_dir / "fit_topics_v2.parquet")
+    model = BERTopic.load(str(out_dir / f"bertopic_{cfg['version']}.pkl"))
+    ft = pd.read_parquet(out_dir / f"fit_topics_{cfg['version']}.parquet")
     ids = sorted(int(t) for t in ft["topic"].unique() if t != -1)
     if sorted(int(k) for k in props) != ids:
         raise ValueError(f"proposals cover {sorted(props)}, model has {ids}")
@@ -376,7 +478,7 @@ def export(cfg: dict[str, Any], tcfg: dict[str, Any]) -> None:
 
     # Sheet 2: the documents read to propose names (purity is counted on these)
     texts = pd.read_parquet(tcfg["input_path"], columns=["reviewId", tcfg["text_col"]])
-    smp = pd.read_parquet(cfg["reading"]["sample_path"]).merge(texts, on="reviewId", how="left")
+    smp = pd.read_parquet(cfg["sample_path"]).merge(texts, on="reviewId", how="left")
     ws2 = wb.create_sheet("reading_sample")
     ws2.append(["topic_id", "app", tcfg["text_col"]])
     for r in smp.itertuples(index=False):
@@ -388,7 +490,7 @@ def export(cfg: dict[str, Any], tcfg: dict[str, Any]) -> None:
 
     info = wb.create_sheet("README")
     for line in [
-        "v2 topics (Phase 6c-1). proposed_* columns are Claude's proposals from reading 20 random documents per topic "
+        f"{cfg['version']} topics (Phase 6c-1). proposed_* columns are Claude's proposals from reading 20 random documents per topic "
         "(sheet reading_sample).",
         "purity = how many of those 20 match proposed_name. Below 12/20 -> 'Unspecified complaint' bucket.",
         "Merges are proposed only between topics describing the same problem; mixed topics are never merged into "
@@ -403,6 +505,23 @@ def export(cfg: dict[str, Any], tcfg: dict[str, Any]) -> None:
     wb.save(path)
     logger.info("wrote %s (%d topics + outliers, %d sample rows)", path, len(ids), len(smp))
 
+    # Unspecified-bucket share per app under these proposals (and the previous version's)
+    rep_path = Path(cfg["report_path"])
+    rep = json.loads(rep_path.read_text(encoding="utf-8")) if rep_path.exists() else {}
+    shares = {cfg["version"]: unspecified_shares(ft["app"].to_numpy(), ft["topic"].to_numpy(), props)}
+    if cfg.get("compare_with"):
+        prev = cfg["versions"][cfg["compare_with"]]
+        pft = pd.read_parquet(Path(prev["model_dir"]) / f"fit_topics_{cfg['compare_with']}.parquet")
+        pprops = load_config(Path(prev["proposals_path"]))["topics"]
+        shares[cfg["compare_with"]] = unspecified_shares(pft["app"].to_numpy(), pft["topic"].to_numpy(), pprops)
+    rep.setdefault(cfg["report_key"], {})["unspecified_shares"] = shares
+    rep[cfg["report_key"]]["proposals"] = {"named": sum("name" in p for p in props.values()),
+                                           "merged": sum("merge_into" in p for p in props.values())}
+    rep_path.write_text(json.dumps(rep, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
+    for v, sh in shares.items():
+        print(f"{v}: " + "  ".join(f"{a} unspecified {d['unspecified']:.1%} (+outliers {d['unspecified_or_outlier']:.1%})"
+                                    for a, d in sh.items()))
+
 
 def main() -> None:
     """CLI entry point."""
@@ -413,6 +532,7 @@ def main() -> None:
     g.add_argument("--compare", action="store_true")
     g.add_argument("--fit", metavar="NAME")
     g.add_argument("--export", action="store_true")
+    parser.add_argument("--version", default="v2", choices=["v2", "v3"])
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
     for noisy in ("httpx", "huggingface_hub", "BERTopic", "numba", "sentence_transformers"):
@@ -421,6 +541,8 @@ def main() -> None:
     cfg = load_config(args.config)
     tcfg = load_config(Path(cfg["topics_config"]))
     fcfg = load_config(Path(cfg["final_config"]))
+    ver = cfg["versions"][args.version]
+    cfg.update({k: v for k, v in ver.items() if k != "neutralize"}, version=args.version, neutralize_on=ver["neutralize"])
     np.random.seed(cfg["seed"])
     logger.info("seed=%d mode=%s", cfg["seed"], "compare" if args.compare else ("fit " + args.fit if args.fit else "export"))
     if args.compare:
