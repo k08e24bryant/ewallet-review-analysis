@@ -103,11 +103,46 @@ similar (no UMAP/HDBSCAN). This agrees with the full pipeline's assignment for 6
 fitted documents. In a fresh manual check, 40% [26, 55] of assignments were judged correct
 (52% for specific topics, much less for the broad ones). Treat topics as approximate.
 
+## Known failure modes
+
+Observed when testing the demo (scores are softmax outputs, not calibrated probabilities):
+
+| Input | Star | Text model scores (neg / neu / pos) | Demo output |
+|---|---|---|---|
+| `aplikasinya bagus banget, makasih` | 1 | 0.003 / 0.005 / **0.992** | Complaint, from the star rule only (the text reads positive; possibly a mis-tap). No topic. |
+| `bintang 5 deh, tapi kenapa transfer saya gagal terus` | 5 | 0.006 / 0.009 / **0.985** | Not a complaint: a real complaint is missed. |
+| `worst app ever` | – | 0.004 / 0.003 / **0.993** | Not a complaint: English is misread (English warning shown). |
+
+The second case is a complaint written with 4–5 stars, the group where the model is weakest:
+on the gold set it caught only **49% [31, 66]** of complaints written with 4–5★ (reweighted).
+
+**A friendly opener before "tapi" (but) hides the complaint.** A small check (report only; the
+model was not changed) scored five short complaints written for the test, with and without an
+opener (CPU, same preprocessing):
+
+| Variant | Predicted negative | Mean negative score |
+|---|---|---|
+| complaint only (e.g. `kenapa transfer saya gagal terus`) | 5 of 5 | 0.637 |
+| `bintang 5 deh, tapi` + complaint | **0 of 5** | 0.007 |
+| `oke deh, tapi` + complaint (control: same words, no rating) | **0 of 5** | 0.062 |
+| `bintang 1 deh,` + complaint | 5 of 5 | 0.952 |
+
+So the flip comes mainly from the positive opener followed by "tapi", not from the rating alone;
+rating talk in the text pushes the scores further in its direction ("bintang 5" toward positive,
+"bintang 1" toward negative). A likely cause is the weak training labels: reviews that praise first
+and complain after "tapi" often carry 4–5 stars, so they were labeled positive. Five constructed
+examples are not a measurement of how often this happens in real reviews.
+
+**English is out of scope.** About 0.5% of the training reviews are English; English text can be
+misread completely (see `worst app ever`). The demo shows a warning when it detects English
+(lingua restricted to Indonesian, Malay and English).
+
 ## Limitations
 
-- The model finds only about half of complaints written with 4–5 stars.
+- The model finds only about half of complaints written with 4–5 stars, and misses mixed reviews that open with praise and complain after "tapi" (see Known failure modes).
 - The star rule counts 1–2★ praise as a complaint.
-- Informal Indonesian, slang and regional languages (Javanese, Sundanese) vary; about 0.5% of reviews are English.
+- Informal Indonesian, slang and regional languages (Javanese, Sundanese) vary. English (about 0.5% of reviews) is not supported and can be misread completely.
+- Model scores are not calibrated: a 0.99 score can be wrong.
 - Reviews from Jul–Oct 2026 only; app features, outages and slang change over time.
 - Reviews are self-selected (people who chose to write one), so rates describe reviews, not users.
 - Weak training labels come from star ratings, which often disagree with the text.

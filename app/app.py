@@ -34,6 +34,8 @@ def analyze(text: str, star: str) -> tuple[str, dict[str, float], str]:
               "model": "the model reads the text as negative" + (f" (despite {s}★)" if s and s >= 4 else ""),
               "-": f"the model reads the text as {r.model_label}" + ("" if s is None else f" and the star rating is {s}")}[r.flagged_by]
     verdict = f"## {'Complaint' if r.is_complaint else 'Not a complaint'}\nBecause {reason}."
+    if r.language_warning:
+        verdict += f"\n\n⚠️ **{r.language_warning}**"
     if s is None:
         verdict += "\n\n*No star given: the verdict uses the text model only.*"
     if r.is_complaint:
@@ -61,7 +63,8 @@ def build() -> gr.Blocks:
                     btn = gr.Button("Analyze", variant="primary")
                 with gr.Column(scale=2):
                     verdict = gr.Markdown()
-                    probs = gr.Label(num_top_classes=3, label="Text model: class probabilities")
+                    probs = gr.Label(num_top_classes=3, label=CFG["scores"]["label"])
+                    gr.Markdown(f"<small>{CFG['scores']['note']}</small>")
                     topic = gr.Markdown()
             btn.click(analyze, inputs=[text, star], outputs=[verdict, probs, topic])
             text.submit(analyze, inputs=[text, star], outputs=[verdict, probs, topic])

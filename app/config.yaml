@@ -19,6 +19,18 @@ models:
 complaint_rule:
   star_negative_max: 2              # complaint = (star given and star <= 2) OR model predicts negative
   min_words_for_topic: 3            # shorter complaints get no topic (is_short in preprocessing)
+  topic_only_if_model_negative: true   # star-rule-only complaints (text not negative) get no topic
+
+# Warning only (the model is unchanged). Same restricted lingua setup as Phase 2 (configs/preprocess.yaml).
+language_check:
+  candidates: [INDONESIAN, MALAY, ENGLISH]
+  min_words: 3
+  warn_on: ENGLISH
+  message: "This model was trained on Indonesian reviews; English results are unreliable."
+
+scores:
+  label: "Text model scores (not calibrated)"
+  note: "Scores are the model's softmax outputs, not calibrated probabilities: a high score can still be wrong (see Known failure modes in the model card)."
 
 # Same as configs/preprocess.yaml
 preprocessing:
@@ -61,6 +73,7 @@ topics:
     unspecified: "No specific problem identified (low reliability)."
     outlier: "No clear topic: the review is not close to any topic."
     short: "Too short to assign a topic (fewer than 3 words)."
+    star_only: "Flagged by the star rating only; the text reads {label} (possibly a mis-tap)."
 
 examples:                           # written for the demo; not real reviews
   - ["Saldo saya terpotong 50 ribu tapi transfer ke rekening bank belum masuk sejak kemarin.", "1"]

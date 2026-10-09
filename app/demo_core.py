@@ -141,6 +141,7 @@ class Result:
     topic_similarity: float | None
     topic_note: str | None
     keywords: list[str]
+    language_warning: str | None = None
 
 
 class Analyzer:
@@ -164,6 +165,18 @@ class Analyzer:
         self.embedder.max_seq_length = m["embedding_max_seq_length"]
         self._torch = torch
         self._load_topics(_resolve(cfg, "topics"))
+        from lingua import Language, LanguageDetectorBuilder
+
+        lc = cfg["language_check"]
+        self.lang_detector = LanguageDetectorBuilder.from_languages(*[getattr(Language, c) for c in lc["candidates"]]).build()
+
+    def language_warning(self, text_clean: str) -> str | None:
+        """Warning if a text of min_words+ words is detected as English (restricted lingua, as in Phase 2)."""
+        lc = self.cfg["language_check"]
+        if self.prep.n_words(text_clean) < lc["min_words"]:
+            return None
+        lang = self.lang_detector.detect_language_of(text_clean)
+        return lc["message"] if lang is not None and lang.name == lc["warn_on"] else None
 
     def _load_topics(self, path: str) -> None:
         from bertopic import BERTopic
@@ -241,7 +254,9 @@ class Analyzer:
         topic_id = topic_name = sim = note = None
         keywords: list[str] = []
         if is_complaint:
-            if self.prep.n_words(tc) < rule["min_words_for_topic"]:
+            if rule["topic_only_if_model_negative"] and not model_neg:
+                note = self.cfg["topics"]["notes"]["star_only"].format(label=label)
+            elif self.prep.n_words(tc) < rule["min_words_for_topic"]:
                 note = self.cfg["topics"]["notes"]["short"]
             else:
                 ids, sims = self.assign_topics(self.embed_for_topics([tc]))
@@ -250,4 +265,4 @@ class Analyzer:
                 note = self.topic_note(topic_id)
                 keywords = self.topic_keywords.get(topic_id, []) if topic_id != -1 else []
         return Result(tc, mt, star, {l: float(v) for l, v in zip(self.labels, p)}, label, is_complaint, flagged,
-                      topic_id, topic_name, sim, note, keywords)
+                      topic_id, topic_name, sim, note, keywords, self.language_warning(tc))

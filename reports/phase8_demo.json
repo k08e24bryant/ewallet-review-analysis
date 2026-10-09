@@ -132,5 +132,321 @@
     },
     "rss_after_load_mb": 1499,
     "peak_rss_mb": 1889
+  },
+  "diagnostic_rating_talk": {
+    "note": "report only; the model is fixed (evaluated on gold once)",
+    "summary": {
+      "none": {
+        "predicted_negative": 5,
+        "n": 5,
+        "mean_negative_score": 0.637
+      },
+      "bintang 5": {
+        "predicted_negative": 0,
+        "n": 5,
+        "mean_negative_score": 0.007
+      },
+      "bintang 1": {
+        "predicted_negative": 5,
+        "n": 5,
+        "mean_negative_score": 0.952
+      },
+      "control: oke deh, tapi": {
+        "predicted_negative": 0,
+        "n": 5,
+        "mean_negative_score": 0.062
+      }
+    },
+    "rows": [
+      {
+        "base": "kenapa transfer saya gagal terus",
+        "variant": "none",
+        "text": "kenapa transfer saya gagal terus",
+        "scores": {
+          "negative": 0.5785,
+          "neutral": 0.1553,
+          "positive": 0.2663
+        },
+        "label": "negative"
+      },
+      {
+        "base": "kenapa transfer saya gagal terus",
+        "variant": "bintang 5",
+        "text": "bintang 5 deh, tapi kenapa transfer saya gagal terus",
+        "scores": {
+          "negative": 0.0057,
+          "neutral": 0.0093,
+          "positive": 0.985
+        },
+        "label": "positive"
+      },
+      {
+        "base": "kenapa transfer saya gagal terus",
+        "variant": "bintang 1",
+        "text": "bintang 1 deh, kenapa transfer saya gagal terus",
+        "scores": {
+          "negative": 0.9404,
+          "neutral": 0.0415,
+          "positive": 0.0181
+        },
+        "label": "negative"
+      },
+      {
+        "base": "kenapa transfer saya gagal terus",
+        "variant": "control: oke deh, tapi",
+        "text": "oke deh, tapi kenapa transfer saya gagal terus",
+        "scores": {
+          "negative": 0.0461,
+          "neutral": 0.1157,
+          "positive": 0.8382
+        },
+        "label": "positive"
+      },
+      {
+        "base": "saldo saya hilang setelah top up",
+        "variant": "none",
+        "text": "saldo saya hilang setelah top up",
+        "scores": {
+          "negative": 0.7554,
+          "neutral": 0.0604,
+          "positive": 0.1841
+        },
+        "label": "negative"
+      },
+      {
+        "base": "saldo saya hilang setelah top up",
+        "variant": "bintang 5",
+        "text": "bintang 5 deh, tapi saldo saya hilang setelah top up",
+        "scores": {
+          "negative": 0.0063,
+          "neutral": 0.0081,
+          "positive": 0.9857
+        },
+        "label": "positive"
+      },
+      {
+        "base": "saldo saya hilang setelah top up",
+        "variant": "bintang 1",
+        "text": "bintang 1 deh, saldo saya hilang setelah top up",
+        "scores": {
+          "negative": 0.9634,
+          "neutral": 0.0184,
+          "positive": 0.0182
+        },
+        "label": "negative"
+      },
+      {
+        "base": "saldo saya hilang setelah top up",
+        "variant": "control: oke deh, tapi",
+        "text": "oke deh, tapi saldo saya hilang setelah top up",
+        "scores": {
+          "negative": 0.064,
+          "neutral": 0.0732,
+          "positive": 0.8628
+        },
+        "label": "positive"
+      },
+      {
+        "base": "aplikasinya sering error waktu mau bayar qris",
+        "variant": "none",
+        "text": "aplikasinya sering error waktu mau bayar qris",
+        "scores": {
+          "negative": 0.5867,
+          "neutral": 0.2394,
+          "positive": 0.1739
+        },
+        "label": "negative"
+      },
+      {
+        "base": "aplikasinya sering error waktu mau bayar qris",
+        "variant": "bintang 5",
+        "text": "bintang 5 deh, tapi aplikasinya sering error waktu mau bayar qris",
+        "scores": {
+          "negative": 0.011,
+          "neutral": 0.0227,
+          "positive": 0.9662
+        },
+        "label": "positive"
+      },
+      {
+        "base": "aplikasinya sering error waktu mau bayar qris",
+        "variant": "bintang 1",
+        "text": "bintang 1 deh, aplikasinya sering error waktu mau bayar qris",
+        "scores": {
+          "negative": 0.9552,
+          "neutral": 0.0301,
+          "positive": 0.0148
+        },
+        "label": "negative"
+      },
+      {
+        "base": "aplikasinya sering error waktu mau bayar qris",
+        "variant": "control: oke deh, tapi",
+        "text": "oke deh, tapi aplikasinya sering error waktu mau bayar qris",
+        "scores": {
+          "negative": 0.1078,
+          "neutral": 0.2569,
+          "positive": 0.6353
+        },
+        "label": "positive"
+      },
+      {
+        "base": "kode otp tidak pernah masuk ke nomor saya",
+        "variant": "none",
+        "text": "kode otp tidak pernah masuk ke nomor saya",
+        "scores": {
+          "negative": 0.4884,
+          "neutral": 0.0886,
+          "positive": 0.423
+        },
+        "label": "negative"
+      },
+      {
+        "base": "kode otp tidak pernah masuk ke nomor saya",
+        "variant": "bintang 5",
+        "text": "bintang 5 deh, tapi kode otp tidak pernah masuk ke nomor saya",
+        "scores": {
+          "negative": 0.006,
+          "neutral": 0.0114,
+          "positive": 0.9826
+        },
+        "label": "positive"
+      },
+      {
+        "base": "kode otp tidak pernah masuk ke nomor saya",
+        "variant": "bintang 1",
+        "text": "bintang 1 deh, kode otp tidak pernah masuk ke nomor saya",
+        "scores": {
+          "negative": 0.9488,
+          "neutral": 0.0264,
+          "positive": 0.0248
+        },
+        "label": "negative"
+      },
+      {
+        "base": "kode otp tidak pernah masuk ke nomor saya",
+        "variant": "control: oke deh, tapi",
+        "text": "oke deh, tapi kode otp tidak pernah masuk ke nomor saya",
+        "scores": {
+          "negative": 0.0533,
+          "neutral": 0.0913,
+          "positive": 0.8554
+        },
+        "label": "positive"
+      },
+      {
+        "base": "pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "variant": "none",
+        "text": "pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "scores": {
+          "negative": 0.7743,
+          "neutral": 0.0927,
+          "positive": 0.133
+        },
+        "label": "negative"
+      },
+      {
+        "base": "pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "variant": "bintang 5",
+        "text": "bintang 5 deh, tapi pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "scores": {
+          "negative": 0.0062,
+          "neutral": 0.0114,
+          "positive": 0.9824
+        },
+        "label": "positive"
+      },
+      {
+        "base": "pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "variant": "bintang 1",
+        "text": "bintang 1 deh, pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "scores": {
+          "negative": 0.9501,
+          "neutral": 0.0321,
+          "positive": 0.0178
+        },
+        "label": "negative"
+      },
+      {
+        "base": "pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "variant": "control: oke deh, tapi",
+        "text": "oke deh, tapi pengajuan paylater saya ditolak terus padahal bayar tepat waktu",
+        "scores": {
+          "negative": 0.0409,
+          "neutral": 0.1025,
+          "positive": 0.8567
+        },
+        "label": "positive"
+      }
+    ]
+  },
+  "demo_test_cases": [
+    {
+      "text": "aplikasinya bagus banget, makasih",
+      "star": 1,
+      "scores": {
+        "negative": 0.0031,
+        "neutral": 0.0045,
+        "positive": 0.9924
+      },
+      "model_label": "positive",
+      "is_complaint": true,
+      "flagged_by": "star rule",
+      "topic": null,
+      "topic_note": "Flagged by the star rating only; the text reads positive (possibly a mis-tap).",
+      "language_warning": null
+    },
+    {
+      "text": "bintang 5 deh, tapi kenapa transfer saya gagal terus",
+      "star": 5,
+      "scores": {
+        "negative": 0.0057,
+        "neutral": 0.0093,
+        "positive": 0.985
+      },
+      "model_label": "positive",
+      "is_complaint": false,
+      "flagged_by": "-",
+      "topic": null,
+      "topic_note": null,
+      "language_warning": null
+    },
+    {
+      "text": "worst app ever",
+      "star": null,
+      "scores": {
+        "negative": 0.0041,
+        "neutral": 0.0027,
+        "positive": 0.9931
+      },
+      "model_label": "positive",
+      "is_complaint": false,
+      "flagged_by": "-",
+      "topic": null,
+      "topic_note": null,
+      "language_warning": "This model was trained on Indonesian reviews; English results are unreliable."
+    },
+    {
+      "text": "😡😡😡",
+      "star": null,
+      "scores": {
+        "negative": 0.8194,
+        "neutral": 0.0484,
+        "positive": 0.1322
+      },
+      "model_label": "negative",
+      "is_complaint": true,
+      "flagged_by": "model",
+      "topic": null,
+      "topic_note": "Too short to assign a topic (fewer than 3 words).",
+      "language_warning": null
+    }
+  ],
+  "language_warning_check": {
+    "sample": 2000,
+    "seed": 42,
+    "with_3plus_words": 1132,
+    "warned": 18,
+    "share_of_3plus_word_reviews": 0.015901060070671377
   }
 }
