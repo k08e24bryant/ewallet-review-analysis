@@ -17,11 +17,11 @@ Jul 6 – Sep 21 (12 weeks); the Sep 28 week is partial (5.7 days). Dates in UTC
 
 5. **GoPay's Jul 28 spike was an outage day:** 4,357 reviews in one day with 81.2% [80.0, 82.4] complaints; the broad outage topic grew most (+28.5 pp [26.8, 30.3]), and among specific topics "Cannot pay or transfer" (+5.2 pp [4.3, 6.2]) (`phase7_spike_daily.png`, `phase7_spike_topics.png`).
 
-6. **ShopeePay's complaint share doubled without a volume spike:** 23.1% [21.6, 24.7] in the week of Sep 21 (2,703 reviews, normal volume) vs a median of 11.2% for Jul 6 – Sep 7, and 22.1% [20.5, 23.7] in the partial week after, which makes it the newest sustained change in the data (`phase7_weekly_complaint_share.png`).
+6. **ShopeePay's complaint share doubled without a volume spike for two consecutive weeks (one partial):** 23.1% [21.6, 24.7] in the week of Sep 21 (2,703 reviews, normal volume) and 22.1% [20.5, 23.7] in the partial week of Sep 28, vs a median of 11.2% for Jul 6 – Sep 7; two weeks are too few to call it a lasting change (`phase7_weekly_complaint_share.png`).
 
 7. **Hidden complaints are common for OVO and rose during DANA's spikes:** the text model flags 16.9% [15.0, 19.0] of OVO's 4–5★ reviews as complaints vs 1.2% [1.1, 1.3] for ShopeePay, and DANA's rate rose from 4.7% [4.1, 5.3] in the week of Sep 14 to 16.9% [16.0, 17.9] in the week of Sep 21; these are lower bounds, since the model finds about half of 4–5★ complaints on gold (49% [31, 66]) (`phase7_hidden_complaints.png`).
 
-8. **The main specific complaint differs by app:** money lost, missing or taken without consent is the largest specific topic everywhere and dominates OVO (32.8% [31.4, 34.3] of its unique non-short complaint texts), while DANA Cicil defines DANA (10.2% [9.9, 10.6]) and loans/paylater stand out for ShopeePay (9.9% [8.9, 10.9]) and GoPay (7.9% [7.4, 8.4]) (`phase7_topic_trends.png`).
+8. **The main specific complaint differs by app:** money lost, missing or taken without consent is the largest specific topic everywhere and is most frequent for OVO (32.8% [31.4, 34.3] of its unique non-short complaint texts), though this broad topic fit only 3 of 8 rows in the fresh fit check (1 partly, 4 no), while DANA Cicil defines DANA (10.2% [9.9, 10.6]) and loans/paylater stand out for ShopeePay (9.9% [8.9, 10.9]) and GoPay (7.9% [7.4, 8.4]) (`phase7_topic_trends.png`).
 
 Secondary (versions): DANA v2.145 shows 68.8% [68.0, 69.7] complaints, but 72% of its reviews were posted on the three spike days; excluding those days it is 30.3% [28.8, 31.9] vs 20.8% [19.9, 21.6] for v2.139, so the version gap is mostly spike timing, not a version effect (`phase7_versions.png`).
 
@@ -34,4 +34,5 @@ Secondary (versions): DANA v2.145 shows 68.8% [68.0, 69.7] complaints, but 72% o
 - **Spike weeks dilute topic shares.** In a spike week the denominator jumps, so steady topics drop in share without fewer complaints (DANA Cicil falls to 3.4% in the week of Sep 21 vs 23% the week before).
 - **Partial and lagged data.** The Sep 28 week has 5.7 days (the feed lags about 24 h) and is compared per day; the Jun 29 week is dropped. Dates are UTC.
 - **Versions are installed versions,** not release timing, and new versions can coincide with spike days (see the secondary finding).
+- **Reviewers self-select.** People who write a Play Store review (often right after a problem) are not a random sample of users, so complaint shares describe reviews, not the share of users with problems.
 - **No causal claims.** Spike causes are inferred from review text only; read `reports/phase7_spike_examples.csv` (10 random complaint texts per spike week for the top 2 rising topics) before naming a cause.
