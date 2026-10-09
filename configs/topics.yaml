@@ -43,6 +43,9 @@ outliers:
 export:
   xlsx_path: data/topics/topics_to_name.xlsx   # refuses to overwrite
   n_representative: 5             # nearest to the topic's embedding centroid
+examples:                         # --examples: random reference sample for naming (read-only)
+  xlsx_path: data/topics/topic_examples.xlsx   # refuses to overwrite
+  per_topic: 20                   # random fitted documents per topic (outliers -1 included), seed above
 transform_check_n: 5000           # transform a sample of fit docs; agreement with fitted topic
 
 assignments_path: data/processed/topic_assignments.parquet

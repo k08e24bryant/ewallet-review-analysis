@@ -12,11 +12,13 @@ Modes:
                 naming workbook, assignments for all complaint rows, model, figure,
                 report, W&B run
     --smoke     small sample, outputs under models/bertopic_smoke, W&B disabled
+    --examples  topic_examples.xlsx: random fitted documents per topic (reference for naming)
 
 Usage:
     uv run python -m src.topics --config configs/topics.yaml --smoke
     uv run python -m src.topics --config configs/topics.yaml --explore
     uv run python -m src.topics --config configs/topics.yaml
+    uv run python -m src.topics --config configs/topics.yaml --examples
 """
 
 from __future__ import annotations
@@ -229,13 +231,21 @@ def write_workbook(table: pd.DataFrame, path: Path, cfg: dict[str, Any]) -> None
     wb.save(path)
 
 
-def plot_overview(table: pd.DataFrame, path: Path, cfg: dict[str, Any], subtitle: str) -> None:
-    """Left: topic size; right: each topic's share of each app's complaints (one sequential hue)."""
+def plot_overview(
+    table: pd.DataFrame, path: Path, cfg: dict[str, Any], subtitle: str,
+    title: str = "Phase 6a: complaint topics across apps (unnamed; labels = top keywords)",
+    label_col: str | None = None, size_label: str = "Documents (unique complaint texts)",
+) -> None:
+    """Left: topic size; right: each topic's share of each app's complaints (one sequential hue).
+
+    Rows are labeled with ``label_col`` if given, else "T<id>  <top 3 keywords>".
+    """
     import matplotlib.pyplot as plt
     from matplotlib.colors import LinearSegmentedColormap
 
     t = table[table["topic_id"] != -1].sort_values("topic_id").reset_index(drop=True)
-    labels = [f"T{r.topic_id}  " + " · ".join(r.keywords.split(", ")[:3]) for r in t.itertuples()]
+    labels = (t[label_col].tolist() if label_col else
+              [f"T{r.topic_id}  " + " · ".join(r.keywords.split(", ")[:3]) for r in t.itertuples()])
     shares = t[[f"share_{a}" for a in cfg["apps"]]].to_numpy()
     h = 0.32 * len(t) + 1.8
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, h), facecolor=SURFACE, sharey=True,
@@ -252,7 +262,7 @@ def plot_overview(table: pd.DataFrame, path: Path, cfg: dict[str, Any], subtitle
         ax1.spines[s].set_visible(False)
     ax1.spines["bottom"].set_color(GRID)
     ax1.tick_params(colors=TEXT_SECONDARY, length=0)
-    ax1.set_xlabel("Documents (unique complaint texts)", color=TEXT_SECONDARY)
+    ax1.set_xlabel(size_label, color=TEXT_SECONDARY)
     ax1.set_xlim(0, t["size"].max() * 1.18)
 
     cmap = LinearSegmentedColormap.from_list("seq_blue", ["#f3f7fd"] + SEQ_BLUE)
@@ -273,12 +283,49 @@ def plot_overview(table: pd.DataFrame, path: Path, cfg: dict[str, Any], subtitle
     ax2.grid(which="minor", color=SURFACE, linewidth=2)
     ax2.tick_params(which="minor", length=0)
     ax2.set_title("Share of each app's complaints", color=TEXT_PRIMARY, fontsize=10, loc="left", pad=22)
-    fig.text(0.01, 0.995, "Phase 6a: complaint topics across apps (unnamed; labels = top keywords)",
-             color=TEXT_PRIMARY, fontsize=12, va="top")
+    fig.text(0.01, 0.995, title, color=TEXT_PRIMARY, fontsize=12, va="top")
     fig.text(0.01, 0.995 - 0.3 / h, subtitle, color=TEXT_SECONDARY, fontsize=9, va="top")
     fig.tight_layout(rect=(0, 0, 1, 1 - 0.6 / h))
     fig.savefig(path, dpi=150, facecolor=SURFACE)
     plt.close(fig)
+
+
+def export_examples(cfg: dict[str, Any]) -> pd.DataFrame:
+    """Random fitted documents per topic (seeded) to data/topics/topic_examples.xlsx; refuses to overwrite."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font
+
+    ex = cfg["examples"]
+    path = Path(ex["xlsx_path"])
+    if path.exists():
+        raise FileExistsError(f"{path} exists; refusing to overwrite")
+    assign = pd.read_parquet(cfg["assignments_path"], columns=["reviewId", "app", "topic", "in_fit"])
+    text = pd.read_parquet(cfg["input_path"], columns=["reviewId", cfg["text_col"]])
+    docs = assign[assign["in_fit"]].merge(text, on="reviewId", how="left", validate="one_to_one")
+    small = docs["topic"].value_counts().loc[lambda s: s < ex["per_topic"]]
+    if len(small):
+        raise ValueError(f"topics with fewer than {ex['per_topic']} documents: {small.to_dict()}")
+    sample = (docs.groupby("topic").sample(n=ex["per_topic"], random_state=cfg["seed"])
+              .sort_values("topic", kind="stable"))  # random order within each topic
+    out = sample.rename(columns={"topic": "topic_id"})[["topic_id", cfg["text_col"], "app"]]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "examples"
+    ws.append(list(out.columns))
+    for r in out.itertuples(index=False):
+        ws.append([int(r[0]), r[1], r[2]])
+    for col, width in zip("ABC", (10, 110, 12)):
+        ws.column_dimensions[col].width = width
+    for c in ws[1]:
+        c.font = Font(bold=True)
+    for row in ws.iter_rows(min_row=2, min_col=2, max_col=2):
+        row[0].alignment = Alignment(wrap_text=True, vertical="top")
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = ws.dimensions
+    wb.save(path)
+    logger.info("wrote %s: %d rows, %d topics", path, len(out), out["topic_id"].nunique())
+    return out
 
 
 # ---------------------------------------------------------------- main
@@ -311,6 +358,7 @@ def main() -> None:  # noqa: PLR0915 - linear pipeline
     parser.add_argument("--config", type=Path, default=Path("configs/topics.yaml"))
     parser.add_argument("--explore", action="store_true", help="fit each candidate min_cluster_size and stop")
     parser.add_argument("--smoke", action="store_true", help="small sample, outputs under models/bertopic_smoke")
+    parser.add_argument("--examples", action="store_true", help="write topic_examples.xlsx from saved assignments and stop")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
     for noisy in ("httpx", "huggingface_hub", "BERTopic", "numba"):
@@ -319,6 +367,10 @@ def main() -> None:  # noqa: PLR0915 - linear pipeline
     cfg = load_config(args.config)
     seed = cfg["seed"]
     np.random.seed(seed)
+    if args.examples:
+        out = export_examples(cfg)
+        print(out.groupby("topic_id").size().describe().to_string())
+        return
     text = cfg["text_col"]
     df = load_complaints(cfg)
     fit_df = df[df["in_fit"]].reset_index(drop=True)
