@@ -1,0 +1,61 @@
+# Phase 5c: score every model on DEV (never gold) and select model + decision rule
+seed: 42
+
+dev_config: configs/dev.yaml        # key + labeling workbook
+gold_config: configs/gold.yaml      # validation rules shared with gold (labels, invalid, note tags)
+pool_path: data/processed/model_pool.parquet   # dev text + stratum sizes for reweighting
+splits_dir: data/processed/splits
+text_col: model_text
+labels: [negative, neutral, positive]
+
+# OVO dev strata are short (12 rows; Option A): OVO rows stay in the overall
+# metric, but per-app OVO results are not computed or used.
+per_app_excluded: [ovo]
+
+indobert:
+  config: configs/indobert.yaml     # final model = {output_root}/{scheme}/{weights}/final
+  runs:
+    - [spec_3class, balanced]
+    - [spec_3class, none]
+    - [binary_drop_3star, balanced]
+    - [binary_drop_3star, none]
+    - [binary_3star_negative, balanced]
+    - [binary_3star_negative, none]
+  batch_size: 64
+
+baseline:
+  config: configs/baseline.yaml     # spec_3class = model_dir (Phase 4); binary = scheme_model_dir/{scheme}
+  schemes: [spec_3class, binary_drop_3star, binary_3star_negative]
+
+# Decision rules applied to every model
+rules:
+  model_only: "complaint = model predicts negative"
+  star_1_2_or_model: "complaint = star 1-2 OR model predicts negative"
+star_negative_max: 2                # star rating reference row: complaint = score <= 2
+
+# Fixed before any dev result was computed.
+selection:
+  metric: bin_neg_f1                # reweighted binary negative F1 on dev
+  candidates: indobert              # TF-IDF is reported for comparison under the same labels
+  tolerance: 0.02
+  # Lower rank = simpler. Options within `tolerance` of the best are eligible;
+  # the simplest eligible option wins, comparing scheme, then rule, then weights;
+  # remaining ties go to the higher F1. The literal reading (best vs the single
+  # simplest option only) is reported alongside.
+  rank:
+    scheme: {spec_3class: 0, binary_drop_3star: 1, binary_3star_negative: 1}
+    rule: {model_only: 0, star_1_2_or_model: 1}
+    weights: {none: 0, balanced: 1}
+
+bootstrap:
+  n: 2000
+  ci: 0.95
+
+report_path: reports/phase5_dev_selection.json
+figures_dir: reports/figures
+figure: phase5_dev_selection.png
+
+smoke:
+  indobert_root: models/indobert/smoke   # whichever smoke runs exist
+  bootstrap_n: 50
+  out_dir: models/dev_select_smoke

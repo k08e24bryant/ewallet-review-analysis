@@ -18,6 +18,7 @@ import logging
 import math
 import os
 import platform
+import shutil
 import sys
 import time
 from pathlib import Path
@@ -29,9 +30,10 @@ import torch
 import yaml
 from sklearn.metrics import accuracy_score, f1_score
 
+from src.schemes import SCHEMES, apply_scheme
+
 logger = logging.getLogger("indobert")
 
-SCHEMES = ("spec_3class", "binary_drop_3star", "binary_3star_negative")
 WEIGHTS = ("none", "balanced", "sqrt-balanced")
 
 
@@ -39,18 +41,6 @@ def load_config(path: Path) -> dict[str, Any]:
     """Load the IndoBERT YAML config."""
     with path.open(encoding="utf-8") as f:
         return yaml.safe_load(f)
-
-
-def apply_scheme(df: pd.DataFrame, scheme: str) -> tuple[pd.DataFrame, list[str]]:
-    """Return rows and string labels ('target') for a label scheme, plus the ordered label names."""
-    if scheme == "spec_3class":
-        return df.assign(target=df["weak_label"]), ["negative", "neutral", "positive"]
-    if scheme == "binary_drop_3star":
-        out = df[df["score"] != 3]
-        return out.assign(target=np.where(out["score"] <= 2, "negative", "non_negative")), ["negative", "non_negative"]
-    if scheme == "binary_3star_negative":
-        return df.assign(target=np.where(df["score"] <= 3, "negative", "non_negative")), ["negative", "non_negative"]
-    raise ValueError(f"unknown label_scheme {scheme!r}; choose from {SCHEMES}")
 
 
 def class_weight_vector(y: np.ndarray, n_classes: int, mode: str) -> np.ndarray | None:
@@ -239,6 +229,11 @@ def main() -> None:  # noqa: PLR0915 - linear training script
     final_dir = out_dir / "final"
     trainer.save_model(str(final_dir))
     tok.save_pretrained(str(final_dir))
+    best_checkpoint = trainer.state.best_model_checkpoint
+    if not cfg.get("keep_checkpoints", True):
+        # final/ holds the best model (load_best_model_at_end); checkpoints are only disk use now
+        shutil.rmtree(out_dir / "checkpoints", ignore_errors=True)
+        logger.info("deleted %s (kept %s)", out_dir / "checkpoints", final_dir)
 
     steps = timer.times[2:] if len(timer.times) > 4 else timer.times  # drop warm-up steps
     sec_per_step = float(np.median(steps)) if steps else float("nan")
@@ -249,7 +244,7 @@ def main() -> None:  # noqa: PLR0915 - linear training script
         "optimizer_steps": int(train_out.global_step), "train_seconds": round(train_secs, 1),
         "sec_per_optimizer_step_median": round(sec_per_step, 4),
         "eval_seconds_val": round(eval_secs, 2),
-        "best_checkpoint": trainer.state.best_model_checkpoint, "best_metric": trainer.state.best_metric,
+        "best_checkpoint": best_checkpoint, "best_metric": trainer.state.best_metric,
         "val_metrics": val_metrics,
         "peak_vram_gib": {"allocated": peak_train, "reserved": peak_train_reserved,
                           "device_total": torch.cuda.get_device_properties(0).total_memory / 2**30 if torch.cuda.is_available() else None},

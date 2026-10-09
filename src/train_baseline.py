@@ -3,9 +3,15 @@
 Tuning uses VAL macro-F1 only; the gold set is read only after the final
 model is fixed, for evaluation.
 
+Phase 5c: ``--label-scheme`` binary_drop_3star / binary_3star_negative fits the
+same grid on that scheme's train/val labels and only saves the model (under
+``scheme_model_dir``); it never reads gold. Those models are scored on dev by
+src.dev_select.
+
 Usage:
     uv run python -m src.train_baseline --config configs/baseline.yaml
     uv run python -m src.train_baseline --config configs/baseline.yaml --smoke
+    uv run python -m src.train_baseline --config configs/baseline.yaml --label-scheme binary_drop_3star
 """
 
 from __future__ import annotations
@@ -31,6 +37,7 @@ from sklearn.metrics import f1_score
 from sklearn.pipeline import FeatureUnion, Pipeline
 
 from src import evaluate as ev
+from src.schemes import SCHEMES, apply_scheme
 
 logger = logging.getLogger("baseline")
 
@@ -110,12 +117,37 @@ def top_features(pipe: Pipeline, n: int) -> dict[str, dict[str, list[list]]]:
     return out
 
 
+def fit_scheme(cfg: dict[str, Any], train: pd.DataFrame, val: pd.DataFrame, scheme: str, out_dir: Path) -> dict[str, Any]:
+    """Tune and save a baseline for a non-spec label scheme (no gold evaluation)."""
+    train, labels = apply_scheme(train, scheme)
+    val, _ = apply_scheme(val, scheme)
+    cfg = {**cfg, "target_col": "target"}
+    logger.info("scheme=%s train=%d val=%d label counts=%s", scheme, len(train), len(val),
+                train["target"].value_counts().to_dict())
+    t0 = time.time()
+    pipe, results, best = tune(cfg, train, val)
+    val_f1 = f1_score(val["target"], pipe.predict(val[cfg["text_col"]]), average=None, labels=labels)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    joblib.dump(pipe, out_dir / "pipeline.joblib")
+    meta = {
+        "seed": cfg["seed"], "label_scheme": scheme, "labels": labels, "selection": "val macro-F1",
+        "best": best, "val_per_class_f1": dict(zip(labels, map(float, val_f1))), "grid": cfg["grid"],
+        "results": results, "train_rows": len(train), "val_rows": len(val), "tuning_seconds": round(time.time() - t0),
+        "versions": {"python": platform.python_version(), "sklearn": sklearn.__version__},
+    }
+    (out_dir / "meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    logger.info("saved %s: best %s", out_dir, best)
+    return meta
+
+
 def main() -> None:
     """CLI entry point."""
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", type=Path, default=Path("configs/baseline.yaml"))
     parser.add_argument("--smoke", action="store_true", help="tiny subsample, 1 grid point, outputs under models/baseline_smoke")
+    parser.add_argument("--label-scheme", choices=SCHEMES, default="spec_3class",
+                        help="non-spec schemes: tune + save only, no gold evaluation")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 
@@ -140,6 +172,10 @@ def main() -> None:
         report_path, errors_path = out_model / "report.json", out_model / "errors.csv"
         tuning_path = out_model / "tuning.json"
     logger.info("seed=%d smoke=%s train=%d val=%d grid=%s", seed, args.smoke, len(train), len(val), cfg["grid"])
+    if args.label_scheme != "spec_3class":
+        root = Path(SMOKE["out"]) if args.smoke else Path(cfg["scheme_model_dir"])
+        fit_scheme(cfg, train, val, args.label_scheme, root / args.label_scheme)
+        return
 
     t0 = time.time()
     pipe, results, best = tune(cfg, train, val)

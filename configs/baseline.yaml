@@ -21,6 +21,7 @@ grid:
   min_df: [2, 3, 5]          # applied to both word and char vectorizers
 
 model_dir: models/baseline
+scheme_model_dir: models/baseline   # Phase 5c binary schemes -> {scheme_model_dir}/{label_scheme}/
 tuning_report_path: reports/phase4_tuning.json
 
 eval:

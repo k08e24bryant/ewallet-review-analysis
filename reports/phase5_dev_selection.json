@@ -1,0 +1,3690 @@
+{
+  "seed": 42,
+  "split": "dev (gold not read)",
+  "weighting": "raw = dev rows as sampled; reweighted = each row weighted by in_model_pool stratum size / dev stratum size (app x weak_label), estimating the pool of unique review texts. Quote reweighted numbers. OVO has 12 dev rows; OVO per-app results are not computed.",
+  "target": "dev label == negative (complaint) vs neutral/positive",
+  "bootstrap": {
+    "n": 2000,
+    "ci": 0.95,
+    "method": "stratified by app x weak_label, paired across options"
+  },
+  "rules": {
+    "model_only": "complaint = model predicts negative",
+    "star_1_2_or_model": "complaint = star 1-2 OR model predicts negative"
+  },
+  "selection_rule": {
+    "metric": "bin_neg_f1",
+    "candidates": "indobert",
+    "tolerance": 0.02,
+    "rank": {
+      "scheme": {
+        "spec_3class": 0,
+        "binary_drop_3star": 1,
+        "binary_3star_negative": 1
+      },
+      "rule": {
+        "model_only": 0,
+        "star_1_2_or_model": 1
+      },
+      "weights": {
+        "none": 0,
+        "balanced": 1
+      }
+    }
+  },
+  "dev_validation": {
+    "checks": {
+      "labels": "all valid",
+      "texts_match_export": true,
+      "note_tags": "all known",
+      "overlap_train_val_gold": {
+        "train": 0,
+        "val": 0,
+        "gold": 0
+      }
+    },
+    "rows_in_key": 192,
+    "invalid_dropped": [
+      "D125"
+    ],
+    "final_rows": 191,
+    "note_tags": {
+      "english": 1
+    },
+    "strata": {
+      "dana|negative": {
+        "target": 20,
+        "rows": 20,
+        "reused": 4,
+        "new": 16,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 32825,
+        "weight": 1641.25,
+        "label_counts": {
+          "negative": 20,
+          "neutral": 0,
+          "positive": 0
+        }
+      },
+      "dana|neutral": {
+        "target": 20,
+        "rows": 20,
+        "reused": 5,
+        "new": 15,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 4184,
+        "weight": 209.2,
+        "label_counts": {
+          "negative": 17,
+          "neutral": 3,
+          "positive": 0
+        }
+      },
+      "dana|positive": {
+        "target": 20,
+        "rows": 20,
+        "reused": 11,
+        "new": 9,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 29376,
+        "weight": 1468.8,
+        "label_counts": {
+          "negative": 11,
+          "neutral": 1,
+          "positive": 8
+        }
+      },
+      "gopay|negative": {
+        "target": 20,
+        "rows": 20,
+        "reused": 5,
+        "new": 15,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 10923,
+        "weight": 546.15,
+        "label_counts": {
+          "negative": 19,
+          "neutral": 1,
+          "positive": 0
+        }
+      },
+      "gopay|neutral": {
+        "target": 20,
+        "rows": 20,
+        "reused": 13,
+        "new": 7,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 1514,
+        "weight": 75.7,
+        "label_counts": {
+          "negative": 14,
+          "neutral": 3,
+          "positive": 3
+        }
+      },
+      "gopay|positive": {
+        "target": 20,
+        "rows": 20,
+        "reused": 4,
+        "new": 16,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 19729,
+        "weight": 986.45,
+        "label_counts": {
+          "negative": 2,
+          "neutral": 2,
+          "positive": 16
+        }
+      },
+      "ovo|negative": {
+        "target": 20,
+        "rows": 5,
+        "reused": 5,
+        "new": 0,
+        "invalid_dropped": 0,
+        "final": 5,
+        "pool_n": 4424,
+        "weight": 884.8,
+        "label_counts": {
+          "negative": 5,
+          "neutral": 0,
+          "positive": 0
+        }
+      },
+      "ovo|neutral": {
+        "target": 20,
+        "rows": 5,
+        "reused": 5,
+        "new": 0,
+        "invalid_dropped": 0,
+        "final": 5,
+        "pool_n": 238,
+        "weight": 47.6,
+        "label_counts": {
+          "negative": 2,
+          "neutral": 3,
+          "positive": 0
+        }
+      },
+      "ovo|positive": {
+        "target": 20,
+        "rows": 2,
+        "reused": 2,
+        "new": 0,
+        "invalid_dropped": 0,
+        "final": 2,
+        "pool_n": 932,
+        "weight": 466.0,
+        "label_counts": {
+          "negative": 1,
+          "neutral": 1,
+          "positive": 0
+        }
+      },
+      "shopeepay|negative": {
+        "target": 20,
+        "rows": 20,
+        "reused": 5,
+        "new": 15,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 3578,
+        "weight": 178.9,
+        "label_counts": {
+          "negative": 19,
+          "neutral": 0,
+          "positive": 1
+        }
+      },
+      "shopeepay|neutral": {
+        "target": 20,
+        "rows": 20,
+        "reused": 3,
+        "new": 17,
+        "invalid_dropped": 1,
+        "final": 19,
+        "pool_n": 594,
+        "weight": 31.26,
+        "label_counts": {
+          "negative": 13,
+          "neutral": 3,
+          "positive": 3
+        }
+      },
+      "shopeepay|positive": {
+        "target": 20,
+        "rows": 20,
+        "reused": 2,
+        "new": 18,
+        "invalid_dropped": 0,
+        "final": 20,
+        "pool_n": 12702,
+        "weight": 635.1,
+        "label_counts": {
+          "negative": 1,
+          "neutral": 0,
+          "positive": 19
+        }
+      }
+    }
+  },
+  "models": {
+    "indobert/spec_3class/balanced": {
+      "kind": "indobert",
+      "scheme": "spec_3class",
+      "weights": "balanced",
+      "path": "models\\indobert\\spec_3class\\balanced\\final",
+      "val": {
+        "macro_f1": 0.6640780194857041,
+        "negative_f1": 0.8413619167717529,
+        "optimizer_steps": 2100,
+        "train_rows": 45386,
+        "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/0daimk3b"
+      }
+    },
+    "indobert/spec_3class/none": {
+      "kind": "indobert",
+      "scheme": "spec_3class",
+      "weights": "none",
+      "path": "models\\indobert\\spec_3class\\none\\final",
+      "val": {
+        "macro_f1": 0.6520838685360159,
+        "negative_f1": 0.876647834274953,
+        "optimizer_steps": 2800,
+        "train_rows": 45386,
+        "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/vdj0v7ka"
+      }
+    },
+    "indobert/binary_drop_3star/balanced": {
+      "kind": "indobert",
+      "scheme": "binary_drop_3star",
+      "weights": "balanced",
+      "path": "models\\indobert\\binary_drop_3star\\balanced\\final",
+      "val": {
+        "macro_f1": 0.9174122995399117,
+        "negative_f1": 0.9044334975369458,
+        "optimizer_steps": 2800,
+        "train_rows": 43348,
+        "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/4mb3i90k"
+      }
+    },
+    "indobert/binary_drop_3star/none": {
+      "kind": "indobert",
+      "scheme": "binary_drop_3star",
+      "weights": "none",
+      "path": "models\\indobert\\binary_drop_3star\\none\\final",
+      "val": {
+        "macro_f1": 0.9166491571971336,
+        "negative_f1": 0.9038272816486752,
+        "optimizer_steps": 4200,
+        "train_rows": 43348,
+        "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/h9zx040d"
+      }
+    },
+    "indobert/binary_3star_negative/balanced": {
+      "kind": "indobert",
+      "scheme": "binary_3star_negative",
+      "weights": "balanced",
+      "path": "models\\indobert\\binary_3star_negative\\balanced\\final",
+      "val": {
+        "macro_f1": 0.9140313397384385,
+        "negative_f1": 0.9074511488082456,
+        "optimizer_steps": 3150,
+        "train_rows": 45386,
+        "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/u4o8ypbp"
+      }
+    },
+    "indobert/binary_3star_negative/none": {
+      "kind": "indobert",
+      "scheme": "binary_3star_negative",
+      "weights": "none",
+      "path": "models\\indobert\\binary_3star_negative\\none\\final",
+      "val": {
+        "macro_f1": 0.9125197627519256,
+        "negative_f1": 0.9051126516464472,
+        "optimizer_steps": 3150,
+        "train_rows": 45386,
+        "wandb_url": "https://wandb.ai/syarifsanad-institut-teknologi-sepuluh-nopember/ewallet-reviews/runs/a0bjrgmk"
+      }
+    },
+    "tfidf/spec_3class": {
+      "kind": "tfidf",
+      "scheme": "spec_3class",
+      "weights": "balanced",
+      "path": "models\\baseline",
+      "val": {
+        "macro_f1": 0.6531201164524285,
+        "C": 0.25,
+        "min_df": 2
+      }
+    },
+    "tfidf/binary_drop_3star": {
+      "kind": "tfidf",
+      "scheme": "binary_drop_3star",
+      "weights": "balanced",
+      "path": "models\\baseline\\binary_drop_3star",
+      "val": {
+        "macro_f1": 0.9095462879895095,
+        "C": 2.0,
+        "min_df": 3
+      }
+    },
+    "tfidf/binary_3star_negative": {
+      "kind": "tfidf",
+      "scheme": "binary_3star_negative",
+      "weights": "balanced",
+      "path": "models\\baseline\\binary_3star_negative",
+      "val": {
+        "macro_f1": 0.8988534580311047,
+        "C": 1.0,
+        "min_df": 3
+      }
+    }
+  },
+  "selection": {
+    "best": "indobert/binary_3star_negative/balanced|star_1_2_or_model",
+    "simplest": "indobert/spec_3class/none|model_only",
+    "eligible": [
+      "indobert/binary_3star_negative/balanced|star_1_2_or_model",
+      "indobert/binary_3star_negative/none|star_1_2_or_model",
+      "indobert/spec_3class/none|star_1_2_or_model",
+      "indobert/binary_3star_negative/balanced|model_only",
+      "indobert/binary_drop_3star/none|star_1_2_or_model",
+      "indobert/binary_drop_3star/balanced|star_1_2_or_model"
+    ],
+    "selected": "indobert/spec_3class/none|star_1_2_or_model",
+    "literal_reading": "indobert/binary_3star_negative/balanced|star_1_2_or_model",
+    "selected_f1_reweighted": 0.9091739224850526,
+    "reason": "best is indobert/binary_3star_negative/balanced|star_1_2_or_model (0.922); indobert/spec_3class/none|star_1_2_or_model (0.909) is 0.013 lower, within 0.02, and is the simplest eligible option",
+    "literal_reading_agrees": false,
+    "selected_minus_best": {
+      "value": -0.01303285725137271,
+      "ci95": [
+        -0.03706737287773995,
+        0.0006341340514223122
+      ],
+      "share_of_resamples_above_0": 0.0525
+    },
+    "selected_minus_simplest": {
+      "value": 0.05003007543946714,
+      "ci95": [
+        0.011815574393057044,
+        0.09992273012443448
+      ],
+      "share_of_resamples_above_0": 0.9995
+    },
+    "selected_minus_star_1_2": {
+      "value": 0.10641249000649688,
+      "ci95": [
+        0.05473872530753888,
+        0.15763239675917157
+      ],
+      "share_of_resamples_above_0": 1.0
+    },
+    "bootstrap_selection_frequency": {
+      "indobert/spec_3class/none|star_1_2_or_model": 0.6315,
+      "indobert/spec_3class/balanced|star_1_2_or_model": 0.1275,
+      "indobert/binary_3star_negative/none|model_only": 0.0815,
+      "indobert/binary_3star_negative/balanced|model_only": 0.08,
+      "indobert/binary_3star_negative/none|star_1_2_or_model": 0.0405,
+      "indobert/spec_3class/none|model_only": 0.0215,
+      "indobert/binary_3star_negative/balanced|star_1_2_or_model": 0.0135,
+      "indobert/binary_drop_3star/none|star_1_2_or_model": 0.0035
+    },
+    "best_tfidf_option": "tfidf/binary_3star_negative|star_1_2_or_model",
+    "best_tfidf_minus_selected": {
+      "value": 0.04786963051509685,
+      "ci95": [
+        0.012541961868109124,
+        0.09163654840270283
+      ],
+      "share_of_resamples_above_0": 0.9985
+    }
+  },
+  "ranking_reweighted_bin_neg_f1": [
+    [
+      "tfidf/binary_3star_negative|star_1_2_or_model",
+      0.957
+    ],
+    [
+      "tfidf/binary_drop_3star|star_1_2_or_model",
+      0.9561
+    ],
+    [
+      "tfidf/binary_3star_negative|model_only",
+      0.9403
+    ],
+    [
+      "tfidf/binary_drop_3star|model_only",
+      0.9393
+    ],
+    [
+      "indobert/binary_3star_negative/balanced|star_1_2_or_model",
+      0.9222
+    ],
+    [
+      "indobert/binary_3star_negative/none|star_1_2_or_model",
+      0.9115
+    ],
+    [
+      "indobert/spec_3class/none|star_1_2_or_model",
+      0.9092
+    ],
+    [
+      "indobert/binary_3star_negative/balanced|model_only",
+      0.9073
+    ],
+    [
+      "indobert/binary_drop_3star/none|star_1_2_or_model",
+      0.9051
+    ],
+    [
+      "indobert/binary_drop_3star/balanced|star_1_2_or_model",
+      0.9041
+    ],
+    [
+      "indobert/spec_3class/balanced|star_1_2_or_model",
+      0.8985
+    ],
+    [
+      "indobert/binary_3star_negative/none|model_only",
+      0.8963
+    ],
+    [
+      "indobert/binary_drop_3star/balanced|model_only",
+      0.8636
+    ],
+    [
+      "indobert/spec_3class/none|model_only",
+      0.8591
+    ],
+    [
+      "tfidf/spec_3class|star_1_2_or_model",
+      0.8577
+    ],
+    [
+      "indobert/binary_drop_3star/none|model_only",
+      0.8336
+    ],
+    [
+      "tfidf/spec_3class|model_only",
+      0.8129
+    ],
+    [
+      "indobert/spec_3class/balanced|model_only",
+      0.8082
+    ],
+    [
+      "reference/star_1_2",
+      0.8028
+    ]
+  ],
+  "options": {
+    "indobert/spec_3class/balanced|model_only": {
+      "model": "indobert/spec_3class/balanced",
+      "kind": "indobert",
+      "scheme": "spec_3class",
+      "weights": "balanced",
+      "rule": "model_only",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9425287356321839,
+          "ci95": [
+            0.8915597171293871,
+            0.9789473684210527
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.6612903225806451,
+          "ci95": [
+            0.5811827956989248,
+            0.742193418560606
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.7772511848341233,
+          "ci95": [
+            0.7149585921325052,
+            0.8340817801202899
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.45549738219895286,
+          "ci95": [
+            0.39790575916230364,
+            0.5130890052356021
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.7619047619047619,
+          "ci95": [
+            0.6562371926229509,
+            0.859375
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.5869565217391305,
+          "ci95": [
+            0.43902439024390244,
+            0.723404255319149
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.23076923076923078,
+            0.7272727272727273
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8048780487804877,
+          "ci95": [
+            0.7026676026676025,
+            0.888888888888889
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.7457627118644068,
+          "ci95": [
+            0.6071428571428572,
+            0.8524590163934426
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.7407407407407407,
+          "ci95": [
+            0.5957446808510638,
+            0.8571428571428572
+          ]
+        },
+        "macro_f1_3class": {
+          "value": 0.6302548994492122,
+          "ci95": [
+            0.5712327566919679,
+            0.6907183320154634
+          ]
+        },
+        "negative_f1_3class": {
+          "value": 0.7772511848341233,
+          "ci95": [
+            0.7149585921325052,
+            0.8340817801202899
+          ]
+        },
+        "neutral_f1_3class": {
+          "value": 0.26666666666666666,
+          "ci95": [
+            0.13793103448275865,
+            0.393455042225534
+          ]
+        },
+        "positive_f1_3class": {
+          "value": 0.8468468468468469,
+          "ci95": [
+            0.7754918183489613,
+            0.9091314935064932
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9647323711620619,
+          "ci95": [
+            0.923858672626993,
+            0.9933513563563162
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.6954464040288867,
+          "ci95": [
+            0.5866643281735147,
+            0.8016540568987335
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8082498926029821,
+          "ci95": [
+            0.7269702026823331,
+            0.8787396321682134
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.4489751935429017,
+          "ci95": [
+            0.37256144370109784,
+            0.5231762335274887
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.7829483419386007,
+          "ci95": [
+            0.653909881487232,
+            0.8971702937028742
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.6232298696196777,
+          "ci95": [
+            0.446386581839924,
+            0.7816264820804701
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.48249682800507515,
+          "ci95": [
+            0.23164141723494902,
+            0.754999197741562
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8294145452689372,
+          "ci95": [
+            0.7211372480633996,
+            0.9171527055570469
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.7262733569800293,
+          "ci95": [
+            0.5649303306958483,
+            0.8680846046487218
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.7364030108917,
+          "ci95": [
+            0.5525981762989428,
+            0.8991758625346408
+          ]
+        },
+        "macro_f1_3class": {
+          "value": 0.5906139800480024,
+          "ci95": [
+            0.5427296726573883,
+            0.6433023301853518
+          ]
+        },
+        "negative_f1_3class": {
+          "value": 0.8082498926029821,
+          "ci95": [
+            0.7269702026823331,
+            0.8787396321682134
+          ]
+        },
+        "neutral_f1_3class": {
+          "value": 0.07167563762013644,
+          "ci95": [
+            0.01484214858924167,
+            0.17463071917185535
+          ]
+        },
+        "positive_f1_3class": {
+          "value": 0.8919164099208886,
+          "ci95": [
+            0.8114771180562579,
+            0.9540910732082485
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.005488460124426386,
+        "ci95": [
+          -0.08175336806925065,
+          0.08323784653991653
+        ],
+        "share_of_resamples_above_0": 0.5585
+      }
+    },
+    "indobert/spec_3class/balanced|star_1_2_or_model": {
+      "model": "indobert/spec_3class/balanced",
+      "kind": "indobert",
+      "scheme": "spec_3class",
+      "weights": "balanced",
+      "rule": "star_1_2_or_model",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.941747572815534,
+          "ci95": [
+            0.8981434240362812,
+            0.9803921568627451
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.782258064516129,
+          "ci95": [
+            0.7190018078512397,
+            0.8448275862068966
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8546255506607929,
+          "ci95": [
+            0.8108048577211572,
+            0.8954038566490814
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5392670157068062,
+          "ci95": [
+            0.49214659685863876,
+            0.5863874345549738
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.5869565217391305,
+          "ci95": [
+            0.43902439024390244,
+            0.723404255319149
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.23076923076923078,
+            0.7272727272727273
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8604651162790697,
+          "ci95": [
+            0.7847844680123162,
+            0.9231182795698923
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8307692307692307,
+          "ci95": [
+            0.7419354838709677,
+            0.9091577540106948
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8474576271186441,
+          "ci95": [
+            0.7540983606557378,
+            0.9285714285714286
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9626658663424831,
+          "ci95": [
+            0.9260367969496722,
+            0.9906025297961918
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8423818595915076,
+          "ci95": [
+            0.7679361669598287,
+            0.9164148189904601
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8985161455886135,
+          "ci95": [
+            0.8522492131303538,
+            0.9428210471053872
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5450030899889143,
+          "ci95": [
+            0.4968487375405602,
+            0.6007203794880402
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.6232298696196777,
+          "ci95": [
+            0.446386581839924,
+            0.7816264820804701
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.48249682800507515,
+          "ci95": [
+            0.23164141723494902,
+            0.754999197741562
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9088972182230386,
+          "ci95": [
+            0.8477706903642536,
+            0.9643461627629006
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8447940985296324,
+          "ci95": [
+            0.7346976101530471,
+            0.9508232223122408
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8741388090391219,
+          "ci95": [
+            0.7302113497430279,
+            0.9796661691610412
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.09575471311005779,
+        "ci95": [
+          0.046185562159050154,
+          0.1429793243386142
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "indobert/spec_3class/none|model_only": {
+      "model": "indobert/spec_3class/none",
+      "kind": "indobert",
+      "scheme": "spec_3class",
+      "weights": "none",
+      "rule": "model_only",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9203539823008849,
+          "ci95": [
+            0.8738738738738738,
+            0.9633110925771475
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8387096774193549,
+          "ci95": [
+            0.7751889534883721,
+            0.903711111111111
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8776371308016878,
+          "ci95": [
+            0.832618025751073,
+            0.9199999999999999
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5916230366492147,
+          "ci95": [
+            0.5392670157068062,
+            0.643979057591623
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8888888888888888,
+          "ci95": [
+            0.8095238095238095,
+            0.9538461538461539
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8695652173913043,
+          "ci95": [
+            0.7608695652173914,
+            0.9574468085106383
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5333333333333333,
+          "ci95": [
+            0.2857142857142857,
+            0.8
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8735632183908045,
+          "ci95": [
+            0.7951807228915663,
+            0.9423132183908045
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9014084507042254,
+          "ci95": [
+            0.8285714285714286,
+            0.9599999999999999
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8852459016393442,
+          "ci95": [
+            0.7906023637056806,
+            0.9565217391304348
+          ]
+        },
+        "macro_f1_3class": {
+          "value": 0.6432123769338959,
+          "ci95": [
+            0.541908469126894,
+            0.7365141078642179
+          ]
+        },
+        "negative_f1_3class": {
+          "value": 0.8776371308016878,
+          "ci95": [
+            0.832618025751073,
+            0.9199999999999999
+          ]
+        },
+        "neutral_f1_3class": {
+          "value": 0.3,
+          "ci95": [
+            0.0,
+            0.5384615384615384
+          ]
+        },
+        "positive_f1_3class": {
+          "value": 0.752,
+          "ci95": [
+            0.6776859504132231,
+            0.8275996767241378
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.943722454387131,
+          "ci95": [
+            0.895310378727642,
+            0.9828273329253501
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.7884785596179756,
+          "ci95": [
+            0.6870377999227937,
+            0.8900266140763006
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8591438470455854,
+          "ci95": [
+            0.7909825558608021,
+            0.9219724637423966
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5203686589448112,
+          "ci95": [
+            0.44885511289875746,
+            0.5878022100487916
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8756441701559728,
+          "ci95": [
+            0.7616860754021086,
+            0.9686432561962224
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8764461849512437,
+          "ci95": [
+            0.7456210540363221,
+            0.9764283505432151
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5337921459325665,
+          "ci95": [
+            0.27611711271112993,
+            0.8031241663803884
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.860740533556085,
+          "ci95": [
+            0.7618698259090553,
+            0.9421241053830084
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.867994058565568,
+          "ci95": [
+            0.7641356451247867,
+            0.9661682773933108
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8194148247534306,
+          "ci95": [
+            0.654532489884397,
+            0.9596871075668956
+          ]
+        },
+        "macro_f1_3class": {
+          "value": 0.5669262714956255,
+          "ci95": [
+            0.5151085544095767,
+            0.6328458087555516
+          ]
+        },
+        "negative_f1_3class": {
+          "value": 0.8591438470455854,
+          "ci95": [
+            0.7909825558608021,
+            0.9219724637423966
+          ]
+        },
+        "neutral_f1_3class": {
+          "value": 0.04864241398837512,
+          "ci95": [
+            0.0,
+            0.1728127763486576
+          ]
+        },
+        "positive_f1_3class": {
+          "value": 0.7929925534529156,
+          "ci95": [
+            0.7033044368857099,
+            0.8792720050589525
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.05638241456702975,
+        "ci95": [
+          -0.0155974128859414,
+          0.12255513910691543
+        ],
+        "share_of_resamples_above_0": 0.9275
+      }
+    },
+    "indobert/spec_3class/none|star_1_2_or_model": {
+      "model": "indobert/spec_3class/none",
+      "kind": "indobert",
+      "scheme": "spec_3class",
+      "weights": "none",
+      "rule": "star_1_2_or_model",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.925,
+          "ci95": [
+            0.8803418803418803,
+            0.9658119658119658
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8951612903225806,
+          "ci95": [
+            0.8442622950819673,
+            0.9444553805774277
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9098360655737704,
+          "ci95": [
+            0.8738637617209045,
+            0.9432393646992535
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6282722513089005,
+          "ci95": [
+            0.581151832460733,
+            0.6702879581151826
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8695652173913043,
+          "ci95": [
+            0.7608695652173914,
+            0.9574468085106383
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5333333333333333,
+          "ci95": [
+            0.2857142857142857,
+            0.8
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9111111111111111,
+          "ci95": [
+            0.8505747126436782,
+            0.9647261663286003
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9014084507042254,
+          "ci95": [
+            0.8285714285714286,
+            0.9599999999999999
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9374999999999999,
+          "ci95": [
+            0.8709677419354839,
+            0.9859154929577464
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9488738740534279,
+          "ci95": [
+            0.9061635457804663,
+            0.9844727741982182
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8726625767925005,
+          "ci95": [
+            0.7980831897830478,
+            0.9470142910169711
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9091739224850526,
+          "ci95": [
+            0.8629624910172113,
+            0.9527429736635958
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5728005084890978,
+          "ci95": [
+            0.5216903310310994,
+            0.6295122672124994
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8764461849512437,
+          "ci95": [
+            0.7456210540363221,
+            0.9764283505432151
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5337921459325665,
+          "ci95": [
+            0.27611711271112993,
+            0.8031241663803884
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.918259450059063,
+          "ci95": [
+            0.8580008009061993,
+            0.9717057750997419
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.867994058565568,
+          "ci95": [
+            0.7641356451247867,
+            0.9661682773933108
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8951838970644694,
+          "ci95": [
+            0.7500722032793703,
+            0.9961523014937361
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.10641249000649688,
+        "ci95": [
+          0.05473872530753888,
+          0.15763239675917157
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "indobert/binary_drop_3star/balanced|model_only": {
+      "model": "indobert/binary_drop_3star/balanced",
+      "kind": "indobert",
+      "scheme": "binary_drop_3star",
+      "weights": "balanced",
+      "rule": "model_only",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9619047619047619,
+          "ci95": [
+            0.9252160112854876,
+            0.9906542056074766
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8145161290322581,
+          "ci95": [
+            0.746028493364559,
+            0.8782608695652174
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8820960698689957,
+          "ci95": [
+            0.8349492295359402,
+            0.9224489795918366
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5497382198952879,
+          "ci95": [
+            0.49214659685863876,
+            0.6020942408376964
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9047619047619048,
+          "ci95": [
+            0.828125,
+            0.96875
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8043478260869565,
+          "ci95": [
+            0.675,
+            0.9111111111111111
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.23076923076923078,
+            0.7272727272727273
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8571428571428571,
+          "ci95": [
+            0.775,
+            0.9302325581395349
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9275362318840579,
+          "ci95": [
+            0.8615384615384616,
+            0.9751704545454536
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8474576271186441,
+          "ci95": [
+            0.7346598639455783,
+            0.9354838709677419
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9716821512587902,
+          "ci95": [
+            0.9362857950287471,
+            0.9971516001939104
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.777125424774571,
+          "ci95": [
+            0.6732816345411338,
+            0.8789384871462198
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.863581465326922,
+          "ci95": [
+            0.7941032543767311,
+            0.926097050847731
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.49811821632183906,
+          "ci95": [
+            0.4292296767449739,
+            0.5658764560023416
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8929847065014273,
+          "ci95": [
+            0.7892082763354955,
+            0.9892908968564885
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8233520433243589,
+          "ci95": [
+            0.6675924028229216,
+            0.9462013955885726
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4574146681365309,
+          "ci95": [
+            0.2122534148790358,
+            0.7285784024813511
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8416514858798013,
+          "ci95": [
+            0.7368191998231466,
+            0.9290662552843546
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9177367126094663,
+          "ci95": [
+            0.8292702035085523,
+            0.994163627309849
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8099062727750376,
+          "ci95": [
+            0.6419802755002727,
+            0.951404307338559
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.060820032848366345,
+        "ci95": [
+          -0.011942464901929978,
+          0.1248872507505532
+        ],
+        "share_of_resamples_above_0": 0.951
+      }
+    },
+    "indobert/binary_drop_3star/balanced|star_1_2_or_model": {
+      "model": "indobert/binary_drop_3star/balanced",
+      "kind": "indobert",
+      "scheme": "binary_drop_3star",
+      "weights": "balanced",
+      "rule": "star_1_2_or_model",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9553571428571429,
+          "ci95": [
+            0.9174311926605505,
+            0.9833333333333333
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8629032258064516,
+          "ci95": [
+            0.8048780487804879,
+            0.9180327868852459
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9067796610169493,
+          "ci95": [
+            0.8669527896995709,
+            0.9411764705882353
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5863874345549738,
+          "ci95": [
+            0.5392670157068062,
+            0.6335078534031413
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8043478260869565,
+          "ci95": [
+            0.675,
+            0.9111111111111111
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.23076923076923078,
+            0.7272727272727273
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.896551724137931,
+          "ci95": [
+            0.8292682926829268,
+            0.9555555555555556
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9142857142857143,
+          "ci95": [
+            0.8405797101449276,
+            0.9714285714285714
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9032258064516129,
+          "ci95": [
+            0.8180976430976433,
+            0.96875
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9660091196439163,
+          "ci95": [
+            0.9295096589033781,
+            0.993132592291857
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8495705792729177,
+          "ci95": [
+            0.7715670361842293,
+            0.9281642484450997
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.904056074044477,
+          "ci95": [
+            0.8573125391387134,
+            0.9479491463532054
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.547751744941312,
+          "ci95": [
+            0.4984131357581519,
+            0.6016210808133216
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8233520433243589,
+          "ci95": [
+            0.6675924028229216,
+            0.9462013955885726
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4574146681365309,
+          "ci95": [
+            0.2122534148790358,
+            0.7285784024813511
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9012882178259234,
+          "ci95": [
+            0.8372190504711038,
+            0.9617914133926065
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8993699053300623,
+          "ci95": [
+            0.8014147809417886,
+            0.9882594082005077
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8868609852390429,
+          "ci95": [
+            0.7439459306763534,
+            0.988452352495898
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.10129464156592127,
+        "ci95": [
+          0.05476878362706361,
+          0.148815856099681
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "indobert/binary_drop_3star/none|model_only": {
+      "model": "indobert/binary_drop_3star/none",
+      "kind": "indobert",
+      "scheme": "binary_drop_3star",
+      "weights": "none",
+      "rule": "model_only",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9603960396039604,
+          "ci95": [
+            0.9222058823529412,
+            0.9902912621359223
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.782258064516129,
+          "ci95": [
+            0.7058823529411765,
+            0.8536585365853658
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8622222222222222,
+          "ci95": [
+            0.8105726872246697,
+            0.9074908377447894
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5287958115183246,
+          "ci95": [
+            0.4710732984293196,
+            0.5863874345549738
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8412698412698413,
+          "ci95": [
+            0.7499007936507939,
+            0.9219050480769229
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8043478260869565,
+          "ci95": [
+            0.6862472766884532,
+            0.9148936170212766
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.23076923076923078,
+            0.7272727272727273
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8571428571428571,
+          "ci95": [
+            0.775,
+            0.928589466089466
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8787878787878788,
+          "ci95": [
+            0.7936507936507936,
+            0.9508587041373925
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8474576271186441,
+          "ci95": [
+            0.7346598639455783,
+            0.9354838709677419
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9699446722206806,
+          "ci95": [
+            0.9317687650271252,
+            0.9970011087002444
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.7308910490997524,
+          "ci95": [
+            0.6221863716525666,
+            0.8417131350898455
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8336182856010576,
+          "ci95": [
+            0.7548245228514219,
+            0.9053258675584287
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.46932232476762026,
+          "ci95": [
+            0.39819016783358513,
+            0.5426266449678845
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8220713592076034,
+          "ci95": [
+            0.7013016044945275,
+            0.9321673012610203
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8494373633515908,
+          "ci95": [
+            0.711408470497332,
+            0.9556472810138659
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4574146681365309,
+          "ci95": [
+            0.2122534148790358,
+            0.7285784024813511
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8230716329040481,
+          "ci95": [
+            0.7085170754451963,
+            0.9166751336834015
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8683109550583765,
+          "ci95": [
+            0.7568528930864633,
+            0.9678790809361945
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8099062727750376,
+          "ci95": [
+            0.6419802755002727,
+            0.951404307338559
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.03085685312250186,
+        "ci95": [
+          -0.054769492342170274,
+          0.1070522563810545
+        ],
+        "share_of_resamples_above_0": 0.773
+      }
+    },
+    "indobert/binary_drop_3star/none|star_1_2_or_model": {
+      "model": "indobert/binary_drop_3star/none",
+      "kind": "indobert",
+      "scheme": "binary_drop_3star",
+      "weights": "none",
+      "rule": "star_1_2_or_model",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9553571428571429,
+          "ci95": [
+            0.9174311926605505,
+            0.983336776859504
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8629032258064516,
+          "ci95": [
+            0.8064453613403351,
+            0.9173553719008265
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9067796610169493,
+          "ci95": [
+            0.8695652173913043,
+            0.9397693337452373
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5863874345549738,
+          "ci95": [
+            0.5392670157068062,
+            0.6335078534031413
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8043478260869565,
+          "ci95": [
+            0.6862472766884532,
+            0.9148936170212766
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4666666666666667,
+          "ci95": [
+            0.23076923076923078,
+            0.7272727272727273
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9090909090909091,
+          "ci95": [
+            0.85,
+            0.9638766832034017
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8985507246376812,
+          "ci95": [
+            0.8234891216760677,
+            0.9600000000000001
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9032258064516129,
+          "ci95": [
+            0.8180976430976433,
+            0.96875
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9660774372422525,
+          "ci95": [
+            0.9298093631469112,
+            0.9931280504863119
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8513417571292351,
+          "ci95": [
+            0.7757494424128994,
+            0.9312866973034655
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9050879021107259,
+          "ci95": [
+            0.8589741590437941,
+            0.9493082966064795
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5488548775072727,
+          "ci95": [
+            0.5009823125859749,
+            0.6031860911574998
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8494373633515908,
+          "ci95": [
+            0.711408470497332,
+            0.9556472810138659
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.4574146681365309,
+          "ci95": [
+            0.2122534148790358,
+            0.7285784024813511
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9036863609236561,
+          "ci95": [
+            0.8391515854211825,
+            0.9642877351584019
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8963083135976717,
+          "ci95": [
+            0.7988170023475403,
+            0.9853650803470623
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8868609852390429,
+          "ci95": [
+            0.7439459306763534,
+            0.988452352495898
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.10232646963217018,
+        "ci95": [
+          0.05467623058069649,
+          0.14934420165915485
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "indobert/binary_3star_negative/balanced|model_only": {
+      "model": "indobert/binary_3star_negative/balanced",
+      "kind": "indobert",
+      "scheme": "binary_3star_negative",
+      "weights": "balanced",
+      "rule": "model_only",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9024390243902439,
+          "ci95": [
+            0.8536585365853658,
+            0.9495798319327731
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8951612903225806,
+          "ci95": [
+            0.84,
+            0.943089430894309
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8987854251012146,
+          "ci95": [
+            0.8616403162055336,
+            0.9333333333333332
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.643979057591623,
+          "ci95": [
+            0.5968586387434555,
+            0.6910994764397905
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9523809523809523,
+          "ci95": [
+            0.9,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.9130434782608695,
+          "ci95": [
+            0.8205,
+            0.98
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.6,
+          "ci95": [
+            0.3634740259740263,
+            0.8421052631578947
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9333333333333333,
+          "ci95": [
+            0.8750000000000001,
+            0.9787234042553191
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8918918918918919,
+          "ci95": [
+            0.8168736100815418,
+            0.9538805970149252
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.875,
+          "ci95": [
+            0.7777777777777779,
+            0.9538461538461539
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9486273672607148,
+          "ci95": [
+            0.9066287055424603,
+            0.9848685374107203
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8694074570393356,
+          "ci95": [
+            0.7828129380217248,
+            0.9476900619985075
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9072914292118548,
+          "ci95": [
+            0.8552086978293513,
+            0.9523214620526379
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5708121952142357,
+          "ci95": [
+            0.5098372678322368,
+            0.6360859337659462
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9608221076159801,
+          "ci95": [
+            0.8910541341315381,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.9321144072415687,
+          "ci95": [
+            0.8270686731445962,
+            0.9941434215202586
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.6101696237286021,
+          "ci95": [
+            0.352098473411761,
+            0.8501326817994251
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.920641083915635,
+          "ci95": [
+            0.8515582766999069,
+            0.9810867888384563
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8663899716171224,
+          "ci95": [
+            0.7621953603489513,
+            0.9641226294369089
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8392446123895467,
+          "ci95": [
+            0.6890978814148735,
+            0.9654179206244081
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.1045299967332991,
+        "ci95": [
+          0.04432670782996389,
+          0.16129922705226143
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "indobert/binary_3star_negative/balanced|star_1_2_or_model": {
+      "model": "indobert/binary_3star_negative/balanced",
+      "kind": "indobert",
+      "scheme": "binary_3star_negative",
+      "weights": "balanced",
+      "rule": "star_1_2_or_model",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9047619047619048,
+          "ci95": [
+            0.8571428571428571,
+            0.9512195121951219
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9193548387096774,
+          "ci95": [
+            0.8728593220338984,
+            0.9606299212598425
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.912,
+          "ci95": [
+            0.8774703557312253,
+            0.9444444444444443
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6596858638743456,
+          "ci95": [
+            0.612565445026178,
+            0.7015706806282722
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.9130434782608695,
+          "ci95": [
+            0.8205,
+            0.98
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.6,
+          "ci95": [
+            0.3634740259740263,
+            0.8421052631578947
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.945054945054945,
+          "ci95": [
+            0.8965337643678162,
+            0.9879588944011338
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8918918918918919,
+          "ci95": [
+            0.8168736100815418,
+            0.9538805970149252
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9090909090909091,
+          "ci95": [
+            0.8333333333333334,
+            0.9714285714285714
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9500722055276056,
+          "ci95": [
+            0.9093333199248514,
+            0.9852911215578409
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8959293528720819,
+          "ci95": [
+            0.8260423152243453,
+            0.9611733218161246
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9222067797364253,
+          "ci95": [
+            0.8795477709610593,
+            0.9613350778564438
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5873306757834025,
+          "ci95": [
+            0.5340624340849479,
+            0.6451261437416743
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.9321144072415687,
+          "ci95": [
+            0.8270686731445962,
+            0.9941434215202586
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.6101696237286021,
+          "ci95": [
+            0.352098473411761,
+            0.8501326817994251
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9385364473896881,
+          "ci95": [
+            0.882041361550673,
+            0.9845054792035005
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8663899716171224,
+          "ci95": [
+            0.7621953603489513,
+            0.9641226294369089
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8885403040309654,
+          "ci95": [
+            0.7456279216687102,
+            0.9922147369524758
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.1194453472578696,
+        "ci95": [
+          0.0680606211120956,
+          0.16952697772730732
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "indobert/binary_3star_negative/none|model_only": {
+      "model": "indobert/binary_3star_negative/none",
+      "kind": "indobert",
+      "scheme": "binary_3star_negative",
+      "weights": "none",
+      "rule": "model_only",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9159663865546218,
+          "ci95": [
+            0.8677557960944928,
+            0.9590163934426229
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8790322580645161,
+          "ci95": [
+            0.8216706031976745,
+            0.9316239316239316
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8971193415637859,
+          "ci95": [
+            0.8582706766917294,
+            0.9328063241106719
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6230366492146597,
+          "ci95": [
+            0.5706806282722513,
+            0.6701570680628273
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9523809523809523,
+          "ci95": [
+            0.9,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8913043478260869,
+          "ci95": [
+            0.7916666666666666,
+            0.9767441860465116
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5333333333333333,
+          "ci95": [
+            0.29411764705882354,
+            0.8
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9213483146067416,
+          "ci95": [
+            0.8630979347101934,
+            0.9690721649484536
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.888888888888889,
+          "ci95": [
+            0.8115942028985507,
+            0.9538805970149252
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.875,
+          "ci95": [
+            0.7777777777777779,
+            0.9538461538461539
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9491854444876546,
+          "ci95": [
+            0.9057817020508476,
+            0.9862495471837295
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.848916189630478,
+          "ci95": [
+            0.7607540048974528,
+            0.9312396569653715
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8962551120558437,
+          "ci95": [
+            0.8405543602660134,
+            0.9456242366144793
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5570308881467504,
+          "ci95": [
+            0.49563872310611506,
+            0.6205042145404743
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9608221076159801,
+          "ci95": [
+            0.8910541341315381,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.9173229561100221,
+          "ci95": [
+            0.8104520205250136,
+            0.9870252393500522
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5337921459325665,
+          "ci95": [
+            0.28232637409241756,
+            0.7943276787991159
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9041065602024156,
+          "ci95": [
+            0.827088788947156,
+            0.9682411265490538
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8656764850079536,
+          "ci95": [
+            0.7609616603627408,
+            0.9612822376941162
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8392446123895467,
+          "ci95": [
+            0.6890978814148735,
+            0.9654179206244081
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.09349367957728805,
+        "ci95": [
+          0.033245156967664884,
+          0.1507479697523116
+        ],
+        "share_of_resamples_above_0": 0.9995
+      }
+    },
+    "indobert/binary_3star_negative/none|star_1_2_or_model": {
+      "model": "indobert/binary_3star_negative/none",
+      "kind": "indobert",
+      "scheme": "binary_3star_negative",
+      "weights": "none",
+      "rule": "star_1_2_or_model",
+      "candidate": true,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9180327868852459,
+          "ci95": [
+            0.8699186991869918,
+            0.96
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9032258064516129,
+          "ci95": [
+            0.8536585365853658,
+            0.9508196721311475
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9105691056910569,
+          "ci95": [
+            0.8755020080321285,
+            0.943089430894309
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6387434554973822,
+          "ci95": [
+            0.5916230366492147,
+            0.680628272251309
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8913043478260869,
+          "ci95": [
+            0.7916666666666666,
+            0.9767441860465116
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5333333333333333,
+          "ci95": [
+            0.29411764705882354,
+            0.8
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9333333333333333,
+          "ci95": [
+            0.8817204301075269,
+            0.9777777777777777
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.888888888888889,
+          "ci95": [
+            0.8115942028985507,
+            0.9538805970149252
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9090909090909091,
+          "ci95": [
+            0.8333333333333334,
+            0.9714285714285714
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9506489266108077,
+          "ci95": [
+            0.909324113169879,
+            0.9869457353220713
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.8754380854632242,
+          "ci95": [
+            0.8027087366612203,
+            0.9480668979577282
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9114946557936472,
+          "ci95": [
+            0.8666463898718836,
+            0.9539233539373065
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5735493687159173,
+          "ci95": [
+            0.5205867113732902,
+            0.6310035293501106
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.9173229561100221,
+          "ci95": [
+            0.8104520205250136,
+            0.9870252393500522
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.5337921459325665,
+          "ci95": [
+            0.28232637409241756,
+            0.7943276787991159
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9225497112481954,
+          "ci95": [
+            0.8620918940620445,
+            0.9765046054966924
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8656764850079536,
+          "ci95": [
+            0.7609616603627408,
+            0.9612822376941162
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8885403040309654,
+          "ci95": [
+            0.7456279216687102,
+            0.9922147369524758
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.1087332233150915,
+        "ci95": [
+          0.0607162729385275,
+          0.15856445467744248
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "tfidf/spec_3class|model_only": {
+      "model": "tfidf/spec_3class",
+      "kind": "tfidf",
+      "scheme": "spec_3class",
+      "weights": "balanced",
+      "rule": "model_only",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9318181818181818,
+          "ci95": [
+            0.8817012288786482,
+            0.9764705882352941
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.6612903225806451,
+          "ci95": [
+            0.5859375,
+            0.7364443084455323
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.7735849056603773,
+          "ci95": [
+            0.7157868937048504,
+            0.8256980454726764
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.4607329842931937,
+          "ci95": [
+            0.4031413612565445,
+            0.518324607329843
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8253968253968254,
+          "ci95": [
+            0.7301587301587301,
+            0.90625
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.5652173913043478,
+          "ci95": [
+            0.43137254901960786,
+            0.7
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.26666666666666666,
+          "ci95": [
+            0.07142857142857142,
+            0.5
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.759493670886076,
+          "ci95": [
+            0.6666666666666667,
+            0.8372250157133878
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.711864406779661,
+          "ci95": [
+            0.5818181818181818,
+            0.830833333333333
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8214285714285715,
+          "ci95": [
+            0.6956078083407278,
+            0.9153237010280629
+          ]
+        },
+        "macro_f1_3class": {
+          "value": 0.6229188209573301,
+          "ci95": [
+            0.5629931581315627,
+            0.685958586362142
+          ]
+        },
+        "negative_f1_3class": {
+          "value": 0.7735849056603773,
+          "ci95": [
+            0.7157868937048504,
+            0.8256980454726764
+          ]
+        },
+        "neutral_f1_3class": {
+          "value": 0.2456140350877193,
+          "ci95": [
+            0.10899521531100495,
+            0.3809523809523809
+          ]
+        },
+        "positive_f1_3class": {
+          "value": 0.8495575221238937,
+          "ci95": [
+            0.7818181818181819,
+            0.913052036973639
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9580299732298453,
+          "ci95": [
+            0.9153783550433924,
+            0.9906737255241445
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.7059625499751989,
+          "ci95": [
+            0.6235112415142042,
+            0.7942343303197765
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8129042329484946,
+          "ci95": [
+            0.7527408782814653,
+            0.8713335330499427
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.45895287864758955,
+          "ci95": [
+            0.4092425210743333,
+            0.5119520249321441
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.8967857881291408,
+          "ci95": [
+            0.8112048361747053,
+            0.9577693708297865
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.5041341607139551,
+          "ci95": [
+            0.3363288448497679,
+            0.6761129175270058
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.2533643946169686,
+          "ci95": [
+            0.03582096301523147,
+            0.5082576715189573
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8279807557174862,
+          "ci95": [
+            0.7475036274171004,
+            0.903161449195418
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.7050144758200988,
+          "ci95": [
+            0.5443208802893436,
+            0.8530007856962679
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.7710327067001104,
+          "ci95": [
+            0.5950391100534823,
+            0.9294357749245726
+          ]
+        },
+        "macro_f1_3class": {
+          "value": 0.5859412438512583,
+          "ci95": [
+            0.5439565728357275,
+            0.6276463217188059
+          ]
+        },
+        "negative_f1_3class": {
+          "value": 0.8129042329484946,
+          "ci95": [
+            0.7527408782814653,
+            0.8713335330499427
+          ]
+        },
+        "neutral_f1_3class": {
+          "value": 0.0461692663698792,
+          "ci95": [
+            0.013528275231162599,
+            0.10176279746362941
+          ]
+        },
+        "positive_f1_3class": {
+          "value": 0.8987502322354013,
+          "ci95": [
+            0.8232775337698023,
+            0.9598142942866933
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.010142800469938873,
+        "ci95": [
+          -0.04378546992784151,
+          0.06605737220395075
+        ],
+        "share_of_resamples_above_0": 0.644
+      }
+    },
+    "tfidf/spec_3class|star_1_2_or_model": {
+      "model": "tfidf/spec_3class",
+      "kind": "tfidf",
+      "scheme": "spec_3class",
+      "weights": "balanced",
+      "rule": "star_1_2_or_model",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.93,
+          "ci95": [
+            0.8823395721925134,
+            0.9705953740719588
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.75,
+          "ci95": [
+            0.688,
+            0.8091017316017315
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8303571428571428,
+          "ci95": [
+            0.7857142857142857,
+            0.8728813559322033
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5235602094240838,
+          "ci95": [
+            0.47643979057591623,
+            0.5706806282722513
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.5652173913043478,
+          "ci95": [
+            0.43137254901960786,
+            0.7
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.26666666666666666,
+          "ci95": [
+            0.07142857142857142,
+            0.5
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.775,
+          "ci95": [
+            0.6923076923076924,
+            0.8505747126436781
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8125,
+          "ci95": [
+            0.7213114754098361,
+            0.8955223880597014
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9032258064516129,
+          "ci95": [
+            0.8213846604215457,
+            0.96875
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9588439703633437,
+          "ci95": [
+            0.9195750259145075,
+            0.9889749414890012
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.7758345213631875,
+          "ci95": [
+            0.7003610856931597,
+            0.858186114310814
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8576854516348015,
+          "ci95": [
+            0.8081156998986224,
+            0.9076401005807376
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5039491189073835,
+          "ci95": [
+            0.46541600633828273,
+            0.5508680661714276
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.5041341607139551,
+          "ci95": [
+            0.3363288448497679,
+            0.6761129175270058
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.2533643946169686,
+          "ci95": [
+            0.03582096301523147,
+            0.5082576715189573
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.8489684940056127,
+          "ci95": [
+            0.7818991409548213,
+            0.9149156274460555
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8414208898112217,
+          "ci95": [
+            0.7306975201074685,
+            0.9470752209241409
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8868609852390429,
+          "ci95": [
+            0.7464793299191104,
+            0.988452352495898
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.054924019156245785,
+        "ci95": [
+          0.016718330187909337,
+          0.10138439989493532
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "tfidf/binary_drop_3star|model_only": {
+      "model": "tfidf/binary_drop_3star",
+      "kind": "tfidf",
+      "scheme": "binary_drop_3star",
+      "weights": "balanced",
+      "rule": "model_only",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9105691056910569,
+          "ci95": [
+            0.8628955306574736,
+            0.9516225806451613
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9032258064516129,
+          "ci95": [
+            0.8512396694214877,
+            0.9508196721311475
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9068825910931174,
+          "ci95": [
+            0.8702928870292886,
+            0.9407114624505929
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.643979057591623,
+          "ci95": [
+            0.5968586387434555,
+            0.6910994764397905
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9523809523809523,
+          "ci95": [
+            0.9015983606557377,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8695652173913043,
+          "ci95": [
+            0.7659574468085106,
+            0.9574468085106383
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8,
+          "ci95": [
+            0.6,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9347826086956522,
+          "ci95": [
+            0.8764044943820225,
+            0.9795918367346939
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8985507246376812,
+          "ci95": [
+            0.819672131147541,
+            0.9589041095890412
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9090909090909091,
+          "ci95": [
+            0.8253968253968254,
+            0.9714285714285714
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9628317770311401,
+          "ci95": [
+            0.9284278923590678,
+            0.9888299016634632
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9168552972829335,
+          "ci95": [
+            0.8490382224064098,
+            0.9735642820405478
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.939281252955873,
+          "ci95": [
+            0.8999929312374494,
+            0.9731588759197829
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5930836001828333,
+          "ci95": [
+            0.5315783145839214,
+            0.6594402450289449
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9536246483338052,
+          "ci95": [
+            0.8785791085003576,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8416780990265181,
+          "ci95": [
+            0.6891465474923634,
+            0.9608304570242527
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8393020571167086,
+          "ci95": [
+            0.6540312735391612,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9611331395660868,
+          "ci95": [
+            0.9097257041736813,
+            0.9957477684535178
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8768929904200662,
+          "ci95": [
+            0.7688284165059197,
+            0.9712270729270278
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8687161690003288,
+          "ci95": [
+            0.7244897765995619,
+            0.9845527191028692
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.13651982047731726,
+        "ci95": [
+          0.0785622255472872,
+          0.18941108499178586
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "tfidf/binary_drop_3star|star_1_2_or_model": {
+      "model": "tfidf/binary_drop_3star",
+      "kind": "tfidf",
+      "scheme": "binary_drop_3star",
+      "weights": "balanced",
+      "rule": "star_1_2_or_model",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9126984126984127,
+          "ci95": [
+            0.8666535433070867,
+            0.9527651328740157
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9274193548387096,
+          "ci95": [
+            0.8833203125,
+            0.967741935483871
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.92,
+          "ci95": [
+            0.8860759493670887,
+            0.9508296681327469
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6596858638743456,
+          "ci95": [
+            0.612565445026178,
+            0.7015706806282722
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8695652173913043,
+          "ci95": [
+            0.7659574468085106,
+            0.9574468085106383
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8,
+          "ci95": [
+            0.6,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.946236559139785,
+          "ci95": [
+            0.8941176470588235,
+            0.9892529711375212
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9142857142857143,
+          "ci95": [
+            0.845037411971831,
+            0.9722222222222222
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9253731343283583,
+          "ci95": [
+            0.8484848484848486,
+            0.9850854423534501
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9640180510310057,
+          "ci95": [
+            0.9313171073028139,
+            0.9891829422593305
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9482495906267857,
+          "ci95": [
+            0.9008167508507624,
+            0.9907221160354002
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9560688078730462,
+          "ci95": [
+            0.9282932265763147,
+            0.9810893981712435
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6126367282040533,
+          "ci95": [
+            0.5555680882645221,
+            0.6718834580563903
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8416780990265181,
+          "ci95": [
+            0.6891465474923634,
+            0.9608304570242527
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8393020571167086,
+          "ci95": [
+            0.6540312735391612,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9776565764634285,
+          "ci95": [
+            0.9462215788631541,
+            0.99790441235395
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8993699053300623,
+          "ci95": [
+            0.7997239113553587,
+            0.9882594082005077
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8926493964640523,
+          "ci95": [
+            0.7522948315256378,
+            0.9923340990630566
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.15330737539449046,
+        "ci95": [
+          0.10182931565695483,
+          0.19940359331447485
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "tfidf/binary_3star_negative|model_only": {
+      "model": "tfidf/binary_3star_negative",
+      "kind": "tfidf",
+      "scheme": "binary_3star_negative",
+      "weights": "balanced",
+      "rule": "model_only",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.904,
+          "ci95": [
+            0.8546794871794872,
+            0.946969696969697
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9112903225806451,
+          "ci95": [
+            0.860655737704918,
+            0.9579919467787115
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9076305220883534,
+          "ci95": [
+            0.8691896659057895,
+            0.9416342412451363
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6544502617801047,
+          "ci95": [
+            0.6073298429319371,
+            0.6964659685863868
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9523809523809523,
+          "ci95": [
+            0.9015983606557377,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8913043478260869,
+          "ci95": [
+            0.7953598484848486,
+            0.9772727272727273
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8,
+          "ci95": [
+            0.6,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.946236559139785,
+          "ci95": [
+            0.891304347826087,
+            0.989247311827957
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8857142857142857,
+          "ci95": [
+            0.8,
+            0.94875
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9090909090909091,
+          "ci95": [
+            0.8275862068965518,
+            0.9714285714285714
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9619282047296729,
+          "ci95": [
+            0.9275183629018143,
+            0.9879572194851762
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9196308059536573,
+          "ci95": [
+            0.8512470246059193,
+            0.9764371870739584
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9403040831165159,
+          "ci95": [
+            0.9008148607540448,
+            0.9731941676202452
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.5954377759734117,
+          "ci95": [
+            0.533646880046239,
+            0.660062666867012
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 0.9536246483338052,
+          "ci95": [
+            0.8785791085003576,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8825548701852968,
+          "ci95": [
+            0.7511185840866935,
+            0.9844396132319728
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8393020571167086,
+          "ci95": [
+            0.6540312735391612,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9632689201692461,
+          "ci95": [
+            0.912561168931001,
+            0.9963956345295084
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8744178589139829,
+          "ci95": [
+            0.7669882815391957,
+            0.9677253272469591
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8687161690003288,
+          "ci95": [
+            0.718888049394886,
+            0.9843073021240621
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.13754265063796023,
+        "ci95": [
+          0.07916656175847216,
+          0.19024184381215933
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "tfidf/binary_3star_negative|star_1_2_or_model": {
+      "model": "tfidf/binary_3star_negative",
+      "kind": "tfidf",
+      "scheme": "binary_3star_negative",
+      "weights": "balanced",
+      "rule": "star_1_2_or_model",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.90625,
+          "ci95": [
+            0.8582677165354331,
+            0.9481623931623931
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9354838709677419,
+          "ci95": [
+            0.8934426229508197,
+            0.975
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9206349206349206,
+          "ci95": [
+            0.8870104192304537,
+            0.9520095238095239
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6701570680628273,
+          "ci95": [
+            0.6230366492146597,
+            0.7120418848167539
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8913043478260869,
+          "ci95": [
+            0.7953598484848486,
+            0.9772727272727273
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8,
+          "ci95": [
+            0.6,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9574468085106383,
+          "ci95": [
+            0.9090909090909092,
+            0.9902912621359222
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.9014084507042254,
+          "ci95": [
+            0.8266349206349207,
+            0.960025974025974
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.9253731343283583,
+          "ci95": [
+            0.8529291224686596,
+            0.9850854423534501
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9631386660260645,
+          "ci95": [
+            0.930704693974651,
+            0.9881114050545908
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.9510250992975096,
+          "ci95": [
+            0.9030509474374742,
+            0.9928462212019113
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.9570435530001494,
+          "ci95": [
+            0.928931982523126,
+            0.9818587459232989
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.6149909039946316,
+          "ci95": [
+            0.5571619446663659,
+            0.6747857475402947
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.8825548701852968,
+          "ci95": [
+            0.7511185840866935,
+            0.9844396132319728
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.8393020571167086,
+          "ci95": [
+            0.6540312735391612,
+            1.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.9797250247586036,
+          "ci95": [
+            0.9488758636269142,
+            0.9981109313144739
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8968819945003244,
+          "ci95": [
+            0.7982205028589122,
+            0.9841589789015278
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8926493964640523,
+          "ci95": [
+            0.7508135698187025,
+            0.9960613736125293
+          ]
+        }
+      },
+      "diff_vs_star_1_2_reweighted_f1": {
+        "value": 0.15428212052159374,
+        "ci95": [
+          0.1029742744880392,
+          0.20064933563565826
+        ],
+        "share_of_resamples_above_0": 1.0
+      }
+    },
+    "reference/star_1_2": {
+      "model": "star rating",
+      "kind": "reference",
+      "scheme": null,
+      "weights": null,
+      "rule": "star 1-2",
+      "candidate": false,
+      "raw": {
+        "bin_neg_precision": {
+          "value": 0.9692307692307692,
+          "ci95": [
+            0.9230769230769231,
+            1.0
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.5080645161290323,
+          "ci95": [
+            0.47406432748538013,
+            0.5517241379310345
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.6666666666666667,
+          "ci95": [
+            0.6321243523316062,
+            0.7065217391304348
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.3403141361256545,
+          "ci95": [
+            0.3403141361256545,
+            0.3403141361256545
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.5882352941176471,
+          "ci95": [
+            0.5405405405405406,
+            0.6451612903225806
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.6909090909090908,
+          "ci95": [
+            0.6181818181818183,
+            0.7692307692307693
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.7169811320754716,
+          "ci95": [
+            0.6415094339622641,
+            0.8
+          ]
+        }
+      },
+      "reweighted": {
+        "bin_neg_precision": {
+          "value": 0.9859893719806763,
+          "ci95": [
+            0.9614251207729468,
+            1.0
+          ]
+        },
+        "bin_neg_recall": {
+          "value": 0.6769607607469,
+          "ci95": [
+            0.617715013704037,
+            0.7501233306051948
+          ]
+        },
+        "bin_neg_f1": {
+          "value": 0.8027614324785557,
+          "ci95": [
+            0.7589130352760076,
+            0.8527692320492976
+          ]
+        },
+        "pred_neg_share": {
+          "value": 0.4276188036589296,
+          "ci95": [
+            0.42761880365892957,
+            0.42761880365892957
+          ]
+        },
+        "recall_star_1-2": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "recall_star_3": {
+          "value": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "recall_star_4-5": {
+          "value": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "bin_neg_f1_dana": {
+          "value": 0.7690667641325536,
+          "ci95": [
+            0.7162589136867095,
+            0.8325390876863931
+          ]
+        },
+        "bin_neg_f1_gopay": {
+          "value": 0.8529192378110803,
+          "ci95": [
+            0.7392711784276922,
+            0.9505906925135436
+          ]
+        },
+        "bin_neg_f1_shopeepay": {
+          "value": 0.8478016301529729,
+          "ci95": [
+            0.7069446712245965,
+            0.9541467248663139
+          ]
+        }
+      }
+    }
+  }
+}
