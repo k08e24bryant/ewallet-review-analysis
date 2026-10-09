@@ -1,0 +1,626 @@
+{
+  "seed": 42,
+  "labels_used": "none (user-confirmed topic names; PRIMARY predictions; no gold or dev)",
+  "workbook": "data/topics/topics_to_name_v3.xlsx",
+  "validation": {
+    "n_topics_v3": 28,
+    "n_named": 17,
+    "merged": {
+      "1": [
+        2,
+        11,
+        20,
+        21,
+        23
+      ],
+      "0": [
+        12
+      ],
+      "8": [
+        14,
+        19
+      ],
+      "7": [
+        16
+      ],
+      "17": [
+        18
+      ],
+      "3": [
+        27
+      ]
+    }
+  },
+  "id_mapping_v3_to_final": {
+    "18": 11,
+    "-1": -1,
+    "0": 1,
+    "4": 5,
+    "22": 13,
+    "6": 7,
+    "2": 0,
+    "1": 0,
+    "10": 10,
+    "12": 1,
+    "19": 3,
+    "13": 9,
+    "3": 2,
+    "5": 6,
+    "14": 3,
+    "7": 4,
+    "8": 3,
+    "17": 11,
+    "15": 12,
+    "9": 8,
+    "21": 0,
+    "27": 2,
+    "16": 4,
+    "23": 0,
+    "26": 16,
+    "20": 0,
+    "25": 15,
+    "24": 14,
+    "11": 0
+  },
+  "outlier_reduction": {
+    "threshold": 0.6134535680280456,
+    "method": "centroids of raw v3 fit topics (brand-neutral embeddings)",
+    "transform_rows_outliers_before": 0.0967848856479947,
+    "transform_rows_outliers_after": 0.08087504143188598
+  },
+  "transform_input_neutralization": {
+    "docs_changed": 34,
+    "docs_changed_share": 0.011269472986410341,
+    "replacements": {
+      "brand:go\\s*-?\\s*pay": 20,
+      "brand:ovo": 10,
+      "brand:shopee\\s*-?\\s*pay": 3,
+      "brand:shopee": 1
+    },
+    "residual_typo_docs": {
+      "shopepay": 0,
+      "shope": 0,
+      "shoope": 0,
+      "shoppe": 0,
+      "shoopee": 0,
+      "sopi": 0,
+      "gopey": 0
+    }
+  },
+  "transform_check_on_fit_docs": {
+    "n": 5000,
+    "agreement_with_fit_topic_raw": 0.9566
+  },
+  "assignment_check": {
+    "rows_before": 66722,
+    "rows_after": 66722,
+    "rows_assigned_by_transform": 6708,
+    "transform_rows_match_assigned_by_transform_flag": true,
+    "outlier_reduction_reproduces_v3_fit": true,
+    "model_topics_match_fit_rows": true,
+    "partition_equals_requested_merges": true,
+    "outlier_rows_unchanged_by_merge": true,
+    "rows_moved_by_merges": 13212
+  },
+  "outlier_share_all_rows": 0.08530919336950331,
+  "shares": {
+    "unique_texts": {
+      "App bugs, updates or device problems": {
+        "gopay": 0.0599,
+        "ovo": 0.0788,
+        "dana": 0.0504,
+        "shopeepay": 0.1,
+        "all": 0.058
+      },
+      "Cannot pay or transfer": {
+        "gopay": 0.0509,
+        "ovo": 0.0443,
+        "dana": 0.0703,
+        "shopeepay": 0.0485,
+        "all": 0.0627
+      },
+      "Customer service unhelpful": {
+        "gopay": 0.0139,
+        "ovo": 0.0135,
+        "dana": 0.0182,
+        "shopeepay": 0.0141,
+        "all": 0.0167
+      },
+      "DANA Cicil not usable": {
+        "gopay": 0.003,
+        "ovo": 0.0002,
+        "dana": 0.0875,
+        "shopeepay": 0.0016,
+        "all": 0.0569
+      },
+      "Frequent errors and outages": {
+        "gopay": 0.2742,
+        "ovo": 0.1593,
+        "dana": 0.2931,
+        "shopeepay": 0.1812,
+        "all": 0.271
+      },
+      "Game top-up feature removed or fails": {
+        "gopay": 0.0168,
+        "ovo": 0.0,
+        "dana": 0.0009,
+        "shopeepay": 0.0033,
+        "all": 0.0044
+      },
+      "Intrusive ads": {
+        "gopay": 0.0118,
+        "ovo": 0.0012,
+        "dana": 0.0012,
+        "shopeepay": 0.0346,
+        "all": 0.0057
+      },
+      "Loan or paylater rejected, frozen or costly": {
+        "gopay": 0.0768,
+        "ovo": 0.0207,
+        "dana": 0.0083,
+        "shopeepay": 0.0922,
+        "all": 0.0295
+      },
+      "Login, verification or number change fails": {
+        "gopay": 0.0593,
+        "ovo": 0.1521,
+        "dana": 0.0655,
+        "shopeepay": 0.1148,
+        "all": 0.0744
+      },
+      "Money lost, missing or taken without consent": {
+        "gopay": 0.1915,
+        "ovo": 0.3128,
+        "dana": 0.1631,
+        "shopeepay": 0.1558,
+        "all": 0.1803
+      },
+      "Network error or lag despite good signal": {
+        "gopay": 0.0248,
+        "ovo": 0.0107,
+        "dana": 0.0461,
+        "shopeepay": 0.012,
+        "all": 0.0365
+      },
+      "Outliers": {
+        "gopay": 0.1014,
+        "ovo": 0.1065,
+        "dana": 0.0776,
+        "shopeepay": 0.1395,
+        "all": 0.0891
+      },
+      "Phone credit, data or token purchase fails": {
+        "gopay": 0.0317,
+        "ovo": 0.0111,
+        "dana": 0.0125,
+        "shopeepay": 0.0322,
+        "all": 0.0178
+      },
+      "QRIS scan or gallery upload fails": {
+        "gopay": 0.0022,
+        "ovo": 0.0012,
+        "dana": 0.0047,
+        "shopeepay": 0.0035,
+        "all": 0.0038
+      },
+      "Reward points cannot be redeemed": {
+        "gopay": 0.004,
+        "ovo": 0.0006,
+        "dana": 0.0264,
+        "shopeepay": 0.0049,
+        "all": 0.0182
+      },
+      "Server down or overloaded": {
+        "gopay": 0.0021,
+        "ovo": 0.0006,
+        "dana": 0.0056,
+        "shopeepay": 0.0014,
+        "all": 0.0042
+      },
+      "Unspecified complaint": {
+        "gopay": 0.0446,
+        "ovo": 0.0821,
+        "dana": 0.0654,
+        "shopeepay": 0.0433,
+        "all": 0.0608
+      },
+      "Voucher, cashback or game top-up not received": {
+        "gopay": 0.0311,
+        "ovo": 0.0041,
+        "dana": 0.0033,
+        "shopeepay": 0.0169,
+        "all": 0.0102
+      }
+    },
+    "all_rows": {
+      "App bugs, updates or device problems": {
+        "gopay": 0.059,
+        "ovo": 0.0792,
+        "dana": 0.0508,
+        "shopeepay": 0.0963,
+        "all": 0.0578
+      },
+      "Cannot pay or transfer": {
+        "gopay": 0.0476,
+        "ovo": 0.0433,
+        "dana": 0.0663,
+        "shopeepay": 0.0456,
+        "all": 0.0592
+      },
+      "Customer service unhelpful": {
+        "gopay": 0.0129,
+        "ovo": 0.0132,
+        "dana": 0.0169,
+        "shopeepay": 0.013,
+        "all": 0.0155
+      },
+      "DANA Cicil not usable": {
+        "gopay": 0.0028,
+        "ovo": 0.0002,
+        "dana": 0.0832,
+        "shopeepay": 0.0015,
+        "all": 0.0542
+      },
+      "Frequent errors and outages": {
+        "gopay": 0.3158,
+        "ovo": 0.1748,
+        "dana": 0.3301,
+        "shopeepay": 0.2302,
+        "all": 0.3085
+      },
+      "Game top-up feature removed or fails": {
+        "gopay": 0.0158,
+        "ovo": 0.0,
+        "dana": 0.0008,
+        "shopeepay": 0.003,
+        "all": 0.0041
+      },
+      "Intrusive ads": {
+        "gopay": 0.0112,
+        "ovo": 0.0012,
+        "dana": 0.0012,
+        "shopeepay": 0.0338,
+        "all": 0.0056
+      },
+      "Loan or paylater rejected, frozen or costly": {
+        "gopay": 0.0715,
+        "ovo": 0.0202,
+        "dana": 0.0077,
+        "shopeepay": 0.0853,
+        "all": 0.0275
+      },
+      "Login, verification or number change fails": {
+        "gopay": 0.0558,
+        "ovo": 0.1488,
+        "dana": 0.0624,
+        "shopeepay": 0.107,
+        "all": 0.0706
+      },
+      "Money lost, missing or taken without consent": {
+        "gopay": 0.1785,
+        "ovo": 0.3049,
+        "dana": 0.1522,
+        "shopeepay": 0.1438,
+        "all": 0.1686
+      },
+      "Network error or lag despite good signal": {
+        "gopay": 0.0231,
+        "ovo": 0.0104,
+        "dana": 0.0429,
+        "shopeepay": 0.0111,
+        "all": 0.0341
+      },
+      "Outliers": {
+        "gopay": 0.097,
+        "ovo": 0.1049,
+        "dana": 0.0742,
+        "shopeepay": 0.1315,
+        "all": 0.0853
+      },
+      "Phone credit, data or token purchase fails": {
+        "gopay": 0.0295,
+        "ovo": 0.0108,
+        "dana": 0.0116,
+        "shopeepay": 0.0297,
+        "all": 0.0166
+      },
+      "QRIS scan or gallery upload fails": {
+        "gopay": 0.0021,
+        "ovo": 0.0012,
+        "dana": 0.0044,
+        "shopeepay": 0.0033,
+        "all": 0.0036
+      },
+      "Reward points cannot be redeemed": {
+        "gopay": 0.0042,
+        "ovo": 0.0008,
+        "dana": 0.0249,
+        "shopeepay": 0.0059,
+        "all": 0.0174
+      },
+      "Server down or overloaded": {
+        "gopay": 0.002,
+        "ovo": 0.0006,
+        "dana": 0.0052,
+        "shopeepay": 0.0013,
+        "all": 0.0039
+      },
+      "Unspecified complaint": {
+        "gopay": 0.0424,
+        "ovo": 0.0816,
+        "dana": 0.0621,
+        "shopeepay": 0.0421,
+        "all": 0.058
+      },
+      "Voucher, cashback or game top-up not received": {
+        "gopay": 0.0289,
+        "ovo": 0.004,
+        "dana": 0.0031,
+        "shopeepay": 0.0156,
+        "all": 0.0095
+      }
+    }
+  },
+  "keywords": {
+    "Frequent errors and outages": [
+      "gangguan",
+      "eror",
+      "error",
+      "jam",
+      "transaksi",
+      "teknis",
+      "tolong",
+      "uang",
+      "perbaiki",
+      "ganguan"
+    ],
+    "Money lost, missing or taken without consent": [
+      "saldo",
+      "uang",
+      "masuk",
+      "hilang",
+      "transaksi",
+      "tolong",
+      "top",
+      "akun",
+      "up",
+      "top up"
+    ],
+    "Login, verification or number change fails": [
+      "akun",
+      "login",
+      "verifikasi",
+      "nomor",
+      "wajah",
+      "ganti",
+      "ktp",
+      "hp",
+      "otp",
+      "email"
+    ],
+    "Cannot pay or transfer": [
+      "transaksi",
+      "tf",
+      "bayar",
+      "gangguan",
+      "qris",
+      "gagal",
+      "susah",
+      "pembayaran",
+      "transfer",
+      "eror"
+    ],
+    "Unspecified complaint": [
+      "sampah",
+      "transaksi",
+      "saldo",
+      "uang",
+      "eror",
+      "gangguan",
+      "transfer",
+      "error",
+      "masuk",
+      "update"
+    ],
+    "DANA Cicil not usable": [
+      "cicil",
+      "limit",
+      "fitur cicil",
+      "fitur",
+      "limit cicil",
+      "pakai",
+      "tersedia",
+      "bayar",
+      "muncul",
+      "cicil limit"
+    ],
+    "App bugs, updates or device problems": [
+      "aplikasinya",
+      "gangguan",
+      "eror",
+      "update",
+      "error",
+      "bug",
+      "buka",
+      "lemot",
+      "hp",
+      "jelek"
+    ],
+    "Network error or lag despite good signal": [
+      "jaringan",
+      "bagus",
+      "sinyal",
+      "jaringan bagus",
+      "wifi",
+      "jaringan bermasalah",
+      "bermasalah",
+      "internet",
+      "lancar",
+      "login"
+    ],
+    "Loan or paylater rejected, frozen or costly": [
+      "pinjaman",
+      "pinjam",
+      "bayar",
+      "telat",
+      "tolak",
+      "limit",
+      "paylater",
+      "tagihan",
+      "pengajuan",
+      "cicilan"
+    ],
+    "Phone credit, data or token purchase fails": [
+      "beli",
+      "paket",
+      "pulsa",
+      "paket data",
+      "data",
+      "kuota",
+      "beli paket",
+      "beli pulsa",
+      "token",
+      "masuk"
+    ],
+    "Reward points cannot be redeemed": [
+      "event",
+      "point",
+      "hadiah",
+      "poin",
+      "tukar",
+      "bikin event",
+      "vip",
+      "klaim",
+      "ngumpulin",
+      "pas"
+    ],
+    "Customer service unhelpful": [
+      "diana",
+      "cs",
+      "chat",
+      "customer",
+      "respon",
+      "solusi",
+      "ai",
+      "service",
+      "pelayanan",
+      "membantu"
+    ],
+    "Voucher, cashback or game top-up not received": [
+      "voucher",
+      "game",
+      "promo",
+      "cashback",
+      "coin",
+      "masuk",
+      "top",
+      "top up",
+      "up",
+      "wdp"
+    ],
+    "Intrusive ads": [
+      "iklan",
+      "iklannya",
+      "maksa",
+      "ganggu",
+      "mengganggu",
+      "muncul",
+      "game",
+      "nonton",
+      "bikin",
+      "pencet"
+    ],
+    "Game top-up feature removed or fails": [
+      "game",
+      "up game",
+      "top",
+      "top up",
+      "up",
+      "fitur top",
+      "games",
+      "topup game",
+      "fitur",
+      "topup"
+    ],
+    "Server down or overloaded": [
+      "server",
+      "servernya",
+      "down",
+      "server down",
+      "sibuk",
+      "server sibuk",
+      "penuh",
+      "server penuh",
+      "transaksi",
+      "benerin"
+    ],
+    "QRIS scan or gallery upload fails": [
+      "scan",
+      "scan qris",
+      "qris",
+      "qr",
+      "galeri",
+      "scan qr",
+      "barcode",
+      "scan barcode",
+      "foto",
+      "bug"
+    ]
+  },
+  "columns": {
+    "topic/topic_name": "v3 (this phase)",
+    "topic_v1/topic_name_v1": "6b topics (kept)",
+    "topic_v3_unmerged": "v3 before merges",
+    "topic_v3_raw": "v3 before outlier reduction"
+  },
+  "fresh_fit_check": {
+    "xlsx": "data\\topics\\topic_fit_check_v3.xlsx",
+    "key": "data\\topics\\topic_fit_key_v3.parquet",
+    "n": 60,
+    "design": {
+      "per_app": {
+        "fitted": 10,
+        "transform": 5
+      },
+      "population": "complaint rows with a named v3 topic, one row per distinct text",
+      "excluded_rows": 1260,
+      "excluded_texts": 1260,
+      "available_per_stratum": {
+        "gopay|fitted": 11051,
+        "gopay|transform": 574,
+        "ovo|fitted": 4132,
+        "ovo|transform": 132,
+        "dana|fitted": 34764,
+        "dana|transform": 1704,
+        "shopeepay|fitted": 3350,
+        "shopeepay|transform": 245
+      }
+    },
+    "per_topic": {
+      "Frequent errors and outages": 24,
+      "App bugs, updates or device problems": 10,
+      "Money lost, missing or taken without consent": 8,
+      "Login, verification or number change fails": 5,
+      "Phone credit, data or token purchase fails": 4,
+      "Unspecified complaint": 2,
+      "Loan or paylater rejected, frozen or costly": 2,
+      "Reward points cannot be redeemed": 1,
+      "Intrusive ads": 1,
+      "DANA Cicil not usable": 1,
+      "Network error or lag despite good signal": 1,
+      "Customer service unhelpful": 1
+    },
+    "decision_rule": {
+      "baseline_yes": 0.367,
+      "metric": "fitted_docs_yes_rate",
+      "also_report": [
+        "transform_rows_yes_rate",
+        "all_rows_yes_rate_weighted",
+        "per_app"
+      ]
+    },
+    "readme_rules": [
+      "A row in 'Unspecified complaint' is 'yes' only if the review truly has no specific problem; if a specific problem is buried there, it is 'no'."
+    ]
+  }
+}

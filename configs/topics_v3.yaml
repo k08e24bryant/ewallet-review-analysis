@@ -1,0 +1,38 @@
+# Phase 6c-2: apply the reviewed v3 names/merges and export the fresh fit-check workbook.
+seed: 42
+
+topics_config: configs/topics.yaml        # complaint rows, text column, apps
+final_config: configs/topics_final.yaml   # 6b stopwords + extra stopwords, keep_words
+v2_config: configs/topics_v2.yaml         # embedding spec, brand neutralization, v3 paths
+
+workbook: data/topics/topics_to_name_v3.xlsx   # reviewed by the user (source of truth)
+sheet: topics
+model_in: models/bertopic_v3/bertopic_v3.pkl
+fit_topics: models/bertopic_v3/fit_topics_v3.parquet
+v3_report: reports/phase6c_v3_brand_neutral.json    # outlier-reduction threshold of the v3 fit
+embedding: indo_sbert
+model_out: models/bertopic_v3/bertopic_v3_final.pkl
+assignments_path: data/processed/topic_assignments.parquet   # v3 -> topic/topic_name; 6b kept as *_v1
+outlier_label: Outliers
+transform_check_n: 5000
+
+fit_check:
+  xlsx_path: data/topics/topic_fit_check_v3.xlsx      # refuses to overwrite
+  key_path: data/topics/topic_fit_key_v3.parquet
+  per_app: {fitted: 10, transform: 5}                 # 4 apps x 15 = 60 (40 fitted, 20 transform)
+  id_prefix: F
+  id_width: 2
+  options: ["yes", "partly", "no"]                    # quoted: bare yes/no are YAML booleans
+  # Population as in 6b: complaint rows with a named topic (outliers excluded), one row per distinct text.
+  exclude_keys: [data/topics/topic_fit_key.parquet]   # the 60 diagnostic rows (6b fit check)
+  exclude_reading: [data/topics/v2_reading_sample.parquet, data/topics/v3_reading_sample.parquet]  # 1,200 rows Claude read
+  # Excluded by reviewId and by identical text_clean.
+
+# Fixed before any judgment exists. The 6b rate (37% yes) came from fitted documents,
+# 15 per app, outliers excluded, so the comparable number is the fitted stratum.
+decision:
+  baseline_yes: 0.367
+  metric: fitted_docs_yes_rate          # adopt v3 if this is higher than baseline_yes
+  also_report: [transform_rows_yes_rate, all_rows_yes_rate_weighted, per_app]
+
+report_path: reports/phase6c_v3_apply.json
